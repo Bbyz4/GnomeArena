@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -21,6 +23,8 @@ public class MainMenuScreen implements Screen
     OrthographicCamera camera;
 
     Label.LabelStyle textStyle = new Label.LabelStyle();
+    private BitmapFont bigFont;
+    private FreeTypeFontGenerator ftfp;
 
     Button playButton;
     Label titleLabel;
@@ -28,13 +32,18 @@ public class MainMenuScreen implements Screen
     public MainMenuScreen(final MainGame game)
     {
         this.game = game;
-
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     @Override
     public void show()
     {
+        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.size = 100;
+        param.color.set(0,0,0,1);
+        bigFont = ftfp.generateFont(param); 
+
         Skin skin = new Skin();
         skin.add("playButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
         skin.add("playButtonTexture2", new Texture("badlogic.jpg"));
@@ -55,7 +64,7 @@ public class MainMenuScreen implements Screen
         });
         game.stage.addActor(playButton);
 
-        textStyle.font = game.font;
+        textStyle.font = bigFont;
         textStyle.fontColor = Color.BLACK;
 
         titleLabel = new Label("GNOME ARENA", textStyle);
@@ -98,6 +107,8 @@ public class MainMenuScreen implements Screen
     @Override
     public void hide()
     {
+        playButton.clearListeners();
+
         game.stage.clear();
     }
 
