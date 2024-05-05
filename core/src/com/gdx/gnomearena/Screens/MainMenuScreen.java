@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 
 public class MainMenuScreen implements Screen
@@ -25,6 +27,7 @@ public class MainMenuScreen implements Screen
     Label.LabelStyle textStyle = new Label.LabelStyle();
     private BitmapFont bigFont;
     private FreeTypeFontGenerator ftfp;
+    private Stage stage;
 
     Button playButton;
     Label titleLabel;
@@ -38,6 +41,9 @@ public class MainMenuScreen implements Screen
     @Override
     public void show()
     {
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+
         ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
@@ -62,7 +68,7 @@ public class MainMenuScreen implements Screen
                 game.setScreen(new GameScreen(game));
             }
         });
-        game.stage.addActor(playButton);
+        stage.addActor(playButton);
 
         textStyle.font = bigFont;
         textStyle.fontColor = Color.BLACK;
@@ -71,7 +77,7 @@ public class MainMenuScreen implements Screen
         titleLabel.setAlignment(Align.center);
         titleLabel.setPosition(620, 700);
         titleLabel.setWidth(200);
-        game.stage.addActor(titleLabel);
+        stage.addActor(titleLabel);
     }
 
     @Override
@@ -82,8 +88,8 @@ public class MainMenuScreen implements Screen
         Gdx.gl.glClearColor(0,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        game.stage.act(delta);
-        game.stage.draw();
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
@@ -109,7 +115,7 @@ public class MainMenuScreen implements Screen
     {
         playButton.clearListeners();
 
-        game.stage.clear();
+        stage.clear();
     }
 
     @Override
