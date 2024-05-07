@@ -5,15 +5,15 @@ public class GameManager
     private final Board gameBoard;
 
 
-    GameManager()
+    public GameManager()
     {
         gameBoard = new Board();
     }
 
 
-    public void handlePlayerInput()
+    public void handlePlayerInput(int keycode)
     {
-
+        System.out.println(keycode);
     }
 
     private void moveAllGnomes()
