@@ -1,6 +1,8 @@
 package com.gdx.gnomearena.Core;
 
-public interface Gnome extends Entity
+public abstract class Gnome extends Entity
 {
-    
+    void makeMove(Board b){}   
+    void onSpawn(){}
+    void onDeath(){}
 }
