@@ -2,6 +2,8 @@ package com.gdx.gnomearena.Core;
 
 import java.util.List;
 
+import javafx.util.Pair;
+
 public class Board
 {
     private Entity[][] board; // (0,0) is the top-left square
@@ -41,14 +43,25 @@ public class Board
         return (boardSize/2)+1;
     }
 
-    public int getPlayerX()
+    public Pair<Integer, Integer> getPlayersPosition()
     {
-        return playerX;
+        return new Pair<Integer,Integer>(playerX, playerY);
     }
 
-    public int getPlayerY()
+    public Pair<Integer, Integer> getEntitiesPosition(Entity e)
     {
-        return playerY;
+        for(int i=0; i<boardSize; i++)
+        {
+            for(int j=0; j<boardSize; j++)
+            {
+                if(board[i][j].equals(e))
+                {
+                    return new Pair<Integer,Integer>(i, j);
+                }
+            }
+        }
+
+        return null;
     }
 
     public void spawnEntity(Entity e, int x, int y)

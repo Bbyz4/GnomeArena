@@ -22,7 +22,7 @@ public class GameManager
         player.makeMove(gameBoard, keycode);
         moveAllGnomes();
         //TESTING
-        System.out.println(gameBoard.getPlayerX() + " " + gameBoard.getPlayerY());
+        System.out.println(gameBoard.getPlayersPosition());
     }
 
     private void moveAllGnomes()

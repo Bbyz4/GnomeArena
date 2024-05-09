@@ -16,8 +16,8 @@ public class Player extends Entity
 
     void makeMove(Board b, int keycode)
     {
-        int pX = b.getPlayerX();
-        int pY = b.getPlayerY();
+        int pX = b.getPlayersPosition().getKey();
+        int pY = b.getPlayersPosition().getValue();
         switch(keycode) {
             case Input.Keys.W:
                 if(b.isValid(pX, pY-1) && b.isEmpty(pX, pY-1))
