@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.gdx.gnomearena.Core.Gnomes.TestingGnome;
 
-import javafx.util.Pair;
 
 public class Board
 {

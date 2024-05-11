@@ -3,8 +3,7 @@ package com.gdx.gnomearena.Core.Gnomes;
 import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.Gnome;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
-
-import javafx.util.Pair;
+import com.gdx.gnomearena.Core.Pair;
 
 public class TestingGnome extends Gnome
 {
@@ -35,7 +34,7 @@ public class TestingGnome extends Gnome
             
             //TESTING
             System.out.println(this + " POSITION BEFORE MOVE:");
-            System.out.println(gX + " " + gY);
+            System.out.println(b.getEntitiesPosition(this));
 
             Pair<Integer,Integer> newPos = move.move(b, new Pair<Integer,Integer>(gX, gY));
             if(newPos!=null)
