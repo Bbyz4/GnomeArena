@@ -1,5 +1,6 @@
 package com.gdx.gnomearena.Core.Gnomes;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.Gnome;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
@@ -14,6 +15,7 @@ public class TestingGnome extends Gnome
         attack = null;
         moveCooldown = 2;
         currentCooldown = 2;
+        skin = new Texture("gnomeSprites/TestGnome.png");
     }
 
     @Override

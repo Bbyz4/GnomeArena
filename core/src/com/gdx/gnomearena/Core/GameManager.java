@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GameManager
 {
-    private final Board gameBoard;
+    public final Board gameBoard;
     private final GnomeSpawner gnomeSpawner;
     private final Player player;
 

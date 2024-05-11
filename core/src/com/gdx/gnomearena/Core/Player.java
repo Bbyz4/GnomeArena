@@ -1,6 +1,7 @@
 package com.gdx.gnomearena.Core;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 
 public class Player extends Entity
 {
@@ -12,6 +13,7 @@ public class Player extends Entity
         health = 3;
         //heldWeapon = starting weapon
         heldItem = null;
+        skin = new Texture("otherSprites/Player.png");
     }
 
     void makeMove(Board b, int keycode)
