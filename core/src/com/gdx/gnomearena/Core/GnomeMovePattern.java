@@ -1,6 +1,5 @@
 package com.gdx.gnomearena.Core;
 
-import javafx.util.Pair;
 
 public abstract class GnomeMovePattern
 {

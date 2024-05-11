@@ -2,8 +2,7 @@ package com.gdx.gnomearena.Core.GnomeMovePatterns;
 
 import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.GnomeMovePattern;
-
-import javafx.util.Pair;
+import com.gdx.gnomearena.Core.Pair;
 
 public class BasicMovement extends GnomeMovePattern
 {
