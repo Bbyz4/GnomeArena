@@ -4,39 +4,13 @@ import javafx.util.Pair;
 
 public abstract class Gnome extends Entity
 {
-    GnomeMovePattern move;
-    GnomeAttackPattern attack;
+    public GnomeMovePattern move;
+    public GnomeAttackPattern attack;
 
-    int moveCooldown;
-    int currentCooldown;
+    public int moveCooldown;
+    public int currentCooldown;
 
-    public void makeMove(Board b)
-    {
-        currentCooldown--;
-        if(currentCooldown==0)
-        {
-            currentCooldown = moveCooldown;
-            if(health==0)
-            {
-                onDeath();
-                return;
-            }
-
-            int gX = b.getEntitiesPosition(this).getKey();
-            int gY = b.getEntitiesPosition(this).getKey();
-
-            for(int i=0; i<attack.attackRange.length; i++)
-            {
-                if(b.getPlayersPosition() == new Pair<Integer,Integer>(gX + attack.attackRange[i].getKey(), gY + attack.attackRange[i].getValue()))
-                {
-                    attack.attack(b, new Pair<Integer,Integer>(gX, gY), b.getPlayersPosition());
-                    return;
-                }
-            }
-            
-            move.move(b, new Pair<Integer,Integer>(gX, gY));
-            }
-    }   
+    public void makeMove(Board b){}
     public void onSpawn(){}
     public void onDeath(){}
 }

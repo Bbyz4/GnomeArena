@@ -1,6 +1,9 @@
 package com.gdx.gnomearena.Core;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.gdx.gnomearena.Core.Gnomes.TestingGnome;
 
 import javafx.util.Pair;
 
@@ -12,10 +15,16 @@ public class Board
     private int playerX;
     private int playerY;
 
+    //TESTING
+    private TestingGnome test;
+
     Board(int x)
     {
         board = new Entity[x][x];
         boardSize=x;
+        //TESTING
+        test = new TestingGnome();
+        spawnEntity(test, 0, 0);
     }
 
     Board()
@@ -54,7 +63,7 @@ public class Board
         {
             for(int j=0; j<boardSize; j++)
             {
-                if(board[i][j].equals(e))
+                if(board[i][j]!=null && board[i][j].equals(e))
                 {
                     return new Pair<Integer,Integer>(i, j);
                 }
@@ -90,8 +99,20 @@ public class Board
         board[x][y] = null;
     }
 
+    public void removeEntity(Entity e)
+    {
+        Pair<Integer,Integer> p = getEntitiesPosition(e);
+        if(p!=null)
+        {
+            removeEntity(p.getKey(), p.getValue());
+        }
+    }
+
     public List<Gnome> getGnomeMoveOrders()
     {
-        return null;
+        //TESTING
+        List<Gnome> l = new ArrayList<>();
+        l.add(test);
+        return l;
     }
 }

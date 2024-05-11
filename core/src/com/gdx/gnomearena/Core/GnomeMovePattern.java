@@ -4,7 +4,7 @@ import javafx.util.Pair;
 
 public abstract class GnomeMovePattern
 {
-    Pair<Integer,Integer>[] moveRange;
+    public Pair<Integer,Integer>[] moveRange;
 
-    public abstract void move(Board b, Pair<Integer,Integer> movedPosition);
+    public abstract Pair<Integer,Integer> move(Board b, Pair<Integer,Integer> myPosition);
 }

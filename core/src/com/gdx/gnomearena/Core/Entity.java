@@ -4,6 +4,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 public abstract class Entity
 {
-    int health;
-    List<Effect> currentEffects;
+    public int health;
+    public List<Effect> currentEffects;
 }
