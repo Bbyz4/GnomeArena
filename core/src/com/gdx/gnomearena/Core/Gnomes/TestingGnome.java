@@ -12,7 +12,7 @@ public class TestingGnome extends Gnome
 {
     public TestingGnome()
     {
-        health = 69;
+        health = 1;
         move = new BasicMovement();
         attack = new BasicAttack();
         moveCooldown = 2;
@@ -48,14 +48,14 @@ public class TestingGnome extends Gnome
     }
 
     @Override
-    public void takeDamage(int damagepoints) {
-        health = Math.max(0,damagepoints);
+    public void takeDamage(int damagePoints) {
+        health = Math.max(0,health-damagePoints);
         if (health == 0)
             onDeath();
     }
 
     @Override
     public void onDeath() {
-
+        //TODO: delete gnome after death
     }
 }

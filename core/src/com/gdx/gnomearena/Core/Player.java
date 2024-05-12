@@ -2,6 +2,7 @@ package com.gdx.gnomearena.Core;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.gdx.gnomearena.Core.Weapons.BasicWeapon;
 
 import java.lang.constant.ConstantDesc;
 
@@ -13,7 +14,7 @@ public class Player extends Entity
     Player()
     {
         health = 3;
-        //heldWeapon = starting weapon
+        heldWeapon = new BasicWeapon();
         heldItem = null;
         skin = new Texture("otherSprites/Player.png");
     }
@@ -22,31 +23,41 @@ public class Player extends Entity
     {
         int pX = board.getPlayersPosition().getKey();
         int pY = board.getPlayersPosition().getValue();
+        boolean didPlayerAttack;
+
         switch(keycode) {
             case Input.Keys.W:
-                if(board.isValid(pX, pY-1) && board.isEmpty(pX, pY-1))
-                {
-
-                    board.moveEntity(pX, pY, pX, pY-1);
+                didPlayerAttack = heldWeapon.attack(board,'W');
+                if (!didPlayerAttack) {
+                    if (board.isValid(pX, pY - 1) && board.isEmpty(pX, pY - 1)) {
+                        board.moveEntity(pX, pY, pX, pY - 1);
+                    }
                 }
                 break;
             case Input.Keys.A:
-                if(board.isValid(pX-1, pY) && board.isEmpty(pX-1, pY))
-                {
-                    board.moveEntity(pX, pY, pX-1, pY);
+                didPlayerAttack = heldWeapon.attack(board,'A');
+                if (!didPlayerAttack) {
+                    if (board.isValid(pX - 1, pY) && board.isEmpty(pX - 1, pY)) {
+                        board.moveEntity(pX, pY, pX - 1, pY);
+                    }
                 }
                 break;
             case Input.Keys.S:
-                if(board.isValid(pX, pY+1) && board.isEmpty(pX, pY+1))
-                {
-                    board.moveEntity(pX, pY, pX, pY+1);
+                didPlayerAttack = heldWeapon.attack(board,'S');
+                if (!didPlayerAttack) {
+                    if (board.isValid(pX, pY + 1) && board.isEmpty(pX, pY + 1)) {
+                        board.moveEntity(pX, pY, pX, pY + 1);
+                    }
                 }
                 break;
             case Input.Keys.D:
-                if(board.isValid(pX+1, pY) && board.isEmpty(pX+1, pY))
+                didPlayerAttack = heldWeapon.attack(board,'D');
+                if (!didPlayerAttack) {
+                    if(board.isValid(pX+1, pY) && board.isEmpty(pX+1, pY))
                 {
                     board.moveEntity(pX, pY, pX+1, pY);
                 }
+                    }
                 break;
             case Input.Keys.E:
                 if(heldItem!=null)
@@ -61,8 +72,8 @@ public class Player extends Entity
     }
 
     @Override
-    public void takeDamage(int damagepoints) {
-        health = Math.max(0, health - damagepoints);
+    public void takeDamage(int damagePoints) {
+        health = Math.max(0, health - damagePoints);
         if (health == 0) {
             onDeath();
         }
@@ -70,6 +81,6 @@ public class Player extends Entity
 
     @Override
     public void onDeath() {
-
+        //TODO: end game after player's death
     }
 }

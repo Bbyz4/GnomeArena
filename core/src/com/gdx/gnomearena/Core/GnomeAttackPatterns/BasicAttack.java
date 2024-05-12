@@ -24,9 +24,9 @@ public class BasicAttack extends GnomeAttackPattern {
 
         Pair<Integer,Integer> playerPos = board.getPlayersPosition();
 
-        for (Pair<Integer,Integer> ranges: attackRange) {
 
-            if (ranges.getKey() == playerPos.getKey() && ranges.getValue() == playerPos.getValue()) {
+        for (Pair<Integer,Integer> ranges: attackRange) {
+            if (attackerPosition.getKey() + ranges.getKey()  == playerPos.getKey() && attackerPosition.getValue() + ranges.getValue() == playerPos.getValue()) {
                 board.get(playerPos.getKey(), playerPos.getValue()).takeDamage(damagePoints);
                 return true;
             }
