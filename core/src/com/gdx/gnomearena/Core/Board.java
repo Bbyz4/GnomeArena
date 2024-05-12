@@ -114,4 +114,20 @@ public class Board
         l.add(test);
         return l;
     }
+
+    public List<Pair<Entity, Pair<Integer,Integer>>> getAllEntitiesWithPositions()
+    {
+        List<Pair<Entity, Pair<Integer,Integer>>> l = new ArrayList<>();
+        for(int i=0; i<boardSize; i++)
+        {
+            for(int j=0; j<boardSize; j++)
+            {
+                if(board[i][j]!=null)
+                {
+                    l.add(new Pair<Entity, Pair<Integer,Integer>>(board[i][j],new Pair<Integer,Integer>(i,j)));
+                }
+            }
+        }
+        return l;
+    }
 }

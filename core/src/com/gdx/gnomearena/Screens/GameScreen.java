@@ -1,5 +1,7 @@
 package com.gdx.gnomearena.Screens;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
@@ -13,8 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
+import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
-
+import com.gdx.gnomearena.Core.Pair;
 
 public class GameScreen implements Screen {
 
@@ -27,7 +30,7 @@ public class GameScreen implements Screen {
 
     //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
     private Image playerimage;
-    
+
     private final float pace = 1f;
     private final float clickWindow = 0.25f;
     private boolean keyHandled = false;
@@ -89,7 +92,7 @@ public class GameScreen implements Screen {
                 Texture tex = (i+j)%2==0 ? grass2 : grass1;
                 Sprite sprite = new Sprite(tex);
                 grassBlocks[i][j] = new Image(sprite);
-                grassBlocks[i][j].setPosition(0+64*i, 0+64*j);
+                grassBlocks[i][j].setPosition(0+64*i, 896-64*j);
                 grassBlocks[i][j].setScale(2f);
             }
         }
@@ -129,13 +132,26 @@ public class GameScreen implements Screen {
         }
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(0, 0, 0, 1);
+
+        stage.clear();
+
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
             {
                 stage.addActor(grassBlocks[i][j]);
-
             }
+        }
+
+        List<Pair<Entity, Pair<Integer,Integer>>> gnomeDisplay = gameManager.gameBoard.getAllEntitiesWithPositions();
+        for(int i=0; i<gnomeDisplay.size(); i++)
+        {
+            Sprite spr = new Sprite(gnomeDisplay.get(i).getKey().skin);
+            Image im = new Image(spr);
+            im.setOrigin(im.getWidth()/2, im.getHeight()/2);
+            im.setPosition(64*gnomeDisplay.get(i).getValue().getKey() + im.getWidth()/2, 896 - (64*gnomeDisplay.get(i).getValue().getValue() - im.getHeight()/2));
+            im.setScale(1.5f);
+            stage.addActor(im);
         }
 
         //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
