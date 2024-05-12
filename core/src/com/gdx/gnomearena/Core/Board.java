@@ -1,9 +1,8 @@
 package com.gdx.gnomearena.Core;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-
-import com.gdx.gnomearena.Core.Gnomes.TestingGnome;
 
 
 public class Board
@@ -14,16 +13,10 @@ public class Board
     private int playerX;
     private int playerY;
 
-    //TESTING
-    private TestingGnome test;
-
     Board(int x)
     {
         board = new Entity[x][x];
         boardSize=x;
-        //TESTING
-        test = new TestingGnome();
-        spawnEntity(test, 0, 0);
     }
 
     Board()
@@ -109,9 +102,35 @@ public class Board
 
     public List<Gnome> getGnomeMoveOrders()
     {
-        //TESTING
         List<Gnome> l = new ArrayList<>();
-        l.add(test);
+        List<Pair<Integer,Integer>> positions = new ArrayList<>();
+
+        for (int i = 0; i < boardSize; i++)
+        {
+            for (int j = 0; j < boardSize; j++)
+            {
+                if (board[i][j] instanceof Gnome)
+                {
+                    positions.add(new Pair<Integer,Integer>(i,j));
+                }
+            }
+        }
+        
+        positions.sort(new Comparator<Pair<Integer,Integer>>()
+        {
+            @Override
+            public int compare(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2)
+            {
+                int dist1 = Math.abs(playerX-p1.getKey()) + Math.abs(playerY-p1.getValue());
+                int dist2 = Math.abs(playerX-p2.getKey()) + Math.abs(playerY-p2.getValue());
+                return Integer.compare(dist1, dist2);
+            }
+        });
+        
+        for(int i=0; i<positions.size(); i++)
+        {
+            l.add((Gnome)get(positions.get(i).getKey(), positions.get(i).getValue()));
+        }
         return l;
     }
 
