@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -108,22 +109,6 @@ public class GameScreen implements Screen {
         }
 
         camera.update();
-
-        if(elapsedTime>=pace*(1-clickWindow))
-        {
-            if(!keyHandled)
-            {
-                //Gdx.gl.glClearColor(1,0,0,1);
-            }
-            else
-            {
-                //Gdx.gl.glClearColor(0,1,0,1);
-            }
-        }
-        else
-        {
-            //Gdx.gl.glClearColor(0,0,0,1);
-        }
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(0, 0, 0, 1);
 
@@ -148,7 +133,36 @@ public class GameScreen implements Screen {
             stage.addActor(im);
         }
 
-
+        Texture bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
+        Sprite bmsprite = new Sprite(bmtexture);
+        Image bmimage = new Image(bmsprite);
+        bmimage.setPosition(700, -300); 
+        bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
+        bmimage.setScale(0.3f*(pace-elapsedTime)); 
+        bmimage.setColor(Color.YELLOW);
+        Texture bm2texture = new Texture(Gdx.files.internal("otherSprites/BeatMeter2.png"));
+        Sprite bm2sprite = new Sprite(bm2texture);
+        Image bm2image = new Image(bm2sprite);
+        bm2image.setPosition(700, -300); 
+        bm2image.setOrigin(bm2image.getWidth()/2, bm2image.getHeight()/2);
+        bm2image.setScale(0.3f*(pace*clickWindow)); 
+        if(elapsedTime>=pace*(1-clickWindow))
+        {
+            if(!keyHandled)
+            {
+                bm2image.setColor(Color.GREEN);
+            }
+            else
+            {
+                bm2image.setColor(Color.GRAY);
+            }
+        }
+        else
+        {
+            bm2image.setColor(Color.RED);
+        }
+        stage.addActor(bmimage);
+        stage.addActor(bm2image); 
 
 
         stage.act(delta);
