@@ -72,15 +72,20 @@ public class Player extends Entity
     }
 
     @Override
-    public void takeDamage(int damagePoints) {
+    public void takeDamage(Board board, int damagePoints) {
         health = Math.max(0, health - damagePoints);
         if (health == 0) {
-            onDeath();
+            onDeath(board);
         }
+        System.out.println(health);
     }
 
     @Override
-    public void onDeath() {
+    public void onDeath(Board board) {
         //TODO: end game after player's death
+
+
+        //TESTING
+        System.out.println("DEAD");
     }
 }

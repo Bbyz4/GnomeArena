@@ -27,7 +27,7 @@ public class TestingGnome extends Gnome
         if(currentCooldown==0) {
             currentCooldown = moveCooldown;
             if (health == 0) {
-                onDeath();
+                onDeath(board);
                 return;
             }
 
@@ -48,14 +48,17 @@ public class TestingGnome extends Gnome
     }
 
     @Override
-    public void takeDamage(int damagePoints) {
+    public void takeDamage(Board board, int damagePoints) {
         health = Math.max(0,health-damagePoints);
         if (health == 0)
-            onDeath();
+            this.onDeath(board);
     }
 
     @Override
-    public void onDeath() {
-        //TODO: delete gnome after death
+    public void onDeath(Board board) {
+        board.removeEntity(this);
+
+        //TESTING
+        System.out.println("DEAD");
     }
 }

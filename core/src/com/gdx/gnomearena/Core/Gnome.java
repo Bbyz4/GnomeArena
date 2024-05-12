@@ -11,5 +11,4 @@ public abstract class Gnome extends Entity
 
     public void makeMove(Board board){}
     public void onSpawn(){}
-    public void onDeath(){}
 }

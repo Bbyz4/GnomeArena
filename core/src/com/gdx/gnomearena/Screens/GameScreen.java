@@ -133,7 +133,7 @@ public class GameScreen implements Screen {
             stage.addActor(im);
         }
 
-       /* Texture bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
+       /*Texture bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
         Sprite bmsprite = new Sprite(bmtexture);
         Image bmimage = new Image(bmsprite);
         bmimage.setPosition(700, -300); 
@@ -163,7 +163,7 @@ public class GameScreen implements Screen {
         }
         stage.addActor(bmimage);
         stage.addActor(bm2image); 
-*/
+        */
 
         stage.act(delta);
         stage.draw();

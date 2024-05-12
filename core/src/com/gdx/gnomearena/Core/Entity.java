@@ -10,8 +10,8 @@ public abstract class Entity
 
     public Texture skin;
 
-    public abstract void takeDamage(int damagepoints);
+    public abstract void takeDamage(Board board, int damagepoints);
 
-    public abstract void onDeath();
+    public abstract void onDeath(Board board);
 
 }

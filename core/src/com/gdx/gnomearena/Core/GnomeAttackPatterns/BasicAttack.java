@@ -3,7 +3,6 @@ package com.gdx.gnomearena.Core.GnomeAttackPatterns;
 import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.GnomeAttackPattern;
 import com.gdx.gnomearena.Core.Pair;
-import org.graalvm.nativebridge.In;
 
 public class BasicAttack extends GnomeAttackPattern {
 
@@ -27,7 +26,7 @@ public class BasicAttack extends GnomeAttackPattern {
 
         for (Pair<Integer,Integer> ranges: attackRange) {
             if (attackerPosition.getKey() + ranges.getKey()  == playerPos.getKey() && attackerPosition.getValue() + ranges.getValue() == playerPos.getValue()) {
-                board.get(playerPos.getKey(), playerPos.getValue()).takeDamage(damagePoints);
+                board.get(playerPos.getKey(), playerPos.getValue()).takeDamage(board, damagePoints);
                 return true;
             }
 

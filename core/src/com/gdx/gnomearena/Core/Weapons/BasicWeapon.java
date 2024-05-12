@@ -36,22 +36,22 @@ public class BasicWeapon extends Weapon {
         switch (direction) {
             case 'W':
                 for (Pair<Integer, Integer> ranges: attackRangeUp) {
-                    Entity enemy = board.get(playerPos.getKey() + ranges.getKey(), playerPos.getValue() + ranges.getValue());
-
-                    if (enemy instanceof Gnome) {
-                        System.out.println(playerPos);
-
-                        enemy.takeDamage(damagePoints);
+                    int checkX = playerPos.getKey() + ranges.getKey();
+                    int checkY = playerPos.getValue() + ranges.getValue();
+                    Entity enemy = board.get(checkX,checkY);
+                    if (enemy instanceof Gnome && !board.isEmpty(checkX, checkY) && board.isValid(checkX,checkY)) {
+                        enemy.takeDamage(board, damagePoints);
                         attackCount++;
-
                     }
                 }
                 break;
             case 'A':
                 for (Pair<Integer, Integer> ranges: attackRangeLeft) {
-                    Entity enemy = board.get(playerPos.getKey() + ranges.getKey(), playerPos.getValue() + ranges.getValue());
-                    if (enemy instanceof Gnome) {
-                        enemy.takeDamage(damagePoints);
+                    int checkX = playerPos.getKey() + ranges.getKey();
+                    int checkY = playerPos.getValue() + ranges.getValue();
+                    Entity enemy = board.get(checkX,checkY);
+                    if (enemy instanceof Gnome && !board.isEmpty(checkX, checkY) && board.isValid(checkX,checkY)) {
+                        enemy.takeDamage(board, damagePoints);
                         attackCount++;
 
                     }
@@ -59,20 +59,24 @@ public class BasicWeapon extends Weapon {
                 break;
             case 'S':
                 for (Pair<Integer, Integer> ranges: attackRangeDown) {
-                    Entity enemy = board.get(playerPos.getKey() + ranges.getKey(), playerPos.getValue() + ranges.getValue());
-                    if (enemy instanceof Gnome) {
-                        enemy.takeDamage(damagePoints);
+                    int checkX = playerPos.getKey() + ranges.getKey();
+                    int checkY = playerPos.getValue() + ranges.getValue();
+                    Entity enemy = board.get(checkX,checkY);
+                    if (enemy instanceof Gnome && !board.isEmpty(checkX, checkY) && board.isValid(checkX,checkY)) {
+                        enemy.takeDamage(board, damagePoints);
                         attackCount++;
+
                     }
                 }
                 break;
             case 'D':
                 for (Pair<Integer, Integer> ranges: attackRangeRight) {
-                    Entity enemy = board.get(playerPos.getKey() + ranges.getKey(), playerPos.getValue() + ranges.getValue());
-                    if (enemy instanceof Gnome) {
-                        enemy.takeDamage(damagePoints);
+                    int checkX = playerPos.getKey() + ranges.getKey();
+                    int checkY = playerPos.getValue() + ranges.getValue();
+                    Entity enemy = board.get(checkX,checkY);
+                    if (enemy instanceof Gnome && !board.isEmpty(checkX, checkY) && board.isValid(checkX,checkY)) {
+                        enemy.takeDamage(board, damagePoints);
                         attackCount++;
-
                     }
                 }
                 break;
@@ -81,6 +85,9 @@ public class BasicWeapon extends Weapon {
         }
         if (attackCount == 0 )
             return false;
+
+
+        //TESTING
         System.out.println(attackCount);
 
         return true;
