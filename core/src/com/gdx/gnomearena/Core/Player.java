@@ -4,8 +4,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Core.Weapons.BasicWeapon;
 
-import java.lang.constant.ConstantDesc;
-
 public class Player extends Entity
 {
     Weapon heldWeapon;

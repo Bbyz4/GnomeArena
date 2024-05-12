@@ -1,7 +1,6 @@
 package com.gdx.gnomearena.Core.Weapons;
 
 import com.gdx.gnomearena.Core.*;
-import org.graalvm.nativebridge.In;
 
 public class BasicWeapon extends Weapon {
 
