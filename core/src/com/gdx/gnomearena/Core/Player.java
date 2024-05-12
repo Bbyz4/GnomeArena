@@ -22,9 +22,9 @@ public class Player extends Entity
         int pY = board.getPlayersPosition().getValue();
         switch(keycode) {
             case Input.Keys.W:
-                if(board.isValid(pX, pY+1) && board.isEmpty(pX, pY+1))
+                if(board.isValid(pX, pY-1) && board.isEmpty(pX, pY-1))
                 {
-                    board.moveEntity(pX, pY, pX, pY+1);
+                    board.moveEntity(pX, pY, pX, pY-1);
                 }
                 break;
             case Input.Keys.A:
@@ -34,9 +34,9 @@ public class Player extends Entity
                 }
                 break;
             case Input.Keys.S:
-                if(board.isValid(pX, pY-1) && board.isEmpty(pX, pY-1))
+                if(board.isValid(pX, pY+1) && board.isEmpty(pX, pY+1))
                 {
-                    board.moveEntity(pX, pY, pX, pY-1);
+                    board.moveEntity(pX, pY, pX, pY+1);
                 }
                 break;
             case Input.Keys.D:

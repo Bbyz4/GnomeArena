@@ -28,8 +28,6 @@ public class GameScreen implements Screen {
 
     private Image grassBlocks[][];
 
-    //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
-    private Image playerimage;
 
     private final float pace = 1f;
     private final float clickWindow = 0.25f;
@@ -79,10 +77,6 @@ public class GameScreen implements Screen {
         Texture grass1 = new Texture("terrainSprites/Grass1.png");
         Texture grass2 = new Texture("terrainSprites/Grass2.png");
 
-        //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
-        Texture playertexture = new Texture("playerSprites/playersprite.png");
-        Sprite playersprite = new Sprite(playertexture);
-        playerimage = new Image(playersprite);
 
 
         for(int i=0; i<15; i++)
@@ -154,9 +148,7 @@ public class GameScreen implements Screen {
             stage.addActor(im);
         }
 
-        //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
-        playerimage.setPosition(gameManager.getPlayerPosition().getKey()*64,gameManager.getPlayerPosition().getValue()*64);
-        stage.addActor(playerimage);
+
 
 
         stage.act(delta);
