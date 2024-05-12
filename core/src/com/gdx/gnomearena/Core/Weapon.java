@@ -3,9 +3,10 @@ package com.gdx.gnomearena.Core;
 
 public abstract class Weapon
 {
-    Pair<Integer,Integer>[] attackRange;
+    public Pair<Integer,Integer>[] attackRange;
 
-    abstract void damage(Entity e);
+    public int damagePoints;
 
-    abstract void kill(Entity e);
+    public abstract void damage(Entity e);
+
 }

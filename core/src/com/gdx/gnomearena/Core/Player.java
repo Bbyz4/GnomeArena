@@ -3,6 +3,8 @@ package com.gdx.gnomearena.Core;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.lang.constant.ConstantDesc;
+
 public class Player extends Entity
 {
     Weapon heldWeapon;
@@ -24,6 +26,7 @@ public class Player extends Entity
             case Input.Keys.W:
                 if(board.isValid(pX, pY-1) && board.isEmpty(pX, pY-1))
                 {
+
                     board.moveEntity(pX, pY, pX, pY-1);
                 }
                 break;
@@ -55,5 +58,18 @@ public class Player extends Entity
                 // you got gnomed
                 break;
         }
+    }
+
+    @Override
+    public void takeDamage(int damagepoints) {
+        health = Math.max(0, health - damagepoints);
+        if (health == 0) {
+            onDeath();
+        }
+    }
+
+    @Override
+    public void onDeath() {
+
     }
 }

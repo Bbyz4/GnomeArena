@@ -2,8 +2,10 @@ package com.gdx.gnomearena.Core.GnomeMovePatterns;
 
 import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.GnomeMovePattern;
+import com.gdx.gnomearena.Core.Gnomes.TestingGnome;
 import com.gdx.gnomearena.Core.Pair;
-
+import com.gdx.gnomearena.Core.GnomeAttackPatterns.BasicAttack;
+import com.gdx.gnomearena.Core.GnomeAttackPattern;
 public class BasicMovement extends GnomeMovePattern
 {
     @SuppressWarnings("unchecked")
@@ -22,6 +24,7 @@ public class BasicMovement extends GnomeMovePattern
     public Pair<Integer,Integer> move(Board board, Pair<Integer,Integer> myPosition)
     {
         Pair<Integer,Integer> playerPos = board.getPlayersPosition();
+
 
         for(Pair<Integer,Integer> ranges : moveRange)
         {

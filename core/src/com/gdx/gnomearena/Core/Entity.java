@@ -9,4 +9,9 @@ public abstract class Entity
     public List<Effect> currentEffects;
 
     public Texture skin;
+
+    public abstract void takeDamage(int damagepoints);
+
+    public abstract void onDeath();
+
 }
