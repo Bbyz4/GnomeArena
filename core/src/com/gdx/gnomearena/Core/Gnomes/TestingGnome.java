@@ -33,19 +33,12 @@ public class TestingGnome extends Gnome
 
             int gX = board.getEntitiesPosition(this).getKey();
             int gY = board.getEntitiesPosition(this).getValue();
-            
-            //TESTING
-            System.out.println(this + " POSITION BEFORE MOVE:");
-            System.out.println(board.getEntitiesPosition(this));
 
             Pair<Integer,Integer> newPos = move.move(board, new Pair<Integer,Integer>(gX, gY));
             if(newPos!=null)
             {
                 board.moveEntity(gX, gY, gX+newPos.getKey(), gY+newPos.getValue());
             }
-            //TESTING
-            System.out.println(this + " POSITION AFTER MOVE:");
-            System.out.println(board.getEntitiesPosition(this));
         } 
     }
 }

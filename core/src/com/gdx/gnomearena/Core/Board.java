@@ -130,4 +130,59 @@ public class Board
         }
         return l;
     }
+
+    public void spawnNewWave(List<Gnome> wave)
+    {
+        if(wave==null){return;}
+        //Tries to spawn every gnome on the egde of the map
+        int currentDist = 0;
+        int currentSpawned = 0;
+        while(currentSpawned<wave.size() && currentDist<=boardSize/2)
+        {
+            for(int i=currentDist; i<boardSize-currentDist; i++)
+            {
+                if(isEmpty(i, currentDist))
+                {
+                    spawnEntity(wave.get(currentSpawned), i, currentDist);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+
+                if(isEmpty(i, boardSize-1-currentDist))
+                {
+                    spawnEntity(wave.get(currentSpawned), i, boardSize-1-currentDist);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+
+                if(isEmpty(currentDist, i))
+                {
+                    spawnEntity(wave.get(currentSpawned), currentDist, i);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+
+                if(isEmpty(boardSize-1-currentDist, i))
+                {
+                    spawnEntity(wave.get(currentSpawned), boardSize-1-currentDist, i);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+            }
+
+            currentDist++;
+        }
+    }
 }
