@@ -19,13 +19,13 @@ public class BasicMovement extends GnomeMovePattern
     }
 
     @Override
-    public Pair<Integer,Integer> move(Board b, Pair<Integer,Integer> myPosition)
+    public Pair<Integer,Integer> move(Board board, Pair<Integer,Integer> myPosition)
     {
-        Pair<Integer,Integer> playerPos = b.getPlayersPosition();
+        Pair<Integer,Integer> playerPos = board.getPlayersPosition();
 
         for(Pair<Integer,Integer> ranges : moveRange)
         {
-            if(b.isValid(myPosition.getKey() + ranges.getKey(), myPosition.getValue() + ranges.getValue()) && b.isEmpty(myPosition.getKey() + ranges.getKey(), myPosition.getValue() + ranges.getValue()) && Math.abs(playerPos.getKey()-myPosition.getKey()) + Math.abs(playerPos.getValue()-myPosition.getValue()) > Math.abs(playerPos.getKey()-myPosition.getKey()-ranges.getKey()) + Math.abs(playerPos.getValue()-myPosition.getValue()-ranges.getValue()))
+            if(board.isValid(myPosition.getKey() + ranges.getKey(), myPosition.getValue() + ranges.getValue()) && board.isEmpty(myPosition.getKey() + ranges.getKey(), myPosition.getValue() + ranges.getValue()) && Math.abs(playerPos.getKey()-myPosition.getKey()) + Math.abs(playerPos.getValue()-myPosition.getValue()) > Math.abs(playerPos.getKey()-myPosition.getKey()-ranges.getKey()) + Math.abs(playerPos.getValue()-myPosition.getValue()-ranges.getValue()))
             {
                 return ranges;
             }

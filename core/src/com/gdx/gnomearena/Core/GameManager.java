@@ -37,4 +37,9 @@ public class GameManager
             }
         }
     }
+
+    //FOR TESTING PLAYER MOVEMENT RIGHT NOW
+    public Pair<Integer,Integer> getPlayerPosition() {
+        return gameBoard.getPlayersPosition();
+    }
 }

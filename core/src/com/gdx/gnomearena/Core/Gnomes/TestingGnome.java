@@ -17,7 +17,7 @@ public class TestingGnome extends Gnome
     }
 
     @Override
-    public void makeMove(Board b)
+    public void makeMove(Board board)
     {
        currentCooldown--;
         if(currentCooldown==0)
@@ -29,21 +29,21 @@ public class TestingGnome extends Gnome
                 return;
             }
 
-            int gX = b.getEntitiesPosition(this).getKey();
-            int gY = b.getEntitiesPosition(this).getValue();
+            int gX = board.getEntitiesPosition(this).getKey();
+            int gY = board.getEntitiesPosition(this).getValue();
             
             //TESTING
             System.out.println(this + " POSITION BEFORE MOVE:");
-            System.out.println(b.getEntitiesPosition(this));
+            System.out.println(board.getEntitiesPosition(this));
 
-            Pair<Integer,Integer> newPos = move.move(b, new Pair<Integer,Integer>(gX, gY));
+            Pair<Integer,Integer> newPos = move.move(board, new Pair<Integer,Integer>(gX, gY));
             if(newPos!=null)
             {
-                b.moveEntity(gX, gY, gX+newPos.getKey(), gY+newPos.getValue());
+                board.moveEntity(gX, gY, gX+newPos.getKey(), gY+newPos.getValue());
             }
             //TESTING
             System.out.println(this + " POSITION AFTER MOVE:");
-            System.out.println(b.getEntitiesPosition(this));
+            System.out.println(board.getEntitiesPosition(this));
         } 
     }
 }

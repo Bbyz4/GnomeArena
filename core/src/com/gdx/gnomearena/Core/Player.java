@@ -14,33 +14,33 @@ public class Player extends Entity
         heldItem = null;
     }
 
-    void makeMove(Board b, int keycode)
+    void makeMove(Board board, int keycode)
     {
-        int pX = b.getPlayersPosition().getKey();
-        int pY = b.getPlayersPosition().getValue();
+        int pX = board.getPlayersPosition().getKey();
+        int pY = board.getPlayersPosition().getValue();
         switch(keycode) {
             case Input.Keys.W:
-                if(b.isValid(pX, pY-1) && b.isEmpty(pX, pY-1))
+                if(board.isValid(pX, pY+1) && board.isEmpty(pX, pY+1))
                 {
-                    b.moveEntity(pX, pY, pX, pY-1);
+                    board.moveEntity(pX, pY, pX, pY+1);
                 }
                 break;
             case Input.Keys.A:
-                if(b.isValid(pX-1, pY) && b.isEmpty(pX-1, pY))
+                if(board.isValid(pX-1, pY) && board.isEmpty(pX-1, pY))
                 {
-                    b.moveEntity(pX, pY, pX-1, pY);
+                    board.moveEntity(pX, pY, pX-1, pY);
                 }
                 break;
             case Input.Keys.S:
-                if(b.isValid(pX, pY+1) && b.isEmpty(pX, pY+1))
+                if(board.isValid(pX, pY-1) && board.isEmpty(pX, pY-1))
                 {
-                    b.moveEntity(pX, pY, pX, pY+1);
+                    board.moveEntity(pX, pY, pX, pY-1);
                 }
                 break;
             case Input.Keys.D:
-                if(b.isValid(pX+1, pY) && b.isEmpty(pX+1, pY))
+                if(board.isValid(pX+1, pY) && board.isEmpty(pX+1, pY))
                 {
-                    b.moveEntity(pX, pY, pX+1, pY);
+                    board.moveEntity(pX, pY, pX+1, pY);
                 }
                 break;
             case Input.Keys.E:

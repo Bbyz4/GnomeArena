@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Core.GameManager;
 
+
 public class GameScreen implements Screen {
 
     final MainGame game;
@@ -23,6 +24,9 @@ public class GameScreen implements Screen {
 
 
     private Image grassBlocks[][];
+
+    //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
+    private Image playerimage;
     
     private final float pace = 1f;
     private final float clickWindow = 0.25f;
@@ -72,6 +76,12 @@ public class GameScreen implements Screen {
         Texture grass1 = new Texture("terrainSprites/Grass1.png");
         Texture grass2 = new Texture("terrainSprites/Grass2.png");
 
+        //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
+        Texture playertexture = new Texture("playerSprites/playersprite.png");
+        Sprite playersprite = new Sprite(playertexture);
+        playerimage = new Image(playersprite);
+
+
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
@@ -119,14 +129,19 @@ public class GameScreen implements Screen {
         }
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(0, 0, 0, 1);
-
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
             {
                 stage.addActor(grassBlocks[i][j]);
+
             }
         }
+
+        //THIS IS MADE FOR EASIER TESTING. WILL BE CHANGED
+        playerimage.setPosition(gameManager.getPlayerPosition().getKey()*64,gameManager.getPlayerPosition().getValue()*64);
+        stage.addActor(playerimage);
+
 
         stage.act(delta);
         stage.draw();
