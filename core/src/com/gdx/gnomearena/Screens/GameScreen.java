@@ -17,14 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
 import com.gdx.gnomearena.Core.Pair;
-import com.gdx.gnomearena.Screens.*;
 
 
 public class GameScreen implements Screen {

@@ -5,6 +5,7 @@ import com.gdx.gnomearena.Core.*;
 public class BasicWeapon extends Weapon {
 
 
+    @SuppressWarnings("unchecked")
     public BasicWeapon() {
         damagePoints = 1;
         attackRangeDown = new Pair[]

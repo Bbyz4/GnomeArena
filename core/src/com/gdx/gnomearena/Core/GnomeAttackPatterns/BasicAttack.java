@@ -7,6 +7,7 @@ import com.gdx.gnomearena.Core.Pair;
 public class BasicAttack extends GnomeAttackPattern {
 
 
+    @SuppressWarnings("unchecked")
     public BasicAttack() {
         damagePoints = 1;
         attackRange = new Pair[]

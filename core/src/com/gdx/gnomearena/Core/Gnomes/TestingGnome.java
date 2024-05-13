@@ -6,7 +6,6 @@ import com.gdx.gnomearena.Core.Gnome;
 import com.gdx.gnomearena.Core.GnomeAttackPatterns.BasicAttack;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
 import com.gdx.gnomearena.Core.Pair;
-import com.gdx.gnomearena.Core.Entity;
 
 public class TestingGnome extends Gnome
 {
