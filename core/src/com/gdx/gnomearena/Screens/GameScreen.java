@@ -85,6 +85,7 @@ public class GameScreen implements Screen {
             {
                 if(gameControls.contains(keycode) && !keyHandled && elapsedTime>=pace*(1-clickWindow))
                 {
+                    timer++;
                     gameManager.handlePlayerInput(keycode);
                     keyHandled = true;
                 }
@@ -159,6 +160,7 @@ public class GameScreen implements Screen {
         {
             if(!keyHandled)
             {
+                timer++;
                 gameManager.handlePlayerInput(-1);
             }
             keyHandled = false;
@@ -198,8 +200,8 @@ public class GameScreen implements Screen {
 
 
 
-        bmimage.setScale(0.3f*(pace-elapsedTime));
-        bm2image.setScale(0.3f*(pace*clickWindow)); 
+        bmimage.setScale(0.3f*((pace-elapsedTime)/pace));
+        bm2image.setScale(0.3f*(clickWindow)); 
         if(elapsedTime>=pace*(1-clickWindow))
         {
             if(!keyHandled)
@@ -218,13 +220,6 @@ public class GameScreen implements Screen {
         stage.addActor(bmimage);
         stage.addActor(bm2image); 
 
-
-
-        time += Gdx.graphics.getDeltaTime();
-        if (time > second) {
-            time -= second;
-            timer += (int) second;
-        }
         scoreLabel.setText(String.format("%03d",gameManager.getScore()));
         hpLabel.setText(String.format("%01d",gameManager.getHP()));
         timeLabel.setText(String.format("%03d",timer));
