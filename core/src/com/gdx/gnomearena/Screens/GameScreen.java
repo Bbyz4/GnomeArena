@@ -24,7 +24,7 @@ import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
 import com.gdx.gnomearena.Core.Pair;
-import com.gdx.gnomearena.Scenes.Hud;
+import com.gdx.gnomearena.Screens.*;
 
 
 public class GameScreen implements Screen {
@@ -171,7 +171,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //TEMPORARY CHANGE
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1);
 
         stage.clear();
 

@@ -21,7 +21,7 @@ public class GameManager
     {
         player.makeMove(gameBoard, keycode);
         moveAllGnomes();
-        gameBoard.spawnNewWave(gnomeSpawner.newGnomesList(1)); // hardcoded gnome amount
+        gameBoard.spawnNewWave(gnomeSpawner.newGnomesList(3)); // hardcoded gnome amount
     }
 
     private void moveAllGnomes()
