@@ -199,13 +199,13 @@ public class GameScreen implements Screen {
         }
 
         if(gameManager.isOver()) {
-            game.setScreen(new StatsScreen(game,gameManager.getScore(),timer,hud));
+            game.setScreen(new StatsScreen(game,gameManager.getScore(), timer));
         }
 
 
 
         bmimage.setScale(0.3f*(pace-elapsedTime));
-        bm2image.setScale(0.3f*(pace*clickWindow)); 
+        bm2image.setScale(0.3f*(pace*clickWindow));
         if(elapsedTime>=pace*(1-clickWindow))
         {
             if(!keyHandled)

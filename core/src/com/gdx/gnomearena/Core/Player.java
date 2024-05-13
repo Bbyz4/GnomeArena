@@ -76,14 +76,11 @@ public class Player extends Entity
         if (health == 0) {
             onDeath(board);
         }
-        System.out.println(health);
     }
 
     @Override
     public void onDeath(Board board) {
         isPlayerDead = true;
 
-        //TESTING
-        System.out.println("DEAD");
     }
 }

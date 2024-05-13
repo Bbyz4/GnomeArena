@@ -58,7 +58,5 @@ public class TestingGnome extends Gnome
     public void onDeath(Board board) {
         board.removeEntity(this);
         board.updateScore(xp);
-        //TESTING
-        System.out.println("DEAD");
     }
 }

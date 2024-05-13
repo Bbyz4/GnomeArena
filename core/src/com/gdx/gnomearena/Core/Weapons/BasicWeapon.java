@@ -93,9 +93,6 @@ public class BasicWeapon extends Weapon {
             return false;
 
 
-        //TESTING
-        System.out.println(attackCount);
-
         return true;
     }
 

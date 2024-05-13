@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Screens.GameScreen;
 import com.gdx.gnomearena.Scenes.Hud;
-
-
+import com.gdx.gnomearena.Scenes.StatsHud;
 public class StatsScreen implements Screen
 {
     final MainGame game;
@@ -31,20 +30,19 @@ public class StatsScreen implements Screen
     private BitmapFont bigFont;
     private FreeTypeFontGenerator ftfp;
     private Stage stage;
-
+    private StatsHud statsHud;
+    private int score;
+    private int timer;
     Button playButton;
     Label gameOverLabel;
-    int score;
-    int timer;
-    Hud hud;
 
-    public StatsScreen(final MainGame game, int score, int timer, Hud hud)
+    public StatsScreen(final MainGame game, int score, int timer)
     {
         this.game = game;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        this.timer = timer;
+        statsHud = new StatsHud();
         this.score = score;
-        this.hud=hud;
+        this.timer = timer;
     }
 
     @Override
@@ -77,6 +75,7 @@ public class StatsScreen implements Screen
                 game.setScreen(new GameScreen(game));
             }
         });
+
         stage.addActor(playButton);
         textStyle.font = bigFont;
         textStyle.fontColor = Color.BLACK;
@@ -87,10 +86,10 @@ public class StatsScreen implements Screen
         gameOverLabel.setWidth(200);
         stage.addActor(gameOverLabel);
 
-        hud.table.setPosition(620,500);
-        stage.addActor(hud.table);
 
-
+        statsHud.scoreLabel.setText(String.format("%03d",score));
+        statsHud.timeLabel.setText(String.format("%03d",timer));
+        stage.addActor(statsHud.table);
     }
 
     @Override
