@@ -14,8 +14,6 @@ public class Hud {
     public Label hpLabel;
     public Label timeLabel;
     public Table table;
-    private BitmapFont bigFont;
-    private FreeTypeFontGenerator ftfp;
     public Hud() {
 
         BitmapFont bigFont;
