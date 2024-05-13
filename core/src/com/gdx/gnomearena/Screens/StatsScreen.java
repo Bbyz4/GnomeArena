@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 
-public class MainMenuScreen implements Screen
+public class StatsScreen implements Screen
 {
     final MainGame game;
 
@@ -30,9 +30,9 @@ public class MainMenuScreen implements Screen
     private Stage stage;
 
     Button playButton;
-    Label titleLabel;
+    Label gameOverLabel;
 
-    public MainMenuScreen(final MainGame game)
+    public StatsScreen(final MainGame game)
     {
         this.game = game;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -73,11 +73,11 @@ public class MainMenuScreen implements Screen
         textStyle.font = bigFont;
         textStyle.fontColor = Color.BLACK;
 
-        titleLabel = new Label("GNOME ARENA", textStyle);
-        titleLabel.setAlignment(Align.center);
-        titleLabel.setPosition(620, 700);
-        titleLabel.setWidth(200);
-        stage.addActor(titleLabel);
+        gameOverLabel = new Label("GAME OVER", textStyle);
+        gameOverLabel.setAlignment(Align.center);
+        gameOverLabel.setPosition(620, 700);
+        gameOverLabel.setWidth(200);
+        stage.addActor(gameOverLabel);
     }
 
     @Override

@@ -8,13 +8,14 @@ public class Player extends Entity
 {
     Weapon heldWeapon;
     Item heldItem;
-
+    public boolean isPlayerDead;
     Player()
     {
         health = 3;
         heldWeapon = new BasicWeapon();
         heldItem = null;
         skin = new Texture("otherSprites/Player.png");
+        isPlayerDead = false;
     }
 
     void makeMove(Board board, int keycode)
@@ -81,7 +82,7 @@ public class Player extends Entity
     @Override
     public void onDeath(Board board) {
         //TODO: end game after player's death
-
+        isPlayerDead = true;
 
         //TESTING
         System.out.println("DEAD");

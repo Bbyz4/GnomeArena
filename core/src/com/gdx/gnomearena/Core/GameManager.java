@@ -5,8 +5,8 @@ import java.util.List;
 public class GameManager
 {
     public final Board gameBoard;
-    private final GnomeSpawner gnomeSpawner;
-    private final Player player;
+    public final GnomeSpawner gnomeSpawner;
+    public final Player player;
 
     public GameManager()
     {
@@ -27,7 +27,7 @@ public class GameManager
     private void moveAllGnomes()
     {
         List<Gnome> list = gameBoard.getGnomeMoveOrders();
-        if(list!=null)
+        if  (list!=null)
         {
             for(int i=0; i<list.size(); i++)
             {
@@ -35,6 +35,16 @@ public class GameManager
             }
         }
     }
+    public boolean isOver() {
+        return player.isPlayerDead;
+    }
 
+    public int getScore() {
+        return gameBoard.getScore();
+    }
+
+    public int getHP() {
+        return player.health;
+    }
 
 }

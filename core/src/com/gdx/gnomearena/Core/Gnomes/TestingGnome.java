@@ -12,6 +12,7 @@ public class TestingGnome extends Gnome
 {
     public TestingGnome()
     {
+        xp = 1;
         health = 1;
         move = new BasicMovement();
         attack = new BasicAttack();
@@ -57,7 +58,7 @@ public class TestingGnome extends Gnome
     @Override
     public void onDeath(Board board) {
         board.removeEntity(this);
-
+        board.updateScore(xp);
         //TESTING
         System.out.println("DEAD");
     }

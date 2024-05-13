@@ -9,19 +9,30 @@ public class Board
 {
     private Entity[][] board; // (0,0) is the top-left square
     private int boardSize;
-    
     private int playerX;
     private int playerY;
+    private int score;
 
     Board(int x)
     {
         board = new Entity[x][x];
         boardSize=x;
+        score = 0;
     }
 
     Board()
     {
         this(15);
+    }
+
+    public int getScore()
+    {
+        return score;
+    }
+
+    public void updateScore(int xp)
+    {
+        score += xp;
     }
 
     public boolean isValid(int x, int y)

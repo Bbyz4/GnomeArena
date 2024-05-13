@@ -10,23 +10,35 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
 import com.gdx.gnomearena.Core.Pair;
+import com.gdx.gnomearena.Scenes.Hud;
+
 
 public class GameScreen implements Screen {
 
     final MainGame game;
     final GameManager gameManager;
     private Stage stage;
-
-
+    Label scoreLabel;
+    Label hpLabel;
+    Label timeLabel;
+    Table table;
+    float time = 0f;
+    float second = 1f;
+    int timer = 0;
     private Image grassBlocks[][];
 
 
@@ -102,14 +114,42 @@ public class GameScreen implements Screen {
         bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
         bmsprite = new Sprite(bmtexture);
         bmimage = new Image(bmsprite);
-        bmimage.setPosition(700, -300); 
+        bmimage.setPosition(700, -300);
         bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
         bmimage.setColor(Color.YELLOW);
         bm2texture = new Texture(Gdx.files.internal("otherSprites/BeatMeter2.png"));
         bm2sprite = new Sprite(bm2texture);
         bm2image = new Image(bm2sprite);
-        bm2image.setPosition(700, -300); 
+        bm2image.setPosition(700, -300);
         bm2image.setOrigin(bm2image.getWidth()/2, bm2image.getHeight()/2);
+
+        //TESTING
+
+        BitmapFont bigFont;
+        FreeTypeFontGenerator ftfp;
+        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.size = 100;
+        param.color.set(0,0,0,1);
+        bigFont = ftfp.generateFont(param);
+        Label.LabelStyle hudStyle = new Label.LabelStyle();
+        hudStyle.font = bigFont;
+        hudStyle.fontColor = Color.WHITE;
+        table = new Table();
+        scoreLabel = new Label(String.format("%03d",0),hudStyle);
+        hpLabel = new Label(String.format("%03d",0),hudStyle);
+        timeLabel = new Label(String.format("%03d",0),hudStyle);
+        table.add(new Label("SCORE:",hudStyle)).expandX().padRight(30);
+        table.add(scoreLabel);
+        table.row();
+        table.add(new Label("HP:",hudStyle)).expandX().padRight(30);
+        table.add(hpLabel);
+        table.row();
+        table.add(new Label("TIME:",hudStyle)).expandX().padRight(30);
+        table.add(timeLabel);
+        table.setPosition(1100,700);
+        table.setWidth(200);
+
     }
 
     @Override
@@ -129,7 +169,9 @@ public class GameScreen implements Screen {
 
         camera.update();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+
+        //TEMPORARY CHANGE
+        Gdx.gl.glClearColor(1, 1, 1, 1);
 
         stage.clear();
 
@@ -151,7 +193,14 @@ public class GameScreen implements Screen {
             im.setScale(1.5f);
             stage.addActor(im);
         }
-        bmimage.setScale(0.3f*(pace-elapsedTime)); 
+
+        if(gameManager.isOver()) {
+            game.setScreen(new StatsScreen(game));
+        }
+
+
+
+        bmimage.setScale(0.3f*(pace-elapsedTime));
         bm2image.setScale(0.3f*(pace*clickWindow)); 
         if(elapsedTime>=pace*(1-clickWindow))
         {
@@ -170,7 +219,18 @@ public class GameScreen implements Screen {
         }
         stage.addActor(bmimage);
         stage.addActor(bm2image); 
-        
+
+
+
+        time += Gdx.graphics.getDeltaTime();
+        if (time > second) {
+            time -= second;
+            timer += (int) second;
+        }
+        scoreLabel.setText(String.format("%03d",gameManager.getScore()));
+        hpLabel.setText(String.format("%01d",gameManager.getHP()));
+        timeLabel.setText(String.format("%03d",timer));
+        stage.addActor(table);
 
         stage.act(delta);
         stage.draw();
