@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
@@ -25,7 +24,6 @@ import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
 import com.gdx.gnomearena.Core.Pair;
 import com.gdx.gnomearena.Scenes.Hud;
-import com.gdx.gnomearena.Screens.*;
 
 
 public class GameScreen implements Screen {
@@ -33,14 +31,14 @@ public class GameScreen implements Screen {
     final MainGame game;
     final GameManager gameManager;
     private Stage stage;
-    Label scoreLabel;
-    Label hpLabel;
-    Label timeLabel;
-    Table table;
-    Hud hud;
-    float time = 0f;
-    float second = 1f;
-    int timer = 0;
+    private Label scoreLabel;
+    private Label hpLabel;
+    private Label timeLabel;
+    private Table table;
+    private Hud hud;
+    private float time = 0f;
+    private float second = 1f;
+    private int timer = 0;
     private Image grassBlocks[][];
 
 
@@ -51,7 +49,6 @@ public class GameScreen implements Screen {
 
     private final IntSet gameControls = new IntSet();
 
-    private Texture bmtexture;
     private Sprite bmsprite;
     private Image bmimage;
     private Texture bm2texture;
@@ -114,7 +111,7 @@ public class GameScreen implements Screen {
             }
         }
 
-        bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
+        Texture bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
         bmsprite = new Sprite(bmtexture);
         bmimage = new Image(bmsprite);
         bmimage.setPosition(700, -300);

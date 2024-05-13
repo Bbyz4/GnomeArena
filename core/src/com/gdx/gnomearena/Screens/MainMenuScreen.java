@@ -25,8 +25,6 @@ public class MainMenuScreen implements Screen
     OrthographicCamera camera;
 
     Label.LabelStyle textStyle = new Label.LabelStyle();
-    private BitmapFont bigFont;
-    private FreeTypeFontGenerator ftfp;
     private Stage stage;
 
     Button playButton;
@@ -44,11 +42,11 @@ public class MainMenuScreen implements Screen
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
+        FreeTypeFontGenerator ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
         param.color.set(0,0,0,1);
-        bigFont = ftfp.generateFont(param);
+        BitmapFont bigFont = ftfp.generateFont(param);
 
         Skin skin = new Skin();
         skin.add("playButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));

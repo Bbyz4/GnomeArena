@@ -11,11 +11,11 @@ public class StatsHud {
     public Label scoreLabel;
     public Label timeLabel;
     public Table table;
-    private BitmapFont bigFont;
-    private FreeTypeFontGenerator ftfp;
     public StatsHud() {
+
         BitmapFont bigFont;
         FreeTypeFontGenerator ftfp;
+
         ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
@@ -24,9 +24,12 @@ public class StatsHud {
         Label.LabelStyle hudStyle = new Label.LabelStyle();
         hudStyle.font = bigFont;
         hudStyle.fontColor = Color.WHITE;
+
         table = new Table();
+
         scoreLabel = new Label(String.format("%03d", 0), hudStyle);
         timeLabel = new Label(String.format("%03d", 0), hudStyle);
+
         table.add(new Label("SCORE:", hudStyle)).expandX().padRight(30);
         table.add(scoreLabel);
         table.row();

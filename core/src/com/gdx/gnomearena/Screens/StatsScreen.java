@@ -17,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
-import com.gdx.gnomearena.Screens.GameScreen;
-import com.gdx.gnomearena.Scenes.Hud;
 import com.gdx.gnomearena.Scenes.StatsHud;
 public class StatsScreen implements Screen
 {
