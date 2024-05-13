@@ -37,6 +37,13 @@ public class GameScreen implements Screen {
 
     private final IntSet gameControls = new IntSet();
 
+    private Texture bmtexture;
+    private Sprite bmsprite;
+    private Image bmimage;
+    private Texture bm2texture;
+    private Sprite bm2sprite;
+    private Image bm2image;
+
     OrthographicCamera camera;
 
     public GameScreen(MainGame game)
@@ -91,6 +98,18 @@ public class GameScreen implements Screen {
                 grassBlocks[i][j].setScale(2f);
             }
         }
+
+        bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
+        bmsprite = new Sprite(bmtexture);
+        bmimage = new Image(bmsprite);
+        bmimage.setPosition(700, -300); 
+        bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
+        bmimage.setColor(Color.YELLOW);
+        bm2texture = new Texture(Gdx.files.internal("otherSprites/BeatMeter2.png"));
+        bm2sprite = new Sprite(bm2texture);
+        bm2image = new Image(bm2sprite);
+        bm2image.setPosition(700, -300); 
+        bm2image.setOrigin(bm2image.getWidth()/2, bm2image.getHeight()/2);
     }
 
     @Override
@@ -132,19 +151,7 @@ public class GameScreen implements Screen {
             im.setScale(1.5f);
             stage.addActor(im);
         }
-
-       /*Texture bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
-        Sprite bmsprite = new Sprite(bmtexture);
-        Image bmimage = new Image(bmsprite);
-        bmimage.setPosition(700, -300); 
-        bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
         bmimage.setScale(0.3f*(pace-elapsedTime)); 
-        bmimage.setColor(Color.YELLOW);
-        Texture bm2texture = new Texture(Gdx.files.internal("otherSprites/BeatMeter2.png"));
-        Sprite bm2sprite = new Sprite(bm2texture);
-        Image bm2image = new Image(bm2sprite);
-        bm2image.setPosition(700, -300); 
-        bm2image.setOrigin(bm2image.getWidth()/2, bm2image.getHeight()/2);
         bm2image.setScale(0.3f*(pace*clickWindow)); 
         if(elapsedTime>=pace*(1-clickWindow))
         {
@@ -163,7 +170,7 @@ public class GameScreen implements Screen {
         }
         stage.addActor(bmimage);
         stage.addActor(bm2image); 
-        */
+        
 
         stage.act(delta);
         stage.draw();
