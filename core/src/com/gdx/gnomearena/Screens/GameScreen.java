@@ -17,12 +17,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
 import com.gdx.gnomearena.Core.Pair;
+import com.gdx.gnomearena.Scenes.Hud;
+import com.gdx.gnomearena.Screens.*;
 
 
 public class GameScreen implements Screen {
@@ -34,6 +37,7 @@ public class GameScreen implements Screen {
     Label hpLabel;
     Label timeLabel;
     Table table;
+    Hud hud;
     float time = 0f;
     float second = 1f;
     int timer = 0;
@@ -61,7 +65,7 @@ public class GameScreen implements Screen {
         this.game = game;
         this.gameManager = new GameManager();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
+        hud = new Hud();
         // WASD - movement, E - use item
         gameControls.addAll(
             Input.Keys.W,
@@ -195,13 +199,13 @@ public class GameScreen implements Screen {
         }
 
         if(gameManager.isOver()) {
-            game.setScreen(new StatsScreen(game));
+            game.setScreen(new StatsScreen(game,gameManager.getScore(),timer,hud));
         }
 
 
 
-        bmimage.setScale(0.3f*((pace-elapsedTime)/pace));
-        bm2image.setScale(0.3f*(clickWindow)); 
+        bmimage.setScale(0.3f*(pace-elapsedTime));
+        bm2image.setScale(0.3f*(pace*clickWindow)); 
         if(elapsedTime>=pace*(1-clickWindow))
         {
             if(!keyHandled)
@@ -220,10 +224,10 @@ public class GameScreen implements Screen {
         stage.addActor(bmimage);
         stage.addActor(bm2image); 
 
-        scoreLabel.setText(String.format("%03d",gameManager.getScore()));
-        hpLabel.setText(String.format("%01d",gameManager.getHP()));
-        timeLabel.setText(String.format("%03d",timer));
-        stage.addActor(table);
+        hud.scoreLabel.setText(String.format("%03d",gameManager.getScore()));
+        hud.hpLabel.setText(String.format("%01d",gameManager.getHP()));
+        hud.timeLabel.setText(String.format("%03d",timer));
+        stage.addActor(hud.table);
 
         stage.act(delta);
         stage.draw();

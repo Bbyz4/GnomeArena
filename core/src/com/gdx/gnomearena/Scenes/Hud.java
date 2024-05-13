@@ -24,34 +24,36 @@ import com.gdx.gnomearena.Screens.GameScreen;
 
 
 public class Hud {
-    /*private Stage stage;
+    public Label scoreLabel;
+    public Label hpLabel;
+    public Label timeLabel;
+    public Table table;
     private BitmapFont bigFont;
     private FreeTypeFontGenerator ftfp;
-    Label scoreLabel;
-    public Hud(/* something */ /* ) {
-
-
+    public Hud() {
+        BitmapFont bigFont;
+        FreeTypeFontGenerator ftfp;
         ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
-
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
-        param.color.set(0,0,0,1);
+        param.color.set(0, 0, 0, 1);
         bigFont = ftfp.generateFont(param);
-
         Label.LabelStyle hudStyle = new Label.LabelStyle();
+        hudStyle.font = bigFont;
         hudStyle.fontColor = Color.WHITE;
-
-        scoreLabel = new Label(String.format("%03d",1123),hudStyle);
-        scoreLabel.setAlignment(Align.center);
-        scoreLabel.setPosition(1100, 700);
-        scoreLabel.setWidth(200);
-        scoreLabel.setColor(Color.WHITE);
-
-
-
-
-
+        table = new Table();
+        scoreLabel = new Label(String.format("%03d", 0), hudStyle);
+        hpLabel = new Label(String.format("%03d", 0), hudStyle);
+        timeLabel = new Label(String.format("%03d", 0), hudStyle);
+        table.add(new Label("SCORE:", hudStyle)).expandX().padRight(30);
+        table.add(scoreLabel);
+        table.row();
+        table.add(new Label("HP:", hudStyle)).expandX().padRight(30);
+        table.add(hpLabel);
+        table.row();
+        table.add(new Label("TIME:", hudStyle)).expandX().padRight(30);
+        table.add(timeLabel);
+        table.setPosition(1100, 700);
+        table.setWidth(200);
     }
-*/
-
 }

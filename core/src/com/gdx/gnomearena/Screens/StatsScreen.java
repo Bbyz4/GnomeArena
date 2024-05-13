@@ -17,6 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
+import com.gdx.gnomearena.Screens.GameScreen;
+import com.gdx.gnomearena.Scenes.Hud;
+
 
 public class StatsScreen implements Screen
 {
@@ -31,11 +34,17 @@ public class StatsScreen implements Screen
 
     Button playButton;
     Label gameOverLabel;
+    int score;
+    int timer;
+    Hud hud;
 
-    public StatsScreen(final MainGame game)
+    public StatsScreen(final MainGame game, int score, int timer, Hud hud)
     {
         this.game = game;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.timer = timer;
+        this.score = score;
+        this.hud=hud;
     }
 
     @Override
@@ -77,6 +86,11 @@ public class StatsScreen implements Screen
         gameOverLabel.setPosition(620, 700);
         gameOverLabel.setWidth(200);
         stage.addActor(gameOverLabel);
+
+        hud.table.setPosition(620,500);
+        stage.addActor(hud.table);
+
+
     }
 
     @Override
