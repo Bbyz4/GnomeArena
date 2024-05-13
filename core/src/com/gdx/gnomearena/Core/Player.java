@@ -81,7 +81,6 @@ public class Player extends Entity
 
     @Override
     public void onDeath(Board board) {
-        //TODO: end game after player's death
         isPlayerDead = true;
 
         //TESTING

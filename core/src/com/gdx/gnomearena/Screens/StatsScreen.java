@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
+import com.gdx.gnomearena.Screens.GameScreen;
 
 public class StatsScreen implements Screen
 {
@@ -69,7 +70,6 @@ public class StatsScreen implements Screen
             }
         });
         stage.addActor(playButton);
-
         textStyle.font = bigFont;
         textStyle.fontColor = Color.BLACK;
 
