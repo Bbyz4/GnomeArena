@@ -33,8 +33,8 @@ public class GameScreen implements Screen {
     private Image grassBlocks[][];
 
 
-    private final float pace = 1f;
-    private final float clickWindow = 0.25f;
+    private final float pace = 0.6f;
+    private final float clickWindow = 0.3f;
     private boolean keyHandled = false;
     private float elapsedTime = 0;
 
@@ -43,11 +43,16 @@ public class GameScreen implements Screen {
 
     private final IntSet gameControls = new IntSet();
 
+    private Texture bmtexture;
     private Sprite bmsprite;
     private Image bmimage;
     private Texture bm2texture;
     private Sprite bm2sprite;
     private Image bm2image;
+
+    private Texture itemFrameTexture;
+    private Sprite itemFrameSprite;
+    private Image itemFrameImage;
 
     OrthographicCamera camera;
 
@@ -106,7 +111,7 @@ public class GameScreen implements Screen {
             }
         }
 
-        Texture bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
+        bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
         bmsprite = new Sprite(bmtexture);
         bmimage = new Image(bmsprite);
         bmimage.setPosition(700, -300);
@@ -118,7 +123,11 @@ public class GameScreen implements Screen {
         bm2image.setPosition(700, -300);
         bm2image.setOrigin(bm2image.getWidth()/2, bm2image.getHeight()/2);
 
-
+        itemFrameTexture = new Texture(Gdx.files.internal("otherSprites/ItemFrame.png"));
+        itemFrameSprite = new Sprite(itemFrameTexture);
+        itemFrameImage = new Image(itemFrameSprite);
+        itemFrameImage.setPosition(1100, 350);
+        itemFrameImage.setOrigin(itemFrameImage.getWidth()/2, itemFrameImage.getHeight()/2);
     }
     
     private Pair<Float,Float> calculateImagePosition(Pair<Integer,Integer> oldPos, Pair<Integer,Integer> newPos)
@@ -199,7 +208,17 @@ public class GameScreen implements Screen {
             game.setScreen(new StatsScreen(game,gameManager.getScore(), timer));
         }
 
+        stage.addActor(itemFrameImage);
+        Item playerItem = gameManager.player.getHeldItem();
 
+        if(playerItem!=null)
+        {
+            Sprite spr = new Sprite(playerItem.skin);
+            Image im = new Image(spr);
+            im.setPosition(1100, 350);
+            im.setScale(3f);
+            stage.addActor(im);
+        }
 
         bmimage.setScale(0.3f*(pace-elapsedTime));
         bm2image.setScale(0.3f*(pace*clickWindow));

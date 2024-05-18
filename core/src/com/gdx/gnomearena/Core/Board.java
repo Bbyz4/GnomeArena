@@ -60,6 +60,11 @@ public class Board
         return board[x][y];
     }
 
+    public Item getItem(int x, int y)
+    {
+        return itemBoard[x][y];
+    }
+
     private Entity getPrevious(int x, int y)
     {
         return previousBoard[x][y];
@@ -124,7 +129,6 @@ public class Board
 
     public void spawnItem(Item it, int x, int y)
     {
-        System.out.println("ITEM RESPAWNED AT " + x + " " + y);
         itemBoard[x][y]=it;
     }
 

@@ -14,9 +14,13 @@ public class Player extends Entity
         health = 3;
         maxHealth = 3;
         heldWeapon = new Dagger();
-        heldItem = null;
         skin = new Texture("otherSprites/Player.png");
         isPlayerDead = false;
+    }
+
+    public Item getHeldItem()
+    {
+        return heldItem;
     }
 
     void makeMove(Board board, int keycode)
@@ -62,12 +66,24 @@ public class Player extends Entity
             case Input.Keys.E:
                 if(heldItem!=null)
                 {
-                    heldItem.affect(this);
+                    if(heldItem.affect(this))
+                    {
+                        heldItem=null;
+                    }
                 }
                 break;
             default:
                 // you got gnomed
                 break;
+        }
+
+        pX = board.getPlayersPosition().getKey();
+        pY = board.getPlayersPosition().getValue();
+
+        if(board.getItem(pX, pY)!=null)
+        {
+            heldItem = board.getItem(pX, pY);
+            board.removeItem(pX, pY);
         }
     }
 
