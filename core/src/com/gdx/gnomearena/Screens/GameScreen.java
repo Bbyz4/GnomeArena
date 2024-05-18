@@ -37,6 +37,9 @@ public class GameScreen implements Screen {
     private boolean keyHandled = false;
     private float elapsedTime = 0;
 
+    private float timeFromPreviousMove = 0;
+    private final float animationTime = 0.2f;
+
     private final IntSet gameControls = new IntSet();
 
     private Sprite bmsprite;
@@ -78,6 +81,7 @@ public class GameScreen implements Screen {
                 {
                     timer++;
                     gameManager.handlePlayerInput(keycode);
+                    timeFromPreviousMove = 0;
                     keyHandled = true;
                 }
                 return true;
@@ -115,11 +119,18 @@ public class GameScreen implements Screen {
 
 
     }
+    
+    private Pair<Float,Float> calculateImagePosition(Pair<Integer,Integer> oldPos, Pair<Integer,Integer> newPos)
+    {
+        float t = Math.min(timeFromPreviousMove/animationTime, 1f);
+        return new Pair<Float,Float>(oldPos.getKey() + t * (newPos.getKey() - oldPos.getKey()), oldPos.getValue() + t * (newPos.getValue() - oldPos.getValue()));
+    }
 
     @Override
     public void render(float delta)
     {
         elapsedTime += delta;
+        timeFromPreviousMove += delta;
 
         if(elapsedTime >= pace)
         {
@@ -127,6 +138,7 @@ public class GameScreen implements Screen {
             {
                 timer++;
                 gameManager.handlePlayerInput(-1);
+                timeFromPreviousMove = 0;
             }
             keyHandled = false;
             elapsedTime = 0;
@@ -148,13 +160,14 @@ public class GameScreen implements Screen {
             }
         }
 
-        List<Pair<Entity, Pair<Integer,Integer>>> gnomeDisplay = gameManager.gameBoard.getAllEntitiesWithPositions();
+        List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> gnomeDisplay = gameManager.gameBoard.getAllEntitiesWithMoves();
         for(int i=0; i<gnomeDisplay.size(); i++)
         {
             Sprite spr = new Sprite(gnomeDisplay.get(i).getKey().skin);
             Image im = new Image(spr);
             im.setOrigin(im.getWidth()/2, im.getHeight()/2);
-            im.setPosition(64*gnomeDisplay.get(i).getValue().getKey() + im.getWidth()/2, 896 - (64*gnomeDisplay.get(i).getValue().getValue() - im.getHeight()/2));
+            Pair<Float,Float> imagePos = calculateImagePosition(gnomeDisplay.get(i).getValue().getValue(), gnomeDisplay.get(i).getValue().getKey());
+            im.setPosition(64*imagePos.getKey() + im.getWidth()/2, 896 - (64*imagePos.getValue() - im.getHeight()/2));
             im.setScale(1.5f);
             stage.addActor(im);
         }

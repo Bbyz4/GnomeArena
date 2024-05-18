@@ -19,6 +19,7 @@ public class GameManager
 
     public void handlePlayerInput(int keycode)
     {
+        gameBoard.copyBoard();
         player.makeMove(gameBoard, keycode);
         moveAllGnomes();
         gameBoard.spawnNewWave(gnomeSpawner.newGnomesList(3)); // hardcoded gnome amount
