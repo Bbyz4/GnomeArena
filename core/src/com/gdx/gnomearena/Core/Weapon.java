@@ -3,6 +3,8 @@ package com.gdx.gnomearena.Core;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public abstract class Weapon
 {
     public Pair<Integer,Integer>[] attackRangeUp;
@@ -11,6 +13,8 @@ public abstract class Weapon
     public Pair<Integer,Integer>[] attackRangeRight;
 
     public Map<Character, Pair<Integer, Integer>[]> attackRanges;
+
+    public Texture skin;
 
     public Weapon()
     {

@@ -20,6 +20,7 @@ import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
 import com.gdx.gnomearena.Core.Item;
 import com.gdx.gnomearena.Core.Pair;
+import com.gdx.gnomearena.Core.Weapon;
 import com.gdx.gnomearena.Scenes.Hud;
 
 
@@ -53,6 +54,10 @@ public class GameScreen implements Screen {
     private Texture itemFrameTexture;
     private Sprite itemFrameSprite;
     private Image itemFrameImage;
+    
+    private Texture weaponFrameTexture;
+    private Sprite weaponFrameSprite;
+    private Image weaponFrameImage;
 
     OrthographicCamera camera;
 
@@ -128,6 +133,12 @@ public class GameScreen implements Screen {
         itemFrameImage = new Image(itemFrameSprite);
         itemFrameImage.setPosition(1100, 350);
         itemFrameImage.setOrigin(itemFrameImage.getWidth()/2, itemFrameImage.getHeight()/2);
+
+        weaponFrameTexture = new Texture(Gdx.files.internal("otherSprites/ItemFrame.png"));
+        weaponFrameSprite = new Sprite(weaponFrameTexture);
+        weaponFrameImage = new Image(weaponFrameSprite);
+        weaponFrameImage.setPosition(1200, 350);
+        weaponFrameImage.setOrigin(weaponFrameImage.getWidth()/2, weaponFrameImage.getHeight()/2);
     }
     
     private Pair<Float,Float> calculateImagePosition(Pair<Integer,Integer> oldPos, Pair<Integer,Integer> newPos)
@@ -216,6 +227,18 @@ public class GameScreen implements Screen {
             Sprite spr = new Sprite(playerItem.skin);
             Image im = new Image(spr);
             im.setPosition(1100, 350);
+            im.setScale(3f);
+            stage.addActor(im);
+        }
+
+        stage.addActor(weaponFrameImage);
+        Weapon playerWeapon = gameManager.player.getHeldWeapon();
+
+        if(playerWeapon!=null)
+        {
+            Sprite spr = new Sprite(playerWeapon.skin);
+            Image im = new Image(spr);
+            im.setPosition(1200, 350);
             im.setScale(3f);
             stage.addActor(im);
         }

@@ -96,6 +96,22 @@ public class Board
         return null;
     }
 
+    public Pair<Integer,Integer> getItemsPosition(Item item)
+    {
+        for(int i=0; i<boardSize; i++)
+        {
+            for(int j=0; j<boardSize; j++)
+            {
+                if(itemBoard[i][j]!=null && itemBoard[i][j].equals(item))
+                {
+                    return new Pair<Integer,Integer>(i, j);
+                }
+            }
+        }
+
+        return null;
+    }
+
     public void spawnEntity(Entity e, int x, int y)
     {
         board[x][y] = e;
@@ -272,6 +288,22 @@ public class Board
                 if(itemBoard[i][j]!=null)
                 {
                     l.add(new Pair<>(itemBoard[i][j],new Pair<>(i,j)));
+                }
+            }
+        }
+        return l;
+    }
+
+    public List<Item> getAllItems()
+    {
+        List<Item> l = new ArrayList<>();
+        for(int i=0; i<boardSize; i++)
+        {
+            for(int j=0; j<boardSize; j++)
+            {
+                if(itemBoard[i][j]!=null)
+                {
+                    l.add(itemBoard[i][j]);
                 }
             }
         }

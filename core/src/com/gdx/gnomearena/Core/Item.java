@@ -9,5 +9,18 @@ public abstract class Item
         return false;
     };
 
+    public int maxLifetime;
+    public int currentLifetime = 0;
+
+    public void passRound(Board board)
+    {
+        currentLifetime++;
+        if(currentLifetime==maxLifetime)
+        {
+            Pair<Integer,Integer> pos = board.getItemsPosition(this);
+            board.removeItem(pos.getKey(), pos.getValue());
+        }
+    }
+
     public Texture skin;
 }

@@ -9,6 +9,7 @@ public class Medkit extends Item
     public Medkit()
     {
         skin = new Texture("itemSprites/Medkit.png");
+        maxLifetime = 5;
     }
 
     @Override

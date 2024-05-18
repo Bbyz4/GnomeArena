@@ -22,13 +22,14 @@ public class GameManager
         gameBoard.copyBoard();
         player.makeMove(gameBoard, keycode);
         moveAllGnomes();
+        moveAllItems();
         gameBoard.spawnNewWave(gnomeSpawner.newGnomesList(3)); // hardcoded gnome amount
     }
 
     private void moveAllGnomes()
     {
         List<Gnome> list = gameBoard.getGnomeMoveOrders();
-        if  (list!=null)
+        if(list!=null)
         {
             for(int i=0; i<list.size(); i++)
             {
@@ -36,6 +37,19 @@ public class GameManager
             }
         }
     }
+
+    private void moveAllItems()
+    {
+        List<Item> list = gameBoard.getAllItems();
+        if(list!=null)
+        {
+            for(int i=0; i<list.size(); i++)
+            {
+                list.get(i).passRound(gameBoard);
+            }
+        }
+    }
+
     public boolean isOver() {
         return player.isPlayerDead;
     }

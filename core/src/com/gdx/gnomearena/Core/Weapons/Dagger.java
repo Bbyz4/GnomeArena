@@ -1,5 +1,6 @@
 package com.gdx.gnomearena.Core.Weapons;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Core.*;
 
 public class Dagger extends Weapon {
@@ -26,7 +27,7 @@ public class Dagger extends Weapon {
                         new Pair<>(1, 0),
                 };
         updateRanges();
-
+        skin = new Texture("weaponSprites/Dagger.png");
     }
 
     @Override

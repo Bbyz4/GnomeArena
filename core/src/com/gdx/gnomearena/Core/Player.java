@@ -14,6 +14,7 @@ public class Player extends Entity
         health = 3;
         maxHealth = 3;
         heldWeapon = new Dagger();
+        heldItem = null;
         skin = new Texture("otherSprites/Player.png");
         isPlayerDead = false;
     }
@@ -21,6 +22,11 @@ public class Player extends Entity
     public Item getHeldItem()
     {
         return heldItem;
+    }
+
+    public Weapon getHeldWeapon()
+    {
+        return heldWeapon;
     }
 
     void makeMove(Board board, int keycode)
