@@ -258,6 +258,22 @@ public class Board
         return l;
     }
 
+    public List<Pair<Item, Pair<Integer,Integer>>> getAllItemsWithPositions()
+    {
+        List<Pair<Item, Pair<Integer,Integer>>> l = new ArrayList<>();
+        for(int i=0; i<boardSize; i++)
+        {
+            for(int j=0; j<boardSize; j++)
+            {
+                if(itemBoard[i][j]!=null)
+                {
+                    l.add(new Pair<>(itemBoard[i][j],new Pair<>(i,j)));
+                }
+            }
+        }
+        return l;
+    }
+
     public void spawnNewWave(List<Gnome> wave)
     {
         if(wave==null){return;}

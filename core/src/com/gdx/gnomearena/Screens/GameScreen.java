@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.GameManager;
+import com.gdx.gnomearena.Core.Item;
 import com.gdx.gnomearena.Core.Pair;
 import com.gdx.gnomearena.Scenes.Hud;
 
@@ -126,6 +127,16 @@ public class GameScreen implements Screen {
         return new Pair<Float,Float>(oldPos.getKey() + t * (newPos.getKey() - oldPos.getKey()), oldPos.getValue() + t * (newPos.getValue() - oldPos.getValue()));
     }
 
+    private float getImagesXPos(float xPos, float imageWidth)
+    {
+        return 64*xPos + imageWidth/2;
+    }
+
+    private float getImagesYPos(float yPos, float imageHeight)
+    {
+        return 896 - (64*yPos - imageHeight/2);
+    }
+
     @Override
     public void render(float delta)
     {
@@ -160,6 +171,18 @@ public class GameScreen implements Screen {
             }
         }
 
+        List<Pair<Item, Pair<Integer,Integer>>> itemDisplay = gameManager.gameBoard.getAllItemsWithPositions();
+        for(int i=0; i<itemDisplay.size(); i++)
+        {
+            Sprite spr = new Sprite(itemDisplay.get(i).getKey().skin);
+            Image im = new Image(spr);
+            im.setOrigin(im.getWidth()/2, im.getHeight()/2);
+            Pair<Integer,Integer> imagePos = new Pair<Integer,Integer>(itemDisplay.get(i).getValue().getKey(), itemDisplay.get(i).getValue().getValue());
+            im.setPosition(getImagesXPos(imagePos.getKey(), im.getWidth()), getImagesYPos(imagePos.getValue(), im.getHeight()));
+            im.setScale(1.5f);
+            stage.addActor(im);
+        }
+
         List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> gnomeDisplay = gameManager.gameBoard.getAllEntitiesWithMoves();
         for(int i=0; i<gnomeDisplay.size(); i++)
         {
@@ -167,7 +190,7 @@ public class GameScreen implements Screen {
             Image im = new Image(spr);
             im.setOrigin(im.getWidth()/2, im.getHeight()/2);
             Pair<Float,Float> imagePos = calculateImagePosition(gnomeDisplay.get(i).getValue().getValue(), gnomeDisplay.get(i).getValue().getKey());
-            im.setPosition(64*imagePos.getKey() + im.getWidth()/2, 896 - (64*imagePos.getValue() - im.getHeight()/2));
+            im.setPosition(getImagesXPos(imagePos.getKey(), im.getWidth()), getImagesYPos(imagePos.getValue(), im.getHeight()));
             im.setScale(1.5f);
             stage.addActor(im);
         }
