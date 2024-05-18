@@ -1,6 +1,13 @@
 package com.gdx.gnomearena.Core;
 
-public interface Item
+import com.badlogic.gdx.graphics.Texture;
+
+public abstract class Item
 {
-    void affect(Entity e);
+    public boolean affect(Entity user)
+    {
+        return false;
+    };
+
+    public Texture skin;
 }

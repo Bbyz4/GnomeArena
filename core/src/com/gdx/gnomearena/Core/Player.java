@@ -12,6 +12,7 @@ public class Player extends Entity
     Player()
     {
         health = 3;
+        maxHealth = 3;
         heldWeapon = new Dagger();
         heldItem = null;
         skin = new Texture("otherSprites/Player.png");

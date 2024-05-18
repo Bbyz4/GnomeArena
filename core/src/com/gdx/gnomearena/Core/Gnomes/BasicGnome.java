@@ -1,10 +1,14 @@
 package com.gdx.gnomearena.Core.Gnomes;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.Gnome;
 import com.gdx.gnomearena.Core.GnomeAttackPatterns.BasicAttack;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
+import com.gdx.gnomearena.Core.Items.Medkit;
 import com.gdx.gnomearena.Core.Pair;
 
 public class BasicGnome extends Gnome
@@ -18,6 +22,8 @@ public class BasicGnome extends Gnome
         moveCooldown = 2;
         currentCooldown = 2;
         skin = new Texture("gnomeSprites/TestGnome.png");
+        spawnedItems = new ArrayList<>();
+        spawnedItems.add(new Pair<>(Medkit::new, 0.5f));
     }
 
     @Override
@@ -62,6 +68,15 @@ public class BasicGnome extends Gnome
 
     @Override
     public void onDeath(Board board) {
+        for(int i=0; i<spawnedItems.size(); i++)
+        {
+            if(new Random().nextFloat() < spawnedItems.get(i).getValue())
+            {
+                Pair<Integer,Integer> entPos = board.getEntitiesPosition(this);
+                board.spawnItem(spawnedItems.get(i).getKey().get(), entPos.getKey(), entPos.getValue());
+            }
+        }
+
         board.removeEntity(this);
         board.updateScore(xp);
     }

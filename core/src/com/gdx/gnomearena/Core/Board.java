@@ -14,11 +14,13 @@ public class Board
     private int score;
 
     private Entity[][] previousBoard;
+    private Item[][] itemBoard;
 
     Board(int x)
     {
         board = new Entity[x][x];
         previousBoard = new Entity[x][x];
+        itemBoard = new Item[x][x];
         boardSize=x;
         score = 0;
     }
@@ -118,6 +120,17 @@ public class Board
     public void removeEntity(int x, int y)
     {
         board[x][y] = null;
+    }
+
+    public void spawnItem(Item it, int x, int y)
+    {
+        System.out.println("ITEM RESPAWNED AT " + x + " " + y);
+        itemBoard[x][y]=it;
+    }
+
+    public void removeItem(int x, int y)
+    {
+        itemBoard[x][y] = null;
     }
 
     public void removeEntity(Entity e)
