@@ -7,9 +7,9 @@ import com.gdx.gnomearena.Core.GnomeAttackPatterns.BasicAttack;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
 import com.gdx.gnomearena.Core.Pair;
 
-public class TestingGnome extends Gnome
+public class BasicGnome extends Gnome
 {
-    public TestingGnome()
+    public BasicGnome()
     {
         xp = 1;
         health = 1;

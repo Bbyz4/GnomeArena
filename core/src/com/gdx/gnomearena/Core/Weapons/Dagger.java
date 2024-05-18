@@ -2,11 +2,11 @@ package com.gdx.gnomearena.Core.Weapons;
 
 import com.gdx.gnomearena.Core.*;
 
-public class BasicWeapon extends Weapon {
+public class Dagger extends Weapon {
 
 
     @SuppressWarnings("unchecked")
-    public BasicWeapon() {
+    public Dagger() {
         super();
         damagePoints = 1;
         attackRangeDown = new Pair[]

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import com.gdx.gnomearena.Core.Gnomes.TestingGnome;
+import com.gdx.gnomearena.Core.Gnomes.BasicGnome;
 
 public class GnomeSpawner
 {
@@ -19,7 +19,7 @@ public class GnomeSpawner
     {
         spawnedGnomes = new Supplier[]
         {
-            TestingGnome::new
+            BasicGnome::new
         };
         cooldown = 10;
         currentCooldown = 10;

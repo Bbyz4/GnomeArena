@@ -2,7 +2,7 @@ package com.gdx.gnomearena.Core;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.gdx.gnomearena.Core.Weapons.BasicWeapon;
+import com.gdx.gnomearena.Core.Weapons.Dagger;
 
 public class Player extends Entity
 {
@@ -12,7 +12,7 @@ public class Player extends Entity
     Player()
     {
         health = 3;
-        heldWeapon = new BasicWeapon();
+        heldWeapon = new Dagger();
         heldItem = null;
         skin = new Texture("otherSprites/Player.png");
         isPlayerDead = false;
