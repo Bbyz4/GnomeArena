@@ -10,6 +10,6 @@ public abstract class Gnome extends Entity
     public int currentCooldown;
     public int xp;
 
-    public void makeMove(Board board){}
-    public void onSpawn(){}
+    public abstract void makeMove(Board board);
+    public abstract void onSpawn(Board board);
 }

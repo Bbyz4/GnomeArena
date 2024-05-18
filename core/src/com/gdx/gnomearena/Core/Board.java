@@ -97,6 +97,11 @@ public class Board
             playerX = x;
             playerY = y;
         }
+
+        if(e instanceof Gnome)
+        {
+            ((Gnome)e).onSpawn(this);
+        }
     }
 
     public void moveEntity(int oldX, int oldY, int newX, int newY)
@@ -178,7 +183,7 @@ public class Board
             {
                 if(board[i][j]!=null)
                 {
-                    l.add(new Pair<>(board[i][j],new Pair<Integer,Integer>(i,j)));
+                    l.add(new Pair<>(board[i][j],new Pair<>(i,j)));
                 }
             }
         }

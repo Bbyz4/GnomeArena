@@ -55,6 +55,12 @@ public class TestingGnome extends Gnome
     }
 
     @Override
+    public void onSpawn(Board board)
+    {
+        //nice board bro
+    }
+
+    @Override
     public void onDeath(Board board) {
         board.removeEntity(this);
         board.updateScore(xp);
