@@ -8,8 +8,10 @@ import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.Gnome;
 import com.gdx.gnomearena.Core.GnomeAttackPatterns.BasicAttack;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
+import com.gdx.gnomearena.Core.Items.EntitySpawningItem;
 import com.gdx.gnomearena.Core.Items.Medkit;
 import com.gdx.gnomearena.Core.Items.WeaponPickup;
+import com.gdx.gnomearena.Core.TurnEntities.Bomb;
 import com.gdx.gnomearena.Core.Weapons.Spear;
 import com.gdx.gnomearena.Core.Pair;
 
@@ -26,8 +28,9 @@ public class BasicGnome extends Gnome
         skin = new Texture("gnomeSprites/TestGnome.png");
         spawnedItems = new ArrayList<>();
 
-        spawnedItems.add(new Pair<>(Medkit::new, 0.5f));
-        spawnedItems.add(new Pair<>(() -> new WeaponPickup(new Spear()), 0.2f));
+        spawnedItems.add(new Pair<>(Medkit::new, 0.4f));
+        spawnedItems.add(new Pair<>(() -> new EntitySpawningItem(new Bomb(5,2)), 0.2f));
+        spawnedItems.add(new Pair<>(() -> new WeaponPickup(new Spear()), 0.1f));
     }
 
     @Override
@@ -78,6 +81,7 @@ public class BasicGnome extends Gnome
             {
                 Pair<Integer,Integer> entPos = board.getEntitiesPosition(this);
                 board.spawnItem(spawnedItems.get(i).getKey().get(), entPos.getKey(), entPos.getValue());
+                break;
             }
         }
 

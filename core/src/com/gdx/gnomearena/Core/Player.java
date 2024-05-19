@@ -8,6 +8,7 @@ public class Player extends Entity
 {
     Weapon heldWeapon;
     Item heldItem;
+    Direction currentDirection;
     public boolean isPlayerDead;
     Player()
     {
@@ -17,6 +18,7 @@ public class Player extends Entity
         heldItem = null;
         skin = new Texture("otherSprites/Player.png");
         isPlayerDead = false;
+        currentDirection = Direction.UP;
     }
 
     public Item getHeldItem()
@@ -29,6 +31,11 @@ public class Player extends Entity
         return heldWeapon;
     }
 
+    public Direction getPlayerDirection()
+    {
+        return currentDirection;
+    }
+
     public void setHeldItem(Item item)
     {
        heldItem = item; 
@@ -39,11 +46,23 @@ public class Player extends Entity
         heldWeapon = w;
     }
 
+    public void setPlayerDirection(Direction dir)
+    {
+        currentDirection = dir;
+    }
+
     void makeMove(Board board, int keycode)
     {
         int pX = board.getPlayersPosition().getKey();
         int pY = board.getPlayersPosition().getValue();
         boolean didPlayerAttack;
+
+        if(Direction.getDirection(keycode)!=null)
+        {
+            currentDirection = Direction.getDirection(keycode);
+            //TESTING
+            System.out.println("DIRECTION CHANGED TO " + currentDirection);
+        }
 
         switch(keycode) {
             case Input.Keys.W:
