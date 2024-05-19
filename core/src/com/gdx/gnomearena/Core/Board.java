@@ -173,16 +173,16 @@ public class Board
         }
     }
 
-    public List<Gnome> getGnomeMoveOrders()
+    public List<TurnEntity> getGnomeMoveOrders()
     {
-        List<Gnome> l = new ArrayList<>();
+        List<TurnEntity> l = new ArrayList<>();
         List<Pair<Integer,Integer>> positions = new ArrayList<>();
 
         for (int i = 0; i < boardSize; i++)
         {
             for (int j = 0; j < boardSize; j++)
             {
-                if (board[i][j] instanceof Gnome)
+                if (board[i][j] instanceof TurnEntity)
                 {
                     positions.add(new Pair<Integer,Integer>(i,j));
                 }
@@ -202,7 +202,7 @@ public class Board
         
         for(int i=0; i<positions.size(); i++)
         {
-            l.add((Gnome)get(positions.get(i).getKey(), positions.get(i).getValue()));
+            l.add((TurnEntity)get(positions.get(i).getKey(), positions.get(i).getValue()));
         }
         return l;
     }

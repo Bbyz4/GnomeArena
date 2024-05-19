@@ -28,7 +28,7 @@ public class GameManager
 
     private void moveAllGnomes()
     {
-        List<Gnome> list = gameBoard.getGnomeMoveOrders();
+        List<TurnEntity> list = gameBoard.getGnomeMoveOrders();
         if(list!=null)
         {
             for(int i=0; i<list.size(); i++)
