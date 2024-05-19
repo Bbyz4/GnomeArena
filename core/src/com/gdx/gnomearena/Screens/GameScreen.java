@@ -41,6 +41,7 @@ public class GameScreen implements Screen {
 
     private float timeFromPreviousMove = 0;
     private final float animationTime = 0.2f;
+    private final float gnomeScale = 1.4f;
 
     private final IntSet gameControls = new IntSet();
 
@@ -211,7 +212,7 @@ public class GameScreen implements Screen {
             im.setOrigin(im.getWidth()/2, im.getHeight()/2);
             Pair<Float,Float> imagePos = calculateImagePosition(gnomeDisplay.get(i).getValue().getValue(), gnomeDisplay.get(i).getValue().getKey());
             im.setPosition(getImagesXPos(imagePos.getKey(), im.getWidth()), getImagesYPos(imagePos.getValue(), im.getHeight()));
-            im.setScale(1.5f);
+            im.setScale(1.5f*gnomeScale);
             stage.addActor(im);
         }
 

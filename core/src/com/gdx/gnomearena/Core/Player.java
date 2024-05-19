@@ -16,7 +16,7 @@ public class Player extends Entity
         maxHealth = 3;
         heldWeapon = new Dagger();
         heldItem = null;
-        skin = new Texture("otherSprites/Player.png");
+        skin = new Texture("playerSprites/Player.png");
         isPlayerDead = false;
         currentDirection = Direction.UP;
     }

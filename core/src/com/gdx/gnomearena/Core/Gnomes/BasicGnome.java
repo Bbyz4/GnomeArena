@@ -25,7 +25,7 @@ public class BasicGnome extends Gnome
         attack = new BasicAttack();
         moveCooldown = 2;
         currentCooldown = 2;
-        skin = new Texture("gnomeSprites/TestGnome.png");
+        skin = new Texture("gnomeSprites/BasicGnome.png");
         spawnedItems = new ArrayList<>();
 
         spawnedItems.add(new Pair<>(Medkit::new, 0.4f));
@@ -47,13 +47,18 @@ public class BasicGnome extends Gnome
             int gX = board.getEntitiesPosition(this).getKey();
             int gY = board.getEntitiesPosition(this).getValue();
 
-            boolean didGnomeAttacked = attack.attack(board, new Pair<Integer, Integer>(gX, gY));
+            boolean didGnomeAttack = attack.attack(board, new Pair<Integer, Integer>(gX, gY));
 
-            if (!didGnomeAttacked) {
+            if (!didGnomeAttack) {
 
                 Pair<Integer, Integer> newPos = move.move(board, new Pair<Integer, Integer>(gX, gY));
-                if (newPos != null) {
+                if (newPos != null)
+                {
                     board.moveEntity(gX, gY, gX + newPos.getKey(), gY + newPos.getValue());
+                }
+                else
+                {
+                    currentCooldown = 1;
                 }
             }
 
