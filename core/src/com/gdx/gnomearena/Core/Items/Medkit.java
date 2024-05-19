@@ -1,8 +1,8 @@
 package com.gdx.gnomearena.Core.Items;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.gdx.gnomearena.Core.Entity;
 import com.gdx.gnomearena.Core.Item;
+import com.gdx.gnomearena.Core.Player;
 
 public class Medkit extends Item
 {
@@ -13,7 +13,7 @@ public class Medkit extends Item
     }
 
     @Override
-    public boolean affect(Entity user)
+    public boolean affect(Player user)
     {
         user.health = Math.min(user.health+1, user.maxHealth);
         return true;
