@@ -89,6 +89,10 @@ public class Player extends Entity
         if(board.getItem(pX, pY)!=null)
         {
             heldItem = board.getItem(pX, pY);
+            if(heldItem.onPickup(this))
+            {
+                heldItem = null;
+            }
             board.removeItem(pX, pY);
         }
     }
