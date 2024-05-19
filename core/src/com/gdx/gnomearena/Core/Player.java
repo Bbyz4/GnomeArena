@@ -60,8 +60,6 @@ public class Player extends Entity
         if(Direction.getDirection(keycode)!=null)
         {
             currentDirection = Direction.getDirection(keycode);
-            //TESTING
-            System.out.println("DIRECTION CHANGED TO " + currentDirection);
         }
 
         switch(keycode) {

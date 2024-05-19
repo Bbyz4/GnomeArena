@@ -33,7 +33,10 @@ public class GameManager
         {
             for(int i=0; i<list.size(); i++)
             {
-                list.get(i).makeMove(gameBoard);
+                if(gameBoard.getEntitiesPosition(list.get(i))!=null)
+                {
+                    list.get(i).makeMove(gameBoard);
+                }
             }
         }
     }

@@ -175,7 +175,8 @@ public class Board
 
     public List<TurnEntity> getGnomeMoveOrders()
     {
-        List<TurnEntity> l = new ArrayList<>();
+        List<TurnEntity> gnomes = new ArrayList<>();
+        List<TurnEntity> others = new ArrayList<>();
         List<Pair<Integer,Integer>> positions = new ArrayList<>();
 
         for (int i = 0; i < boardSize; i++)
@@ -202,9 +203,17 @@ public class Board
         
         for(int i=0; i<positions.size(); i++)
         {
-            l.add((TurnEntity)get(positions.get(i).getKey(), positions.get(i).getValue()));
+            if(get(positions.get(i).getKey(), positions.get(i).getValue()) instanceof Gnome)
+            {
+                gnomes.add((TurnEntity)get(positions.get(i).getKey(), positions.get(i).getValue()));
+            }
+            else
+            {
+                others.add((TurnEntity)get(positions.get(i).getKey(), positions.get(i).getValue()));
+            }
         }
-        return l;
+        gnomes.addAll(others);
+        return gnomes;
     }
 
     public List<Pair<Entity, Pair<Integer,Integer>>> getAllEntitiesWithPositions()
