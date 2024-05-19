@@ -30,31 +30,4 @@ public class Dagger extends Weapon {
         skin = new Texture("weaponSprites/Dagger.png");
     }
 
-    @Override
-    public boolean attack(Board board, char direction) {
-
-        Pair<Integer, Integer> playerPos = board.getPlayersPosition();
-
-        int attackCount = 0;
-
-        for (Pair<Integer, Integer> ranges: attackRanges.get(direction))
-        {
-            int checkX = playerPos.getKey() + ranges.getKey();
-            int checkY = playerPos.getValue() + ranges.getValue();
-            if (board.isValid(checkX,checkY)) {
-                Entity enemy = board.get(checkX, checkY);
-                if (enemy instanceof Gnome && !board.isEmpty(checkX, checkY) && board.isValid(checkX, checkY)) {
-                    enemy.takeDamage(board, damagePoints);
-                    attackCount++;
-                }
-            }
-        }
-
-        if (attackCount == 0 )
-            return false;
-
-
-        return true;
-    }
-
 }

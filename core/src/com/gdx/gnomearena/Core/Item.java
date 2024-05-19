@@ -15,7 +15,7 @@ public abstract class Item
         return false;
     };
 
-    public int maxLifetime;
+    public int maxLifetime = 5;
     public int currentLifetime = 0;
 
     public void passRound(Board board)

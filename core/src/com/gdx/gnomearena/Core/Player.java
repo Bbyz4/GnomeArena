@@ -29,6 +29,16 @@ public class Player extends Entity
         return heldWeapon;
     }
 
+    public void setHeldItem(Item item)
+    {
+       heldItem = item; 
+    }
+
+    public void setHeldWeapon(Weapon w)
+    {
+        heldWeapon = w;
+    }
+
     void makeMove(Board board, int keycode)
     {
         int pX = board.getPlayersPosition().getKey();
@@ -88,10 +98,10 @@ public class Player extends Entity
 
         if(board.getItem(pX, pY)!=null)
         {
-            heldItem = board.getItem(pX, pY);
-            if(heldItem.onPickup(this))
+            Item tempItem = board.getItem(pX, pY);
+            if(!tempItem.onPickup(this))
             {
-                heldItem = null;
+                heldItem = tempItem;
             }
             board.removeItem(pX, pY);
         }

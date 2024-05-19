@@ -2,15 +2,16 @@ package com.gdx.gnomearena.Core.Weapons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Core.Pair;
+import com.gdx.gnomearena.Core.Weapon;
 
 //it's just a dagger, but with extra range
-public class Spear extends Dagger
+public class Spear extends Weapon
 {
     @SuppressWarnings("unchecked")
     public Spear()
     {
         super();
-        skin = new Texture("weaponSprites/Spear.png");
+        damagePoints = 1;
         attackRangeDown = new Pair[]
                 {
                         new Pair<>(0,1),
@@ -32,5 +33,6 @@ public class Spear extends Dagger
                         new Pair<>(2, 0),
                 };
         updateRanges();
+        skin = new Texture("weaponSprites/Spear.png");
     }
 }

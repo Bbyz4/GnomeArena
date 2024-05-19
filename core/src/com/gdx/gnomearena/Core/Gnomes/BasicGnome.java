@@ -9,6 +9,8 @@ import com.gdx.gnomearena.Core.Gnome;
 import com.gdx.gnomearena.Core.GnomeAttackPatterns.BasicAttack;
 import com.gdx.gnomearena.Core.GnomeMovePatterns.BasicMovement;
 import com.gdx.gnomearena.Core.Items.Medkit;
+import com.gdx.gnomearena.Core.Items.WeaponPickup;
+import com.gdx.gnomearena.Core.Weapons.Spear;
 import com.gdx.gnomearena.Core.Pair;
 
 public class BasicGnome extends Gnome
@@ -23,7 +25,9 @@ public class BasicGnome extends Gnome
         currentCooldown = 2;
         skin = new Texture("gnomeSprites/TestGnome.png");
         spawnedItems = new ArrayList<>();
+
         spawnedItems.add(new Pair<>(Medkit::new, 0.5f));
+        spawnedItems.add(new Pair<>(() -> new WeaponPickup(new Spear()), 0.2f));
     }
 
     @Override
