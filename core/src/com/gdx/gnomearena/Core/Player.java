@@ -82,7 +82,7 @@ public class Player extends Entity
             case Input.Keys.E:
                 if(heldItem!=null)
                 {
-                    if(heldItem.affect(this))
+                    if(heldItem.affect(this,board))
                     {
                         heldItem=null;
                     }
@@ -99,7 +99,7 @@ public class Player extends Entity
         if(board.getItem(pX, pY)!=null)
         {
             Item tempItem = board.getItem(pX, pY);
-            if(!tempItem.onPickup(this))
+            if(!tempItem.onPickup(this, board))
             {
                 heldItem = tempItem;
             }

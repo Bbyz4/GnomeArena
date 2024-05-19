@@ -5,12 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 public abstract class Item
 {
     //methods return true if an item should be removed from players inventory after an action, false otherwise
-    public boolean onPickup(Player user)
+    public boolean onPickup(Player user, Board board)
     {
         return false;
     }
 
-    public boolean affect(Player user)
+    public boolean affect(Player user, Board board)
     {
         return false;
     };

@@ -1,5 +1,6 @@
 package com.gdx.gnomearena.Core.Items;
 
+import com.gdx.gnomearena.Core.Board;
 import com.gdx.gnomearena.Core.Item;
 import com.gdx.gnomearena.Core.Player;
 import com.gdx.gnomearena.Core.Weapon;
@@ -21,7 +22,7 @@ public class WeaponPickup extends Item
     }
 
     @Override
-    public boolean onPickup(Player user)
+    public boolean onPickup(Player user, Board board)
     {
         user.setHeldWeapon(spawnedWeapon);
         return true;
