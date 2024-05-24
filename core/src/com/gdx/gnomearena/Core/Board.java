@@ -1,7 +1,6 @@
 package com.gdx.gnomearena.Core;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -73,6 +72,11 @@ public class Board
     public int middle()
     {
         return (boardSize/2)+1;
+    }
+
+    public int size()
+    {
+        return boardSize;
     }
 
     public Pair<Integer, Integer> getPlayersPosition()
@@ -171,49 +175,6 @@ public class Board
                 previousBoard[i][j] = board[i][j];
             }
         }
-    }
-
-    public List<TurnEntity> getGnomeMoveOrders()
-    {
-        List<TurnEntity> gnomes = new ArrayList<>();
-        List<TurnEntity> others = new ArrayList<>();
-        List<Pair<Integer,Integer>> positions = new ArrayList<>();
-
-        for (int i = 0; i < boardSize; i++)
-        {
-            for (int j = 0; j < boardSize; j++)
-            {
-                if (board[i][j] instanceof TurnEntity)
-                {
-                    positions.add(new Pair<Integer,Integer>(i,j));
-                }
-            }
-        }
-        
-        positions.sort(new Comparator<Pair<Integer,Integer>>()
-        {
-            @Override
-            public int compare(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2)
-            {
-                int dist1 = Math.abs(playerX-p1.getKey()) + Math.abs(playerY-p1.getValue());
-                int dist2 = Math.abs(playerX-p2.getKey()) + Math.abs(playerY-p2.getValue());
-                return Integer.compare(dist1, dist2);
-            }
-        });
-        
-        for(int i=0; i<positions.size(); i++)
-        {
-            if(get(positions.get(i).getKey(), positions.get(i).getValue()) instanceof Gnome)
-            {
-                gnomes.add((TurnEntity)get(positions.get(i).getKey(), positions.get(i).getValue()));
-            }
-            else
-            {
-                others.add((TurnEntity)get(positions.get(i).getKey(), positions.get(i).getValue()));
-            }
-        }
-        gnomes.addAll(others);
-        return gnomes;
     }
 
     public List<Pair<Entity, Pair<Integer,Integer>>> getAllEntitiesWithPositions()
@@ -319,58 +280,4 @@ public class Board
         return l;
     }
 
-    public void spawnNewWave(List<Gnome> wave)
-    {
-        if(wave==null){return;}
-        //Tries to spawn every gnome on the egde of the map
-        int currentDist = 0;
-        int currentSpawned = 0;
-        while(currentSpawned<wave.size() && currentDist<=boardSize/2)
-        {
-            for(int i=currentDist; i<boardSize-currentDist; i++)
-            {
-                if(isEmpty(i, currentDist))
-                {
-                    spawnEntity(wave.get(currentSpawned), i, currentDist);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
-                    {
-                        return;
-                    }
-                }
-
-                if(isEmpty(i, boardSize-1-currentDist))
-                {
-                    spawnEntity(wave.get(currentSpawned), i, boardSize-1-currentDist);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
-                    {
-                        return;
-                    }
-                }
-
-                if(isEmpty(currentDist, i))
-                {
-                    spawnEntity(wave.get(currentSpawned), currentDist, i);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
-                    {
-                        return;
-                    }
-                }
-
-                if(isEmpty(boardSize-1-currentDist, i))
-                {
-                    spawnEntity(wave.get(currentSpawned), boardSize-1-currentDist, i);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
-                    {
-                        return;
-                    }
-                }
-            }
-
-            currentDist++;
-        }
-    }
 }

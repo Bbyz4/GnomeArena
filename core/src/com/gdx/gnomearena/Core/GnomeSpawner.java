@@ -44,4 +44,59 @@ public class GnomeSpawner
         }
         return null;
     }
+
+    public void spawnNewWave(Board board, List<Gnome> wave)
+    {
+        if(wave==null){return;}
+        //Tries to spawn every gnome on the egde of the map
+        int currentDist = 0;
+        int currentSpawned = 0;
+        while(currentSpawned<wave.size() && currentDist<=board.size()/2)
+        {
+            for(int i=currentDist; i<board.size()-currentDist; i++)
+            {
+                if(board.isEmpty(i, currentDist))
+                {
+                    board.spawnEntity(wave.get(currentSpawned), i, currentDist);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+
+                if(board.isEmpty(i, board.size()-1-currentDist))
+                {
+                    board.spawnEntity(wave.get(currentSpawned), i, board.size()-1-currentDist);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+
+                if(board.isEmpty(currentDist, i))
+                {
+                    board.spawnEntity(wave.get(currentSpawned), currentDist, i);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+
+                if(board.isEmpty(board.size()-1-currentDist, i))
+                {
+                    board.spawnEntity(wave.get(currentSpawned), board.size()-1-currentDist, i);
+                    currentSpawned++;
+                    if(currentSpawned>=wave.size())
+                    {
+                        return;
+                    }
+                }
+            }
+
+            currentDist++;
+        }
+    }
 }

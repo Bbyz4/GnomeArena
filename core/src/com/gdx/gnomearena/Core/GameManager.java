@@ -23,12 +23,12 @@ public class GameManager
         player.makeMove(gameBoard, keycode);
         moveAllGnomes();
         moveAllItems();
-        gameBoard.spawnNewWave(gnomeSpawner.newGnomesList(3)); // hardcoded gnome amount
+        gnomeSpawner.spawnNewWave(gameBoard, gnomeSpawner.newGnomesList(3)); // hardcoded gnome amount
     }
 
     private void moveAllGnomes()
     {
-        List<TurnEntity> list = gameBoard.getGnomeMoveOrders();
+        List<TurnEntity> list = GnomeMover.getGnomeMoveOrders(gameBoard);
         if(list!=null)
         {
             for(int i=0; i<list.size(); i++)
