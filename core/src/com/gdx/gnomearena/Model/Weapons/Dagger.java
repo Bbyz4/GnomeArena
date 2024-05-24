@@ -11,19 +11,19 @@ public class Dagger extends Weapon {
         super();
         damagePoints = 1;
         
-        attackRanges.put('S', new Pair[]
+        attackRanges.put(Direction.DOWN, new Pair[]
         {
                 new Pair<>(0,1)
         });
-        attackRanges.put('W', new Pair[]
+        attackRanges.put(Direction.UP, new Pair[]
         {
                 new Pair<>(0,-1)
         });
-        attackRanges.put('A', new Pair[]
+        attackRanges.put(Direction.LEFT, new Pair[]
         {
                 new Pair<>(-1,0)
         });
-        attackRanges.put('D', new Pair[]
+        attackRanges.put(Direction.RIGHT, new Pair[]
         {
                 new Pair<>(1, 0)
         });

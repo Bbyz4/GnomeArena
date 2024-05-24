@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Weapon
 {
-    public Map<Character, Pair<Integer, Integer>[]> attackRanges;
+    public Map<Direction, Pair<Integer, Integer>[]> attackRanges;
 
     public Texture skin;
 
@@ -19,7 +19,7 @@ public abstract class Weapon
     }
 
     public int damagePoints;
-    public boolean attack(Board board, char direction)
+    public boolean attack(Board board, Direction direction)
     {
     Pair<Integer, Integer> playerPos = board.getPlayersPosition();
 

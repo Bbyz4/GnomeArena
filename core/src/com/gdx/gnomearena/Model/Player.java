@@ -10,6 +10,9 @@ public class Player extends Entity
     Item heldItem;
     Direction currentDirection;
     public boolean isPlayerDead;
+
+    Weapon droppedWeapon;
+
     Player()
     {
         health = 3;
@@ -43,6 +46,7 @@ public class Player extends Entity
 
     public void setHeldWeapon(Weapon w)
     {
+        droppedWeapon = heldWeapon;
         heldWeapon = w;
     }
 
@@ -53,61 +57,42 @@ public class Player extends Entity
 
     void makeMove(Board board, int keycode)
     {
+
+        if(keycode==-1)
+        {
+            return;
+        }
+
+        if(keycode==Input.Keys.E)
+        {
+            if(heldItem!=null)
+            {
+                if(heldItem.affect(this,board))
+                {
+                    heldItem=null;
+                }
+            }
+        }
+
         int pX = board.getPlayersPosition().getKey();
         int pY = board.getPlayersPosition().getValue();
-        boolean didPlayerAttack;
 
         if(Direction.getDirection(keycode)!=null)
         {
             currentDirection = Direction.getDirection(keycode);
         }
+        else
+        {
+            return;
+        }
 
-        switch(keycode) {
-            case Input.Keys.W:
-                didPlayerAttack = heldWeapon.attack(board,'W');
-                if (!didPlayerAttack) {
-                    if (board.isValid(pX, pY - 1) && board.isEmpty(pX, pY - 1)) {
-                        board.moveEntity(pX, pY, pX, pY - 1);
-                    }
-                }
-                break;
-            case Input.Keys.A:
-                didPlayerAttack = heldWeapon.attack(board,'A');
-                if (!didPlayerAttack) {
-                    if (board.isValid(pX - 1, pY) && board.isEmpty(pX - 1, pY)) {
-                        board.moveEntity(pX, pY, pX - 1, pY);
-                    }
-                }
-                break;
-            case Input.Keys.S:
-                didPlayerAttack = heldWeapon.attack(board,'S');
-                if (!didPlayerAttack) {
-                    if (board.isValid(pX, pY + 1) && board.isEmpty(pX, pY + 1)) {
-                        board.moveEntity(pX, pY, pX, pY + 1);
-                    }
-                }
-                break;
-            case Input.Keys.D:
-                didPlayerAttack = heldWeapon.attack(board,'D');
-                if (!didPlayerAttack) {
-                    if(board.isValid(pX+1, pY) && board.isEmpty(pX+1, pY))
-                {
-                    board.moveEntity(pX, pY, pX+1, pY);
-                }
-                    }
-                break;
-            case Input.Keys.E:
-                if(heldItem!=null)
-                {
-                    if(heldItem.affect(this,board))
-                    {
-                        heldItem=null;
-                    }
-                }
-                break;
-            default:
-                // you got gnomed
-                break;
+        if(!heldWeapon.attack(board, Direction.getDirection(keycode)))
+        {
+            Pair<Integer,Integer> targetTile = Direction.getFieldsFrontField(board.getPlayersPosition(), currentDirection);
+            if(board.isValid(targetTile.getKey(), targetTile.getValue()) && board.isEmpty(targetTile.getKey(), targetTile.getValue()))
+            {
+                board.moveEntity(pX, pY, targetTile.getKey(), targetTile.getValue());
+            }
         }
 
         pX = board.getPlayersPosition().getKey();

@@ -5,35 +5,40 @@ import com.gdx.gnomearena.Model.Direction;
 import com.gdx.gnomearena.Model.Pair;
 import com.gdx.gnomearena.Model.Weapon;
 
-//it's just a dagger, but with extra range
-public class Spear extends Weapon
+//wide range + can hit multiple gnomes at once
+public class Hammer extends Weapon
 {
     @SuppressWarnings("unchecked")
-    public Spear()
+    public Hammer()
     {
         super();
         damagePoints = 1;
-
+        canMultishot = true;
+        
         attackRanges.put(Direction.DOWN, new Pair[]
         {
                 new Pair<>(0,1),
-                new Pair<>(0,2)
+                new Pair<>(1,1),
+                new Pair<>(-1,1),
         });
         attackRanges.put(Direction.UP, new Pair[]
         {
-                new Pair<>(0,-1),
-                new Pair<>(0,-2)
+            new Pair<>(0,-1),
+            new Pair<>(1,-1),
+            new Pair<>(-1,-1),
         });
         attackRanges.put(Direction.LEFT, new Pair[]
         {
-                new Pair<>(-1,0),
-                new Pair<>(-2,0)
+            new Pair<>(-1,0),
+            new Pair<>(-1,-1),
+            new Pair<>(-1,1),
         });
         attackRanges.put(Direction.RIGHT, new Pair[]
         {
-                new Pair<>(1, 0),
-                new Pair<>(2, 0)
+            new Pair<>(1,0),
+            new Pair<>(1,1),
+            new Pair<>(1,-1),
         });
-        skin = new Texture("weaponSprites/Spear.png");
+        skin = new Texture("weaponSprites/Hammer.png");
     }
 }
