@@ -13,11 +13,11 @@ import com.gdx.gnomearena.Model.Weapon;
 
 public class UIDisplay
 {
-    private final int playerInventoryBoxXPosition = 80;
-    private final int playerInventoryBoxYPosition = 800;
+    private final int playerInventoryBoxXPosition = 60;
+    private final int playerInventoryBoxYPosition = 900;
     private final int boxSeparatorSize = 150;
 
-    private final float UIItemsScale = 3f;
+    private final float UIItemsScale = 4f;
 
     private Texture itemFrameTexture;
     private Sprite itemFrameSprite;
