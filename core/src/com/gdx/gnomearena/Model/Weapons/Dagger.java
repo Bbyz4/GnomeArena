@@ -10,23 +10,23 @@ public class Dagger extends Weapon {
     public Dagger() {
         super();
         damagePoints = 1;
-        attackRangeDown = new Pair[]
-                {
-                        new Pair<>(0,1)
-                };
-        attackRangeUp = new Pair[]
-                {
-                        new Pair<>(0,-1),
-                };
-        attackRangeLeft = new Pair[]
-                {
-                        new Pair<>(-1,0),
-                };
-        attackRangeRight = new Pair[]
-                {
-                        new Pair<>(1, 0),
-                };
-        updateRanges();
+        
+        attackRanges.put('S', new Pair[]
+        {
+                new Pair<>(0,1)
+        });
+        attackRanges.put('W', new Pair[]
+        {
+                new Pair<>(0,-1)
+        });
+        attackRanges.put('A', new Pair[]
+        {
+                new Pair<>(-1,0)
+        });
+        attackRanges.put('D', new Pair[]
+        {
+                new Pair<>(1, 0)
+        });
         skin = new Texture("weaponSprites/Dagger.png");
     }
 

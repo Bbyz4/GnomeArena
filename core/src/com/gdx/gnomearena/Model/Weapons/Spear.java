@@ -12,27 +12,27 @@ public class Spear extends Weapon
     {
         super();
         damagePoints = 1;
-        attackRangeDown = new Pair[]
-                {
-                        new Pair<>(0,1),
-                        new Pair<>(0,2)
-                };
-        attackRangeUp = new Pair[]
-                {
-                        new Pair<>(0,-1),
-                        new Pair<>(0,-2),
-                };
-        attackRangeLeft = new Pair[]
-                {
-                        new Pair<>(-1,0),
-                        new Pair<>(-2,0),
-                };
-        attackRangeRight = new Pair[]
-                {
-                        new Pair<>(1, 0),
-                        new Pair<>(2, 0),
-                };
-        updateRanges();
+
+        attackRanges.put('S', new Pair[]
+        {
+                new Pair<>(0,1),
+                new Pair<>(0,2)
+        });
+        attackRanges.put('W', new Pair[]
+        {
+                new Pair<>(0,-1),
+                new Pair<>(0,-2)
+        });
+        attackRanges.put('A', new Pair[]
+        {
+                new Pair<>(-1,0),
+                new Pair<>(-2,0)
+        });
+        attackRanges.put('D', new Pair[]
+        {
+                new Pair<>(1, 0),
+                new Pair<>(2, 0)
+        });
         skin = new Texture("weaponSprites/Spear.png");
     }
 }
