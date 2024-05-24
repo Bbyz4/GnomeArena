@@ -8,11 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.gdx.gnomearena.Model.Item;
 import com.gdx.gnomearena.Model.Pair;
 
-public class ItemDisplay
+public class ItemDisplay extends GameBoardDisplay
 {
-    private final int upperLeftTileX = 0;
-    private final int upperLeftTileY = 896;
-
     public ItemDisplay()
     {
 
@@ -20,12 +17,12 @@ public class ItemDisplay
 
     private float getItemsXPos(float xPos, float imageWidth)
     {
-        return upperLeftTileX + 64*xPos + imageWidth/2;
+        return upperLeftTileX + 64*xPos*totalBoardScale + imageWidth*totalBoardScale/2;
     }
 
     private float getItemsYPos(float yPos, float imageHeight)
     {
-        return upperLeftTileY - (64*yPos - imageHeight/2);
+        return upperLeftTileY - (64*yPos*totalBoardScale - imageHeight*totalBoardScale/2);
     }
 
     public void displayItems(List<Pair<Item, Pair<Integer,Integer>>> items, Stage stage)

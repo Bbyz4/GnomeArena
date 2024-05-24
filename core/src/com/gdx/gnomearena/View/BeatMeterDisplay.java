@@ -9,8 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class BeatMeterDisplay
 {
-    private final int beatMeterXPosition = 700;
+    private final int beatMeterXPosition = 1200;
     private final int beatMeterYPosition = -300;
+    private final float beatMeterScale = 1.2f;
 
     private Texture bmtexture;
     private Sprite bmsprite;
@@ -36,8 +37,8 @@ public class BeatMeterDisplay
 
     public void displayBeatMeter(Stage stage, float pace, float clickWindow, float elapsedTime, boolean keyHandled)
     {
-        bmimage.setScale(0.3f*(pace-elapsedTime));
-        bm2image.setScale(0.3f*(pace*clickWindow));
+        bmimage.setScale(0.3f*(pace-elapsedTime)*beatMeterScale);
+        bm2image.setScale(0.3f*(pace*clickWindow)*beatMeterScale);
         if(elapsedTime>=pace*(1-clickWindow))
         {
             if(!keyHandled)

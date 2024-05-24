@@ -55,9 +55,9 @@ public class MainMenuScreen implements Screen
         bstyle.up = skin.getDrawable("playButtonTexture1");
         bstyle.down = skin.getDrawable("playButtonTexture2");
         playButton = new Button(bstyle);
-        playButton.setPosition(620, 305);
-        playButton.setWidth(200);
-        playButton.setHeight(200);
+        playButton.setPosition(810, 440);
+        playButton.setWidth(300);
+        playButton.setHeight(300);
         playButton.addListener(new ClickListener()
         {
             @Override
@@ -73,7 +73,7 @@ public class MainMenuScreen implements Screen
 
         titleLabel = new Label("GNOME ARENA", textStyle);
         titleLabel.setAlignment(Align.center);
-        titleLabel.setPosition(620, 700);
+        titleLabel.setPosition(860, 800);
         titleLabel.setWidth(200);
         stage.addActor(titleLabel);
     }

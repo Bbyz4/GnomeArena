@@ -18,7 +18,7 @@ import com.gdx.gnomearena.Model.Item;
 import com.gdx.gnomearena.Model.Pair;
 import com.gdx.gnomearena.Model.Weapon;
 import com.gdx.gnomearena.View.BeatMeterDisplay;
-import com.gdx.gnomearena.View.BoardDisplay;
+import com.gdx.gnomearena.View.TileDisplay;
 import com.gdx.gnomearena.View.EntityDisplay;
 import com.gdx.gnomearena.View.Hud;
 import com.gdx.gnomearena.View.ItemDisplay;
@@ -33,7 +33,7 @@ public class GameScreen implements Screen {
     private Hud hud;
     private int timer = 0;
 
-    private final BoardDisplay boardDisplay;
+    private final TileDisplay tileDisplay;
     private final EntityDisplay entityDisplay;
     private final ItemDisplay itemDisplay;
     private final UIDisplay uiDisplay;
@@ -64,7 +64,7 @@ public class GameScreen implements Screen {
             Input.Keys.E
         );
 
-        boardDisplay = new BoardDisplay();
+        tileDisplay = new TileDisplay();
         entityDisplay = new EntityDisplay();
         itemDisplay = new ItemDisplay();
         uiDisplay = new UIDisplay();
@@ -119,7 +119,7 @@ public class GameScreen implements Screen {
 
         stage.clear();
 
-        boardDisplay.displayTiles(stage);
+        tileDisplay.displayTiles(stage);
 
         List<Pair<Item, Pair<Integer,Integer>>> boardItems = gameManager.gameBoard.getAllItemsWithPositions();
         itemDisplay.displayItems(boardItems, stage);

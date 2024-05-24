@@ -13,8 +13,9 @@ import com.gdx.gnomearena.Model.Weapon;
 
 public class UIDisplay
 {
-    private final int playerInventoryBoxXPosition = 1100;
-    private final int playerInventoryBoxYPosition = 350;
+    private final int playerInventoryBoxXPosition = 80;
+    private final int playerInventoryBoxYPosition = 800;
+    private final int boxSeparatorSize = 150;
 
     private final float UIItemsScale = 3f;
 
@@ -32,18 +33,18 @@ public class UIDisplay
     {
         UIBoxes = new ArrayList<>();
 
-        itemFrameTexture = new Texture(Gdx.files.internal("otherSprites/ItemFrame.png"));
+        itemFrameTexture = new Texture(Gdx.files.internal("otherSprites/ItemFrame2.png"));
         itemFrameSprite = new Sprite(itemFrameTexture);
         itemFrameImage = new Image(itemFrameSprite);
         itemFrameImage.setPosition(playerInventoryBoxXPosition, playerInventoryBoxYPosition);
-        itemFrameImage.setOrigin(itemFrameImage.getWidth()/2, itemFrameImage.getHeight()/2);
+        itemFrameImage.setScale(UIItemsScale);
         UIBoxes.add(itemFrameImage);
 
-        weaponFrameTexture = new Texture(Gdx.files.internal("otherSprites/ItemFrame.png"));
+        weaponFrameTexture = new Texture(Gdx.files.internal("otherSprites/WeaponFrame.png"));
         weaponFrameSprite = new Sprite(weaponFrameTexture);
         weaponFrameImage = new Image(weaponFrameSprite);
-        weaponFrameImage.setPosition(playerInventoryBoxXPosition+100, playerInventoryBoxYPosition);
-        weaponFrameImage.setOrigin(weaponFrameImage.getWidth()/2, weaponFrameImage.getHeight()/2);
+        weaponFrameImage.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
+        weaponFrameImage.setScale(UIItemsScale);
         UIBoxes.add(weaponFrameImage);
     }
 
@@ -61,7 +62,7 @@ public class UIDisplay
         {
             Sprite spr = new Sprite(weapon.skin);
             Image im = new Image(spr);
-            im.setPosition(playerInventoryBoxXPosition+100, playerInventoryBoxYPosition);
+            im.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
             im.setScale(UIItemsScale);
             stage.addActor(im);
         }

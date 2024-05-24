@@ -5,16 +5,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class BoardDisplay
+public class TileDisplay extends GameBoardDisplay
 {
     private Image grass1Image;
     private Image grass2Image;
     private int flicker;
 
-    private final int upperLeftTileX = 0;
-    private final int upperLeftTileY = 896;
-
-    public BoardDisplay()
+    public TileDisplay()
     {
         Texture grass1 = new Texture("terrainSprites/Grass1.png");
         Texture grass2 = new Texture("terrainSprites/Grass2.png");
@@ -36,8 +33,8 @@ public class BoardDisplay
             {
                 Image img = (i+j+flicker)%2==0 ? grass2Image : grass1Image;
                 Image tile = new Image(img.getDrawable());
-                tile.setPosition(upperLeftTileX+64*i, upperLeftTileY-64*j);
-                tile.setScale(2f);
+                tile.setPosition(upperLeftTileX+64*i*totalBoardScale, upperLeftTileY-64*j*totalBoardScale);
+                tile.setScale(2f*totalBoardScale);
                 stage.addActor(tile);
             }
         }

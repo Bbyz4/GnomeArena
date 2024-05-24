@@ -42,7 +42,7 @@ public class Hud {
         table.row();
         table.add(new Label("TIME:", hudStyle)).expandX().padRight(30);
         table.add(timeLabel);
-        table.setPosition(1100, 700);
+        table.setPosition(1600, 900);
         table.setWidth(200);
 
     }

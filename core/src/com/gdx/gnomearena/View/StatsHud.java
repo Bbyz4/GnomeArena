@@ -35,7 +35,7 @@ public class StatsHud {
         table.row();
         table.add(new Label("TIME:", hudStyle)).expandX().padRight(30);
         table.add(timeLabel);
-        table.setPosition(620, 150);
+        table.setPosition(860, 150);
         table.setWidth(200);
     }
 }

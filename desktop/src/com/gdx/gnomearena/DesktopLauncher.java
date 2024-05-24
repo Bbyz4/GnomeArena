@@ -9,7 +9,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setWindowedMode(1440, 1000);
+		config.setWindowedMode(1920, 1080);
 		config.setTitle("GnomeArena");
 		new Lwjgl3Application(new MainGame(), config);
 	}
