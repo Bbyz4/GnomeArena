@@ -1,6 +1,7 @@
 package com.gdx.gnomearena.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -12,36 +13,74 @@ import com.gdx.gnomearena.Model.Gnomes.WizardGnome;
 public class GnomeSpawner
 {
     Supplier<Gnome>[] spawnedGnomes;
-    int cooldown;
-    int currentCooldown;
+    private int cooldown;
+    private int currentCooldown;
     Random rand;
+
+    private int currentLevel;
+
+    //key = xp required to enter that level. value = total cost of spawned gnomes
+    private List<Pair<Integer,Integer>> levels;
+
+    private List<Integer> order;
 
     @SuppressWarnings("unchecked")
     public GnomeSpawner()
     {
         spawnedGnomes = new Supplier[]
         {
-            BasicGnome::new
+            BasicGnome::new,
+            ScoutGnome::new,
+            WizardGnome::new
+
         };
         cooldown = 10;
         currentCooldown = 10;
         rand = new Random();
+
+        currentLevel = 0;
+        levels = new ArrayList<>();
+        
+        levels.add(new Pair<>(0, 1));
+        levels.add(new Pair<>(3, 3));
+        levels.add(new Pair<>(10, 5));
+        levels.add(new Pair<>(25, 7));
+        levels.add(new Pair<>(50, 10));
+        levels.add(new Pair<>(100, 14));
+
+        order = new ArrayList<>();
+        for (int i = 0; i < 4; i++)
+        {
+            order.add(i);
+        }
     }
 
-    List<Gnome> newGnomesList(int x)
+    List<Gnome> newGnomesList(int playerXP)
     {
         currentCooldown--;
         if(currentCooldown==0)
         {
             currentCooldown = cooldown;
             List<Gnome> l = new ArrayList<>();
-            for(int i=0; i<x; i++)
+
+            while(levels.size() > currentLevel && levels.get(currentLevel+1).getKey() <= playerXP)
+            {
+                currentLevel++;
+            }
+
+            int totalGnomeCost = levels.get(currentLevel).getValue();
+
+            //this might cause an infinite loop in the future, remember to modify this
+            while(totalGnomeCost>0)
             {
                 Supplier<Gnome> gc = spawnedGnomes[rand.nextInt(spawnedGnomes.length)];
                 Gnome gnome = gc.get();
-                l.add(gnome);
+                if(totalGnomeCost-gnome.cost >= 0)
+                {
+                    l.add(gnome);
+                    totalGnomeCost -= gnome.cost;
+                }
             }
-            
             return l;
         }
         return null;
@@ -50,50 +89,50 @@ public class GnomeSpawner
     public void spawnNewWave(Board board, List<Gnome> wave)
     {
         if(wave==null){return;}
-        board.spawnEntity(new WizardGnome(), 13, 13);
-        board.spawnEntity(new ScoutGnome(), 12, 12);
-        //Tries to spawn every gnome on the egde of the map
+        
+        Collections.shuffle(order);
+
         int currentDist = 0;
         int currentSpawned = 0;
         while(currentSpawned<wave.size() && currentDist<=board.size()/2)
         {
             for(int i=currentDist; i<board.size()-currentDist; i++)
             {
-                if(board.isEmpty(i, currentDist))
+                for (int j : order)
                 {
-                    board.spawnEntity(wave.get(currentSpawned), i, currentDist);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
+                    switch(j)
                     {
-                        return;
+                        case 0:
+                            if(board.isEmpty(currentDist, currentDist)) 
+                            {
+                                board.spawnEntity(wave.get(currentSpawned), currentDist, currentDist);
+                                currentSpawned++;
+                            }
+                            break;
+                        case 1:
+                            if(board.isEmpty(currentDist, board.size() - 1 - currentDist))
+                            {
+                                board.spawnEntity(wave.get(currentSpawned), currentDist, board.size() - 1 - currentDist);
+                                currentSpawned++;
+                            }
+                            break;
+                        case 2:
+                            if(board.isEmpty(board.size() - 1 - currentDist, currentDist))
+                            {
+                                board.spawnEntity(wave.get(currentSpawned), board.size() - 1 - currentDist, currentDist);
+                                currentSpawned++;
+                            }
+                            break;
+                        case 3:
+                            if(board.isEmpty(board.size() - 1 - currentDist, board.size() - 1 - currentDist))
+                            {
+                                board.spawnEntity(wave.get(currentSpawned), board.size() - 1 - currentDist, board.size() - 1 - currentDist);
+                                currentSpawned++;
+                            }
+                            break;
                     }
-                }
-
-                if(board.isEmpty(i, board.size()-1-currentDist))
-                {
-                    board.spawnEntity(wave.get(currentSpawned), i, board.size()-1-currentDist);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
-                    {
-                        return;
-                    }
-                }
-
-                if(board.isEmpty(currentDist, i))
-                {
-                    board.spawnEntity(wave.get(currentSpawned), currentDist, i);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
-                    {
-                        return;
-                    }
-                }
-
-                if(board.isEmpty(board.size()-1-currentDist, i))
-                {
-                    board.spawnEntity(wave.get(currentSpawned), board.size()-1-currentDist, i);
-                    currentSpawned++;
-                    if(currentSpawned>=wave.size())
+                    
+                    if (currentSpawned >= wave.size())
                     {
                         return;
                     }

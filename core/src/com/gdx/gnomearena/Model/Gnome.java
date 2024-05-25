@@ -8,6 +8,7 @@ public abstract class Gnome extends TurnEntity
     public GnomeAttackPattern attack;
     
     public int xp;
+    public int cost;
 
     @Override
     public void makeMove(Board board)

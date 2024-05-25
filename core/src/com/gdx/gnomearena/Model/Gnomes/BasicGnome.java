@@ -12,6 +12,7 @@ public class BasicGnome extends Gnome
     public BasicGnome()
     {
         xp = 1;
+        cost = 1;
         health = 1;
         maxHealth = 1;
         move = new BasicMovement();

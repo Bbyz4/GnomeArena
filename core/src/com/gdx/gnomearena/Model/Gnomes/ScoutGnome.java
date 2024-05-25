@@ -16,6 +16,7 @@ public class ScoutGnome extends Gnome
     public ScoutGnome()
     {
         xp = 1;
+        cost = 3;
         health = 1;
         maxHealth = 1;
         move = new DiagonalMovement();

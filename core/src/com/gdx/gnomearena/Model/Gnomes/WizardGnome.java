@@ -17,6 +17,7 @@ public class WizardGnome extends Gnome
     public WizardGnome()
     {
         xp = 2;
+        cost = 5;
         health = 1;
         maxHealth = 1;
         move = new BasicMovement();
