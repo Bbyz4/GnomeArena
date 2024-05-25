@@ -14,6 +14,8 @@ public class GameManager
         gnomeSpawner = new GnomeSpawner();
         player = new Player();
         gameBoard.spawnEntity(player, gameBoard.middle(), gameBoard.middle());
+
+        LevelManager.resetLevel();
     }
 
 

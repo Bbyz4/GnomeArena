@@ -17,10 +17,7 @@ public class GnomeSpawner
     private int currentCooldown;
     Random rand;
 
-    private int currentLevel;
-
     //key = xp required to enter that level. value = total cost of spawned gnomes
-    private List<Pair<Integer,Integer>> levels;
 
     private List<Integer> order;
 
@@ -38,16 +35,6 @@ public class GnomeSpawner
         currentCooldown = 10;
         rand = new Random();
 
-        currentLevel = 0;
-        levels = new ArrayList<>();
-        
-        levels.add(new Pair<>(0, 1));
-        levels.add(new Pair<>(3, 3));
-        levels.add(new Pair<>(10, 5));
-        levels.add(new Pair<>(25, 7));
-        levels.add(new Pair<>(50, 10));
-        levels.add(new Pair<>(100, 14));
-
         order = new ArrayList<>();
         for (int i = 0; i < 4; i++)
         {
@@ -63,12 +50,8 @@ public class GnomeSpawner
             currentCooldown = cooldown;
             List<Gnome> l = new ArrayList<>();
 
-            while(levels.size() > currentLevel && levels.get(currentLevel+1).getKey() <= playerXP)
-            {
-                currentLevel++;
-            }
-
-            int totalGnomeCost = levels.get(currentLevel).getValue();
+            LevelManager.increaseLevel(playerXP);
+            int totalGnomeCost = LevelManager.getCurrentGnomeCost();
 
             //this might cause an infinite loop in the future, remember to modify this
             while(totalGnomeCost>0)

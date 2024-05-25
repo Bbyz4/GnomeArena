@@ -86,7 +86,7 @@ public class Board
 
     public int middle()
     {
-        return (boardSize/2)+1;
+        return (boardSize/2);
     }
 
     public int size()
