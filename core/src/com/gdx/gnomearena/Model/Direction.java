@@ -42,6 +42,26 @@ public enum Direction
         return directionMap.get(keyCode);
     }
 
+    public static Direction getDirectionFromPair(Pair<Integer,Integer> pair)
+    {
+        if(pair.getKey()==0 && pair.getValue()==0)
+        {
+            return null;
+        }
+
+        if(pair.getKey()==0)
+        {
+            return (pair.getValue() > 0 ? DOWN : UP);
+        }
+
+        if(pair.getValue()==0)
+        {
+            return (pair.getKey() > 0 ? RIGHT : LEFT);
+        }
+
+        return null;
+    }
+
     //gives a field's position that is in front of another field including a direction
     public static Pair<Integer,Integer> getFieldsFrontField(Pair<Integer, Integer> field, Direction dir)
     {

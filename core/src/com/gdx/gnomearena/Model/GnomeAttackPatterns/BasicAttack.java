@@ -12,12 +12,12 @@ public class BasicAttack extends GnomeAttackPattern {
     public BasicAttack() {
         damagePoints = 1;
         attackRange = new Pair[]
-                {
-                        new Pair<>(1, 0),
-                        new Pair<>(-1,0),
-                        new Pair<>(0,1),
-                        new Pair<>(0,-1)
-                };
+        {
+                new Pair<>(1, 0),
+                new Pair<>(-1,0),
+                new Pair<>(0,1),
+                new Pair<>(0,-1)
+        };
     }
 
     @Override

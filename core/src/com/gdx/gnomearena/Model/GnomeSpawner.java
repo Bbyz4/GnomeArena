@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 import com.gdx.gnomearena.Model.Gnomes.BasicGnome;
+import com.gdx.gnomearena.Model.Gnomes.WizardGnome;
 
 public class GnomeSpawner
 {
@@ -48,6 +49,7 @@ public class GnomeSpawner
     public void spawnNewWave(Board board, List<Gnome> wave)
     {
         if(wave==null){return;}
+        board.spawnEntity(new WizardGnome(), 13, 13);
         //Tries to spawn every gnome on the egde of the map
         int currentDist = 0;
         int currentSpawned = 0;

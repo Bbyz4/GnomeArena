@@ -35,7 +35,10 @@ public class MagicBullet extends NonBlockingEntity
             }
             else
             {
-                board.get(nextTile.getKey(), nextTile.getValue()).takeDamage(board, dealtDamage);
+                if(board.get(nextTile.getKey(), nextTile.getValue()) instanceof Player)
+                {
+                    board.get(nextTile.getKey(), nextTile.getValue()).takeDamage(board, dealtDamage);
+                }
                 onDeath(board);
             }
         }
@@ -47,7 +50,10 @@ public class MagicBullet extends NonBlockingEntity
 
     public void onReplace(Board board, Entity replacer)
     {
-        replacer.takeDamage(board, dealtDamage);
+        if(replacer instanceof Player)
+        {
+            replacer.takeDamage(board, dealtDamage);
+        }
         onDeath(board);
     }
 
