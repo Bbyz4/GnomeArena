@@ -13,6 +13,7 @@ public class BasicGnome extends Gnome
     {
         xp = 1;
         health = 1;
+        maxHealth = 1;
         move = new BasicMovement();
         attack = new BasicAttack();
         moveCooldown = 2;

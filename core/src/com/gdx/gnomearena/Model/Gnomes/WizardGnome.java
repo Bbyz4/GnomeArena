@@ -18,6 +18,7 @@ public class WizardGnome extends Gnome
     {
         xp = 2;
         health = 1;
+        maxHealth = 1;
         move = new BasicMovement();
         attack = new MagicShootingAttack(5);
         moveCooldown = 2;

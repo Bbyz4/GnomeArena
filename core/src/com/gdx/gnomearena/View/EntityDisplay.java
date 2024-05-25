@@ -51,7 +51,6 @@ public class EntityDisplay extends GameBoardDisplay
 
         table.setPosition(xPos, yPos + entityHealthPadding);
         table.setScale(1.5f*totalBoardScale);
-        //table.pack();
         stage.addActor(table);
     }
 

@@ -17,6 +17,7 @@ public class ScoutGnome extends Gnome
     {
         xp = 1;
         health = 1;
+        maxHealth = 1;
         move = new DiagonalMovement();
         attack = new BasicAttack();
         moveCooldown = 1;
