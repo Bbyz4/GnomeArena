@@ -49,11 +49,11 @@ public class BasicGnome extends Gnome
             int gX = board.getEntitiesPosition(this).getKey();
             int gY = board.getEntitiesPosition(this).getValue();
 
-            boolean didGnomeAttack = attack.attack(board, new Pair<Integer, Integer>(gX, gY));
+            boolean didGnomeAttack = attack.attack(board, this);
 
             if (!didGnomeAttack) {
 
-                Pair<Integer, Integer> newPos = move.move(board, new Pair<Integer, Integer>(gX, gY));
+                Pair<Integer, Integer> newPos = move.move(board, this);
                 if (newPos != null)
                 {
                     board.moveEntity(gX, gY, gX + newPos.getKey(), gY + newPos.getValue());

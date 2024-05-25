@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import com.gdx.gnomearena.Model.Board;
+import com.gdx.gnomearena.Model.Gnome;
 import com.gdx.gnomearena.Model.GnomeMovePattern;
 import com.gdx.gnomearena.Model.Pair;
 public class BasicMovement extends GnomeMovePattern
@@ -21,8 +22,9 @@ public class BasicMovement extends GnomeMovePattern
     }
 
     @Override
-    public Pair<Integer,Integer> move(Board board, Pair<Integer,Integer> myPosition)
+    public Pair<Integer,Integer> move(Board board, Gnome mover)
     {
+        Pair<Integer,Integer> myPosition = board.getEntitiesPosition(mover);
         Pair<Integer,Integer> playerPos = board.getPlayersPosition();
 
         Collections.shuffle(Arrays.asList(moveRange));

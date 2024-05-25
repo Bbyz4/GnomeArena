@@ -1,6 +1,7 @@
 package com.gdx.gnomearena.Model.GnomeAttackPatterns;
 
 import com.gdx.gnomearena.Model.Board;
+import com.gdx.gnomearena.Model.Gnome;
 import com.gdx.gnomearena.Model.GnomeAttackPattern;
 import com.gdx.gnomearena.Model.Pair;
 
@@ -20,8 +21,9 @@ public class BasicAttack extends GnomeAttackPattern {
     }
 
     @Override
-    public boolean attack(Board board, Pair<Integer, Integer> attackerPosition) {
+    public boolean attack(Board board, Gnome attacker) {
 
+        Pair<Integer, Integer> attackerPosition = board.getEntitiesPosition(attacker);
         Pair<Integer,Integer> playerPos = board.getPlayersPosition();
 
 
