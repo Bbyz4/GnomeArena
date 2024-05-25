@@ -13,6 +13,7 @@ import com.gdx.gnomearena.Model.Items.EntitySpawningItem;
 import com.gdx.gnomearena.Model.Items.Medkit;
 import com.gdx.gnomearena.Model.Items.WeaponPickup;
 import com.gdx.gnomearena.Model.TurnEntities.Bomb;
+import com.gdx.gnomearena.Model.Weapons.Hammer;
 import com.gdx.gnomearena.Model.Weapons.Spear;
 
 public class BasicGnome extends Gnome
@@ -31,6 +32,7 @@ public class BasicGnome extends Gnome
         spawnedItems.add(new Pair<>(Medkit::new, 0.4f));
         spawnedItems.add(new Pair<>(() -> new EntitySpawningItem(new Bomb(5,2)), 0.2f));
         spawnedItems.add(new Pair<>(() -> new WeaponPickup(new Spear()), 0.1f));
+        spawnedItems.add(new Pair<>(() -> new WeaponPickup(new Hammer()), 0.1f));
     }
 
     @Override

@@ -2,13 +2,13 @@ package com.gdx.gnomearena.Model;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.gdx.gnomearena.Model.Items.WeaponPickup;
 import com.gdx.gnomearena.Model.Weapons.Dagger;
 
 public class Player extends Entity
 {
     Weapon heldWeapon;
     Item heldItem;
-    Direction currentDirection;
     public boolean isPlayerDead;
 
     Weapon droppedWeapon;
@@ -92,6 +92,13 @@ public class Player extends Entity
             if(board.isValid(targetTile.getKey(), targetTile.getValue()) && board.isEmpty(targetTile.getKey(), targetTile.getValue()))
             {
                 board.moveEntity(pX, pY, targetTile.getKey(), targetTile.getValue());
+
+                //drop the previous weapon
+                if(droppedWeapon!=null)
+                {
+                    board.spawnItem(new WeaponPickup(droppedWeapon), pX, pY);
+                    droppedWeapon=null;
+                }
             }
         }
 

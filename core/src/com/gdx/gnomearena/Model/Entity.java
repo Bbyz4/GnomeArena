@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.List;
 
 public abstract class Entity
 {
+    public Direction currentDirection;
     public int health;
     public int maxHealth;
     public List<Effect> currentEffects;
