@@ -46,7 +46,22 @@ public class Board
 
     public boolean isEmpty(int x, int y)
     {
-        return (board[x][y]==null);
+        if(!isValid(x, y))
+        {
+            return false;
+        }
+
+        if(board[x][y]==null)
+        {
+            return true;
+        }
+
+        if(board[x][y] instanceof NonBlockingEntity)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private boolean isPreviousEmpty(int x, int y)
@@ -133,6 +148,12 @@ public class Board
 
     public void moveEntity(int oldX, int oldY, int newX, int newY)
     {
+        if(board[newX][newY]!=null && board[newX][newY] instanceof NonBlockingEntity)
+        {
+            NonBlockingEntity nbe = (NonBlockingEntity) board[newX][newY];
+            nbe.onReplace(this, get(oldX, oldY));
+        }
+
         board[newX][newY] = board[oldX][oldY];
         board[oldX][oldY] = null;
         if(board[newX][newY] instanceof Player)
