@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import com.gdx.gnomearena.Model.Gnomes.BasicGnome;
 import com.gdx.gnomearena.Model.Gnomes.ScoutGnome;
+import com.gdx.gnomearena.Model.Gnomes.TrapGnome;
 import com.gdx.gnomearena.Model.Gnomes.WizardGnome;
 
 public class GnomeSpawner
@@ -26,10 +27,10 @@ public class GnomeSpawner
     {
         spawnedGnomes = new Supplier[]
         {
-            BasicGnome::new,
-            ScoutGnome::new,
-            WizardGnome::new
-
+                BasicGnome::new,
+                ScoutGnome::new,
+                WizardGnome::new,
+                TrapGnome::new
         };
         cooldown = 10;
         currentCooldown = 10;

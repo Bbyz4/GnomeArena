@@ -11,10 +11,11 @@ public abstract class Entity
     public Direction currentDirection;
     public int health;
     public int maxHealth;
-    public List<Effect> currentEffects;
+    public ArrayList<Effect> currentEffects;
     public ArrayList<Pair<Supplier<Item>,Float>> spawnedItems;
-
     public Texture skin;
+    public boolean immobilized;
+
 
     public abstract void takeDamage(Board board, int damagepoints);
 
