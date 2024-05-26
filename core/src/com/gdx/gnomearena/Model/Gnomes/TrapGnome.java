@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Gnome;
 import com.gdx.gnomearena.Model.GnomeAttackPatterns.BasicAttack;
-import com.gdx.gnomearena.Model.GnomeMovePatterns.BasicMovement;
 import com.gdx.gnomearena.Model.GnomeMovePatterns.TrapMovement;
 
 public class TrapGnome extends Gnome
@@ -20,7 +19,7 @@ public class TrapGnome extends Gnome
         attack = new BasicAttack();
         moveCooldown = 2;
         currentCooldown = 2;
-        skin = new Texture("otherSprites/Player.png");
+        skin = new Texture("gnomeSprites/TrapGnome.png");
         spawnedItems = new ArrayList<>();
     }
 }
