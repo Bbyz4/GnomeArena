@@ -20,7 +20,7 @@ public class MagicShootingAttack extends GnomeAttackPattern
     @SuppressWarnings("unchecked")
     public MagicShootingAttack(int range)
     {
-        damagePoints = 1;
+        damagePoints = 2;
         meleeDamage = 1;
         maxRange = range;
 

@@ -58,13 +58,23 @@ public abstract class Gnome extends TurnEntity
     @Override
     public void onDeath(Board board)
     {
+        float randItem = new Random().nextFloat();
+        float currentItem = 0f;
+
         for(int i=0; i<spawnedItems.size(); i++)
         {
-            if(new Random().nextFloat() < spawnedItems.get(i).getValue())
+            if(randItem < spawnedItems.get(i).getValue() + currentItem)
             {
                 Pair<Integer,Integer> entPos = board.getEntitiesPosition(this);
-                board.spawnItem(spawnedItems.get(i).getKey().get(), entPos.getKey(), entPos.getValue());
+                if(board.getItem(entPos.getKey(), entPos.getValue())==null)
+                {
+                    board.spawnItem(spawnedItems.get(i).getKey().get(), entPos.getKey(), entPos.getValue());
+                }
                 break;
+            }
+            else
+            {
+                currentItem += spawnedItems.get(i).getValue();
             }
         }
 
