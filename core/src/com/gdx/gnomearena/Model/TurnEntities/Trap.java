@@ -3,7 +3,6 @@ package com.gdx.gnomearena.Model.TurnEntities;
 import com.gdx.gnomearena.Model.NonBlockingEntity;
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Board;
-import com.gdx.gnomearena.Model.Direction;
 import com.gdx.gnomearena.Model.*;
 import com.gdx.gnomearena.Model.Effects.Stun;
 public class Trap extends NonBlockingEntity

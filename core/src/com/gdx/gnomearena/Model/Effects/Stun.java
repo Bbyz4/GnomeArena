@@ -7,25 +7,23 @@ public class Stun extends Effect {
 
     public Stun()
     {
-        duration = 3;
+        super(3);
     }
 
     @Override
     public void affect(Entity e)
     {
         e.immobilized=true;
-        duration--;
-        if (duration == 0)
-        {
-            endEffect(e);
-        }
+        //TESTING
+        System.out.println(e + "IS STUNNED FOR " + duration + " MORE TURNS");
+        super.affect(e);
 }
 
     @Override
     public void endEffect(Entity e)
     {
         e.immobilized = false;
-        e.currentEffects.remove(this);
+        super.endEffect(e);
     }
 
 }

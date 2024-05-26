@@ -6,6 +6,7 @@ import com.gdx.gnomearena.Model.Items.WeaponPickup;
 import com.gdx.gnomearena.Model.Weapons.Dagger;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Player extends Entity
 {
@@ -60,11 +61,16 @@ public class Player extends Entity
 
     void makeMove(Board board, int keycode)
     {
-
-        //IT PROBABLY SHOULD BE IN ANOTHER METHOD
-        for(Effect effect: currentEffects) {
+        for (Iterator<Effect> iterator = currentEffects.iterator(); iterator.hasNext(); )
+        {
+            Effect effect = iterator.next();
             effect.affect(this);
+            if(effect.hasEnded)
+            {
+                iterator.remove();
+            }
         }
+
         if (immobilized)
             return;
 
