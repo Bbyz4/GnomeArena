@@ -2,6 +2,9 @@ package com.gdx.gnomearena.Model;
 
 public abstract class Effect
 {
-    int duration;
-    void affect(Entity e){}
+    public int duration;
+    public abstract void affect(Entity e);
+    public abstract void endEffect(Entity e);
+
+
 }

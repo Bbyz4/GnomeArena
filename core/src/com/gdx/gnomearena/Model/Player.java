@@ -5,12 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Items.WeaponPickup;
 import com.gdx.gnomearena.Model.Weapons.Dagger;
 
+import java.util.ArrayList;
+
 public class Player extends Entity
 {
     Weapon heldWeapon;
     Item heldItem;
-    public boolean isPlayerDead;
-
+    boolean isPlayerDead;
     Weapon droppedWeapon;
 
     Player()
@@ -22,6 +23,8 @@ public class Player extends Entity
         skin = new Texture("playerSprites/Player.png");
         isPlayerDead = false;
         currentDirection = Direction.UP;
+        immobilized = false;
+        currentEffects = new ArrayList<>();
     }
 
     public Item getHeldItem()
@@ -58,10 +61,18 @@ public class Player extends Entity
     void makeMove(Board board, int keycode)
     {
 
+        //IT PROBABLY SHOULD BE IN ANOTHER METHOD
+        for(Effect effect: currentEffects) {
+            effect.affect(this);
+        }
+        if (immobilized)
+            return;
+
         if(keycode==-1)
         {
             return;
         }
+
 
         if(keycode==Input.Keys.E)
         {
