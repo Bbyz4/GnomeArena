@@ -23,6 +23,11 @@ public class TileDisplay extends GameBoardDisplay
 
     private Image[][] tileImages;
 
+    public TileDisplay()
+    {
+        this(15);
+    }
+
     public TileDisplay(int size)
     {
         boardSize = size;
