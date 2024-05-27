@@ -13,6 +13,7 @@ public class TileDisplay extends GameBoardDisplay
     private Image dirtImage;
     private Image stoneImage;
     private Image darkGrassImage;
+    private Image darkDirtImage;
     private int flicker;
 
     private Random rand;
@@ -25,16 +26,19 @@ public class TileDisplay extends GameBoardDisplay
         Texture dirt = new Texture("terrainSprites/Dirt.png");
         Texture stone = new Texture("terrainSprites/Stone.png");
         Texture darkGrass = new Texture("terrainSprites/DarkGrass.png");
+        Texture darkDirt = new Texture("terrainSprites/DarkDirt.png");
 
         grassImage = new Image(new Sprite(grass));
         dirtImage = new Image(new Sprite(dirt));
         stoneImage = new Image(new Sprite(stone));
         darkGrassImage = new Image(new Sprite(darkGrass));
+        darkDirtImage = new Image(new Sprite(darkDirt));
 
         grassImage.setScale(2f);
         dirtImage.setScale(2f);
         stoneImage.setScale(2f);
         darkGrassImage.setScale(2f);
+        darkDirtImage.setScale(2f);
 
         flicker = 0;
 
@@ -46,7 +50,7 @@ public class TileDisplay extends GameBoardDisplay
         {
             for(int j=0; j<15; j++)
             {
-                float r = rand.nextFloat();
+                /* float r = rand.nextFloat();
 
                 if(r<=0.5f)
                 {
@@ -63,7 +67,9 @@ public class TileDisplay extends GameBoardDisplay
                 else
                 {
                     tileImages[i][j] = stoneImage;
-                }
+                } */
+
+                tileImages[i][j] = (i+j)%2==0 ? dirtImage : darkDirtImage;
             }
         }
     }

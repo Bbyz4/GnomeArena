@@ -11,10 +11,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.IntSet;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+//import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+//import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Model.Entity;
 import com.gdx.gnomearena.Model.GameManager;
@@ -46,7 +46,7 @@ public class GameScreen implements Screen {
     private float elapsedTime = 0;
 
     private float timeFromPreviousMove = 0;
-    private Viewport viewport;
+    //private Viewport viewport;
 
     private final IntSet gameControls = new IntSet();
     OrthographicCamera camera;
