@@ -1,5 +1,6 @@
 package com.gdx.gnomearena.Model.Weapons;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Direction;
 import com.gdx.gnomearena.Model.Pair;
@@ -35,5 +36,7 @@ public class Spear extends Weapon
                 new Pair<>(2, 0)
         });
         skin = new Texture("weaponSprites/Spear.png");
+        attackSound =  Gdx.audio.newSound(Gdx.files.internal("sounds/SpearHitSound.mp3"));
+
     }
 }
