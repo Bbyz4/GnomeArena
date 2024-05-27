@@ -21,9 +21,6 @@ public abstract class Gnome extends TurnEntity
                 return;
             }
 
-            int gX = board.getEntitiesPosition(this).getKey();
-            int gY = board.getEntitiesPosition(this).getValue();
-
             boolean didGnomeAttack = attack.attack(board, this);
 
             if (!didGnomeAttack) {
@@ -74,6 +71,6 @@ public abstract class Gnome extends TurnEntity
         }
 
         board.removeEntity(this);
-        board.updateScore(xp);
+        LevelManager.increaseScore(xp);
     }
 }

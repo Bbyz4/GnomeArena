@@ -50,8 +50,6 @@ public class GnomeSpawner
         {
             currentCooldown = cooldown;
             List<Gnome> l = new ArrayList<>();
-
-            LevelManager.increaseLevel(playerXP);
             int totalGnomeCost = LevelManager.getCurrentGnomeCost();
 
             //this might cause an infinite loop in the future, remember to modify this

@@ -13,7 +13,6 @@ public class Board
     private int boardSize;
     private int playerX;
     private int playerY;
-    private int score;
 
     private Entity[][] previousBoard;
     private Item[][] itemBoard;
@@ -28,7 +27,6 @@ public class Board
         previousBoard = new Entity[x][x];
         itemBoard = new Item[x][x];
         boardSize=x;
-        score = 0;
 
         /** SAME */
         soundList = new HashSet<>();
@@ -37,16 +35,6 @@ public class Board
     Board()
     {
         this(15);
-    }
-
-    public int getScore()
-    {
-        return score;
-    }
-
-    public void updateScore(int xp)
-    {
-        score += xp;
     }
 
     public boolean isValid(int x, int y)

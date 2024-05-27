@@ -1,8 +1,4 @@
 package com.gdx.gnomearena.Model;
-
-import com.badlogic.gdx.audio.Sound;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager
@@ -29,7 +25,7 @@ public class GameManager
         player.makeMove(gameBoard, keycode);
         moveAllGnomes();
         moveAllItems();
-        gnomeSpawner.spawnNewWave(gameBoard, gnomeSpawner.newGnomesList(gameBoard.getScore()));
+        gnomeSpawner.spawnNewWave(gameBoard, gnomeSpawner.newGnomesList(LevelManager.getScore()));
     }
 
     private void moveAllGnomes()
@@ -63,8 +59,8 @@ public class GameManager
         return player.isPlayerDead;
     }
 
-    public int getScore() {
-        return gameBoard.getScore();
+    public int getScore(){
+        return LevelManager.getScore();
     }
 
     public int getHP() {
