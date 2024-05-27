@@ -33,6 +33,8 @@ public class TrapMovement extends GnomeMovePattern {
         Pair<Integer,Integer> gnomeOldPosition = board.getEntitiesPosition(mover);
         int randomNumber = rand.nextInt(4);
         Pair<Integer,Integer> whereDidGnomeMove = super.move(board,mover);
+        System.out.println(gnomeOldPosition);
+        System.out.println(board.getEntitiesPosition(mover));
         if (randomNumber == 0 && whereDidGnomeMove != null)
         {
             board.spawnEntity(new Trap(), gnomeOldPosition.getKey(), gnomeOldPosition.getValue());
