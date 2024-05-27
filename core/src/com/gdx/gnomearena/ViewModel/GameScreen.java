@@ -146,10 +146,10 @@ public class GameScreen implements Screen {
 
         tileDisplay.displayTiles(stage);
 
-        List<Pair<Item, Pair<Integer,Integer>>> boardItems = gameManager.gameBoard.getAllItemsWithPositions();
+        List<Pair<Item, Pair<Integer,Integer>>> boardItems = BoardViewInfo.getAllItemsWithPositions(gameManager.gameBoard);
         itemDisplay.displayItems(boardItems, stage);
 
-        List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> boardEntities = gameManager.gameBoard.getAllEntitiesWithMoves();
+        List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> boardEntities = BoardViewInfo.getAllEntitiesWithMoves(gameManager.gameBoard);
         entityDisplay.displayEntities(boardEntities, stage, timeFromPreviousMove);
 
         if(gameManager.isOver()) {
