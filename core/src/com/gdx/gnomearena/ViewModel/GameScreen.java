@@ -41,7 +41,7 @@ public class GameScreen implements Screen {
     private final SoundsPlayer soundsPlayer;
 
     private final float pace = 0.6f;
-    private final float clickWindow = 0.3f;
+    private final float clickWindow = 0.4f;
     private boolean keyHandled = false;
     private float elapsedTime = 0;
 
