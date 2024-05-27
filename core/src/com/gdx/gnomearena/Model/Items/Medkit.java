@@ -1,7 +1,6 @@
 package com.gdx.gnomearena.Model.Items;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Board;
 import com.gdx.gnomearena.Model.Item;

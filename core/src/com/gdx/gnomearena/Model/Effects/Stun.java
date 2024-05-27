@@ -14,8 +14,6 @@ public class Stun extends Effect {
     public void affect(Entity e)
     {
         e.immobilized=true;
-        //TESTING
-        System.out.println(e + "IS STUNNED FOR " + duration + " MORE TURNS");
         super.affect(e);
 }
 
