@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,12 +18,7 @@ import com.gdx.gnomearena.Model.GameManager;
 import com.gdx.gnomearena.Model.Item;
 import com.gdx.gnomearena.Model.Pair;
 import com.gdx.gnomearena.Model.Weapon;
-import com.gdx.gnomearena.View.BeatMeterDisplay;
-import com.gdx.gnomearena.View.TileDisplay;
-import com.gdx.gnomearena.View.EntityDisplay;
-import com.gdx.gnomearena.View.Hud;
-import com.gdx.gnomearena.View.ItemDisplay;
-import com.gdx.gnomearena.View.UIDisplay;
+import com.gdx.gnomearena.View.*;
 
 
 public class GameScreen implements Screen {
@@ -38,6 +34,7 @@ public class GameScreen implements Screen {
     private final ItemDisplay itemDisplay;
     private final UIDisplay uiDisplay;
     private final BeatMeterDisplay beatMeterDisplay;
+    private final SoundsPlayer soundsPlayer;
 
     private final float pace = 0.6f;
     private final float clickWindow = 0.3f;
@@ -53,7 +50,9 @@ public class GameScreen implements Screen {
     {
         this.game = game;
         this.gameManager = new GameManager();
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //camera = new OrthographicCamera(gameManager.gameBoard.getPlayersPosition().getKey(),gameManager.gameBoard.getPlayersPosition().getValue());
+        camera = new OrthographicCamera(0,0);
         hud = new Hud();
         // WASD - movement, E - use item
         gameControls.addAll(
@@ -69,6 +68,7 @@ public class GameScreen implements Screen {
         itemDisplay = new ItemDisplay();
         uiDisplay = new UIDisplay();
         beatMeterDisplay = new BeatMeterDisplay();
+        soundsPlayer = new SoundsPlayer();
     }
 
     @Override
@@ -110,6 +110,17 @@ public class GameScreen implements Screen {
             elapsedTime = 0;
             //boardDisplay.flick(); too flashy imo
         }
+        /** TESTING */
+        //camera.position.x=gameManager.gameBoard.getPlayersPosition().getKey()*32;
+        //camera.position.y=gameManager.gameBoard.getPlayersPosition().getValue()*32;
+        //stage.getCamera().position.set(gameManager.gameBoard.getPlayersPosition().getKey()*32 + Gdx.graphics.getWidth()/2,gameManager.gameBoard.getPlayersPosition().getValue()*32+Gdx.graphics.getHeight()/2,0);
+        for (Sound s: gameManager.gameBoard.soundList) {
+            soundsPlayer.playSoundEffect(s);
+        }
+        gameManager.gameBoard.soundList.clear();
+
+        /**END OF TESTING */
+
 
         camera.update();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -135,7 +146,6 @@ public class GameScreen implements Screen {
 
         Item playerItem = gameManager.player.getHeldItem();
         uiDisplay.displayPlayersItem(playerItem, stage);
-
         Weapon playerWeapon = gameManager.player.getHeldWeapon();
         uiDisplay.displayPlayersWeapon(playerWeapon, stage);
 
@@ -145,7 +155,6 @@ public class GameScreen implements Screen {
         hud.hpLabel.setText(String.format("%01d",gameManager.getHP()));
         hud.timeLabel.setText(String.format("%03d",timer));
         stage.addActor(hud.table);
-
         stage.act(delta);
         stage.draw();
     }
