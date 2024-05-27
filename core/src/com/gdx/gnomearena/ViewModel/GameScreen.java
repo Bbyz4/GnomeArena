@@ -51,9 +51,6 @@ public class GameScreen implements Screen {
     {
         this.game = game;
         this.gameManager = new GameManager();
-        //camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        //camera = new OrthographicCamera(gameManager.gameBoard.getPlayersPosition().getKey(),gameManager.gameBoard.getPlayersPosition().getValue());
-        //camera = new OrthographicCamera(0,0);
         camera = new OrthographicCamera();
         hud = new Hud();
         // WASD - movement, E - use item
@@ -116,20 +113,12 @@ public class GameScreen implements Screen {
             }
             keyHandled = false;
             elapsedTime = 0;
-            //boardDisplay.flick(); too flashy imo
         }
-        /** TESTING */
-        //camera.position.x=gameManager.gameBoard.getPlayersPosition().getKey()*32;
-        //camera.position.y=gameManager.gameBoard.getPlayersPosition().getValue()*32;
-        //stage.getCamera().position.set(gameManager.gameBoard.getPlayersPosition().getKey()*32 + Gdx.graphics.getWidth()/2,gameManager.gameBoard.getPlayersPosition().getValue()*32+Gdx.graphics.getHeight()/2,0);
-
 
         for (Sound s: SoundsManager.getSoundList()) {
             soundsPlayer.playSoundEffect(s);
         }
         SoundsManager.clearList();
-
-        /**END OF TESTING */
 
 
         camera.update();
@@ -139,7 +128,22 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1);
 
 
+        if(gameManager.isOver()) {
+            game.setScreen(new StatsScreen(game,gameManager.getScore(), timer));
+        }
 
+
+        displayThings();
+        stage.act(delta);
+
+        //stage.getBatch().setProjectionMatrix(camera.combined);
+        stage.draw();
+
+        hudStage.act(delta);
+        hudStage.draw();
+    }
+
+    public void displayThings() {
         tileDisplay.displayTiles(stage);
 
         List<Pair<Item, Pair<Integer,Integer>>> boardItems = BoardViewInfo.getAllItemsWithPositions(gameManager.gameBoard);
@@ -147,10 +151,6 @@ public class GameScreen implements Screen {
 
         List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> boardEntities = BoardViewInfo.getAllEntitiesWithMoves(gameManager.gameBoard);
         entityDisplay.displayEntities(boardEntities, stage, timeFromPreviousMove);
-
-        if(gameManager.isOver()) {
-            game.setScreen(new StatsScreen(game,gameManager.getScore(), timer));
-        }
 
         uiDisplay.displayUIBoxes(stage);
 
@@ -162,13 +162,7 @@ public class GameScreen implements Screen {
         beatMeterDisplay.displayBeatMeter(hudStage, pace, clickWindow, elapsedTime, keyHandled);
 
         hud.displayHud(hudStage, gameManager.getScore(),gameManager.getHP(),timer);
-        stage.act(delta);
 
-        stage.getBatch().setProjectionMatrix(camera.combined);
-        stage.draw();
-
-        hudStage.act(delta);
-        hudStage.draw();
     }
 
     @Override
