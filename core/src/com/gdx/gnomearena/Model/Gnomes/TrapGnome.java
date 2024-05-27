@@ -12,7 +12,7 @@ public class TrapGnome extends Gnome
     public TrapGnome()
     {
         xp = 1;
-        cost = 1;
+        cost = 3;
         health = 2;
         maxHealth = 2;
         move = new TrapMovement();

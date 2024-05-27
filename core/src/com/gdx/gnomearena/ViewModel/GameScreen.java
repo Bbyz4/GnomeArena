@@ -105,6 +105,8 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta)
     {
+        stage.clear();
+        hudStage.clear();
         elapsedTime += delta;
         timeFromPreviousMove += delta;
 
@@ -140,7 +142,7 @@ public class GameScreen implements Screen {
         //TEMPORARY CHANGE
         Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1);
 
-        stage.clear();
+
 
         tileDisplay.displayTiles(stage);
 
