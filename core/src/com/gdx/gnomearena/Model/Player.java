@@ -1,6 +1,8 @@
 package com.gdx.gnomearena.Model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Items.WeaponPickup;
 import com.gdx.gnomearena.Model.Weapons.Dagger;
@@ -14,7 +16,7 @@ public class Player extends Entity
     Item heldItem;
     boolean isPlayerDead;
     Weapon droppedWeapon;
-
+    Sound takeDamageSound;
     Player()
     {
         health = 3;
@@ -26,6 +28,7 @@ public class Player extends Entity
         currentDirection = Direction.UP;
         immobilized = false;
         currentEffects = new ArrayList<>();
+        takeDamageSound = Gdx.audio.newSound(Gdx.files.internal("sounds/PlayerTakeDamageSound.mp3"));
     }
 
     public Item getHeldItem()
@@ -102,7 +105,7 @@ public class Player extends Entity
         {
             return;
         }
-
+        //boolean didAttack = heldWeapon.attack(board,Direction.getDirection(keycode));
         if(!heldWeapon.attack(board, Direction.getDirection(keycode)))
         {
             Pair<Integer,Integer> targetTile = Direction.getFieldsFrontField(board.getPlayersPosition(), currentDirection);
@@ -139,6 +142,9 @@ public class Player extends Entity
         if (health == 0) {
             onDeath(board);
         }
+
+        board.soundList.add(takeDamageSound);
+
     }
 
     @Override

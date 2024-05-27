@@ -1,6 +1,9 @@
 package com.gdx.gnomearena.Model;
 
+import com.badlogic.gdx.audio.Sound;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -15,6 +18,10 @@ public class Board
     private Entity[][] previousBoard;
     private Item[][] itemBoard;
 
+    /** NEED TO CHANGE IT FOR SOMETHING SMARTER*/
+    public HashSet<Sound> soundList;
+
+
     Board(int x)
     {
         board = new Entity[x][x];
@@ -22,6 +29,9 @@ public class Board
         itemBoard = new Item[x][x];
         boardSize=x;
         score = 0;
+
+        /** SAME */
+        soundList = new HashSet<>();
     }
 
     Board()

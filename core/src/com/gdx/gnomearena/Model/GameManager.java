@@ -1,5 +1,8 @@
 package com.gdx.gnomearena.Model;
 
+import com.badlogic.gdx.audio.Sound;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager
@@ -7,6 +10,7 @@ public class GameManager
     public final Board gameBoard;
     public final GnomeSpawner gnomeSpawner;
     public final Player player;
+
 
     public GameManager()
     {
