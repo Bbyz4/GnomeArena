@@ -18,35 +18,36 @@ public class TileDisplay extends GameBoardDisplay
 
     private Image background;
 
+    private int boardSize;
     private Random rand;
 
     private Image[][] tileImages;
 
-    public TileDisplay()
+    public TileDisplay(int size)
     {
+        boardSize = size;
         grassImage = new Image(new Sprite(new Texture("terrainSprites/Grass.png")));
         dirtImage = new Image(new Sprite(new Texture("terrainSprites/Dirt.png")));
         stoneImage = new Image(new Sprite(new Texture("terrainSprites/Stone.png")));
         darkGrassImage = new Image(new Sprite(new Texture("terrainSprites/DarkGrass.png")));
         darkDirtImage = new Image(new Sprite(new Texture("terrainSprites/DarkDirt.png")));
-
         grassImage.setScale(2f);
         dirtImage.setScale(2f);
         stoneImage.setScale(2f);
         darkGrassImage.setScale(2f);
         darkDirtImage.setScale(2f);
-        
+
         background = new Image(new Sprite(new Texture("otherSprites/Background.jpg")));
 
         flicker = 0;
 
         rand = new Random();
 
-        tileImages = new Image[15][15];
+        tileImages = new Image[boardSize][boardSize];
 
-        for(int i=0; i<15; i++)
+        for(int i=0; i<boardSize; i++)
         {
-            for(int j=0; j<15; j++)
+            for(int j=0; j<boardSize; j++)
             {
                 /* float r = rand.nextFloat();
 
@@ -75,9 +76,9 @@ public class TileDisplay extends GameBoardDisplay
     public void displayTiles(Stage stage)
     {
         stage.addActor(background);
-        for(int i=0; i<15; i++)
+        for(int i=0; i<boardSize; i++)
         {
-            for(int j=0; j<15; j++)
+            for(int j=0; j<boardSize; j++)
             {
                 Image tile = new Image(tileImages[i][j].getDrawable());
                 tile.setPosition(upperLeftTileX+64*i*totalBoardScale, upperLeftTileY-64*j*totalBoardScale);
