@@ -11,7 +11,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.IntSet;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Model.Entity;
 import com.gdx.gnomearena.Model.GameManager;
@@ -26,6 +29,7 @@ public class GameScreen implements Screen {
     final MainGame game;
     final GameManager gameManager;
     private Stage stage;
+    private Stage hudStage;
     private Hud hud;
     private int timer = 0;
 
@@ -42,6 +46,7 @@ public class GameScreen implements Screen {
     private float elapsedTime = 0;
 
     private float timeFromPreviousMove = 0;
+    private Viewport viewport;
 
     private final IntSet gameControls = new IntSet();
     OrthographicCamera camera;
@@ -52,7 +57,8 @@ public class GameScreen implements Screen {
         this.gameManager = new GameManager();
         //camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //camera = new OrthographicCamera(gameManager.gameBoard.getPlayersPosition().getKey(),gameManager.gameBoard.getPlayersPosition().getValue());
-        camera = new OrthographicCamera(0,0);
+        //camera = new OrthographicCamera(0,0);
+        camera = new OrthographicCamera();
         hud = new Hud();
         // WASD - movement, E - use item
         gameControls.addAll(
@@ -69,12 +75,16 @@ public class GameScreen implements Screen {
         uiDisplay = new UIDisplay();
         beatMeterDisplay = new BeatMeterDisplay();
         soundsPlayer = new SoundsPlayer();
+
     }
 
     @Override
     public void show()
     {
-        stage = new Stage(new ScreenViewport());
+        hudStage = new Stage(new ScreenViewport());
+
+        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //random number rn
+
         Gdx.input.setInputProcessor(new InputAdapter()
         {
             @Override
@@ -114,6 +124,8 @@ public class GameScreen implements Screen {
         //camera.position.x=gameManager.gameBoard.getPlayersPosition().getKey()*32;
         //camera.position.y=gameManager.gameBoard.getPlayersPosition().getValue()*32;
         //stage.getCamera().position.set(gameManager.gameBoard.getPlayersPosition().getKey()*32 + Gdx.graphics.getWidth()/2,gameManager.gameBoard.getPlayersPosition().getValue()*32+Gdx.graphics.getHeight()/2,0);
+
+
         for (Sound s: gameManager.gameBoard.soundList) {
             soundsPlayer.playSoundEffect(s);
         }
@@ -145,18 +157,20 @@ public class GameScreen implements Screen {
         uiDisplay.displayUIBoxes(stage);
 
         Item playerItem = gameManager.player.getHeldItem();
-        uiDisplay.displayPlayersItem(playerItem, stage);
+        uiDisplay.displayPlayersItem(playerItem, hudStage);
         Weapon playerWeapon = gameManager.player.getHeldWeapon();
-        uiDisplay.displayPlayersWeapon(playerWeapon, stage);
+        uiDisplay.displayPlayersWeapon(playerWeapon, hudStage);
 
-        beatMeterDisplay.displayBeatMeter(stage, pace, clickWindow, elapsedTime, keyHandled); 
+        beatMeterDisplay.displayBeatMeter(hudStage, pace, clickWindow, elapsedTime, keyHandled);
 
-        hud.scoreLabel.setText(String.format("%03d",gameManager.getScore()));
-        hud.hpLabel.setText(String.format("%01d",gameManager.getHP()));
-        hud.timeLabel.setText(String.format("%03d",timer));
-        stage.addActor(hud.table);
+        hud.displayHud(hudStage, gameManager.getScore(),gameManager.getHP(),timer);
         stage.act(delta);
+
+        stage.getBatch().setProjectionMatrix(camera.combined);
         stage.draw();
+
+        hudStage.act(delta);
+        hudStage.draw();
     }
 
     @Override
