@@ -23,8 +23,6 @@ public class StatsScreen implements Screen
     final MainGame game;
 
     OrthographicCamera camera;
-
-    Label.LabelStyle textStyle = new Label.LabelStyle();
     private BitmapFont bigFont;
     private FreeTypeFontGenerator ftfp;
     private Stage stage;
@@ -55,17 +53,9 @@ public class StatsScreen implements Screen
         param.color.set(0,0,0,1);
         bigFont = ftfp.generateFont(param);
 
-        Skin skin = new Skin();
-        skin.add("playButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
-        skin.add("playButtonTexture2", new Texture("badlogic.jpg"));
-        Button.ButtonStyle bstyle = new Button.ButtonStyle();
-        bstyle.up = skin.getDrawable("playButtonTexture1");
-        bstyle.down = skin.getDrawable("playButtonTexture2");
-        playButton = new Button(bstyle);
-        playButton.setPosition(810, 440);
-        playButton.setWidth(300);
-        playButton.setHeight(300);
-        playButton.addListener(new ClickListener()
+
+
+        statsHud.getPlayButton().addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
@@ -74,20 +64,12 @@ public class StatsScreen implements Screen
             }
         });
 
-        stage.addActor(playButton);
-        textStyle.font = bigFont;
-        textStyle.fontColor = Color.BLACK;
-
-        gameOverLabel = new Label("GAME OVER", textStyle);
-        gameOverLabel.setAlignment(Align.center);
-        gameOverLabel.setPosition(860, 800);
-        gameOverLabel.setWidth(200);
-        stage.addActor(gameOverLabel);
+        statsHud.displayPlayButton(stage);
+        statsHud.displayGameOverLabel(stage);
+        statsHud.displayScoreTimeTable(stage,score,timer);
 
 
-        statsHud.scoreLabel.setText(String.format("%03d",score));
-        statsHud.timeLabel.setText(String.format("%03d",timer));
-        stage.addActor(statsHud.table);
+        ;
     }
 
     @Override
@@ -123,8 +105,7 @@ public class StatsScreen implements Screen
     @Override
     public void hide()
     {
-        playButton.clearListeners();
-
+        statsHud.getPlayButton().clearListeners();
         stage.clear();
     }
 

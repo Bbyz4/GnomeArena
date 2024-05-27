@@ -32,6 +32,9 @@ public class Hud {
         scoreLabel = new Label(String.format("%03d", 0), hudStyle);
         hpLabel = new Label(String.format("%03d", 0), hudStyle);
         timeLabel = new Label(String.format("%03d", 0), hudStyle);
+        createTable();
+    }
+    public void createTable() {
         table.add(new Label("SCORE:", hudStyle)).expandX().padRight(30);
         table.add(scoreLabel);
         table.row();
@@ -42,6 +45,7 @@ public class Hud {
         table.add(timeLabel);
         table.setPosition(1600, 900);
         table.setWidth(200);
+
     }
 
     public void displayHud(Stage stage, int score, int hp, int timer) {
