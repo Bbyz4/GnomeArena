@@ -47,7 +47,7 @@ public abstract class Weapon
         if (attackCount == 0 )
             return false;
 
-        board.soundList.add(this.attackSound);
+        SoundsManager.addSound(this.attackSound);
         return true;
     }
 }

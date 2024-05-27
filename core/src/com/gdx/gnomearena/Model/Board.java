@@ -17,9 +17,6 @@ public class Board
     private Entity[][] previousBoard;
     private Item[][] itemBoard;
 
-    /** NEED TO CHANGE IT FOR SOMETHING SMARTER*/
-    public HashSet<Sound> soundList;
-
 
     Board(int x)
     {
@@ -27,9 +24,6 @@ public class Board
         previousBoard = new Entity[x][x];
         itemBoard = new Item[x][x];
         boardSize=x;
-
-        /** SAME */
-        soundList = new HashSet<>();
     }
 
     Board()

@@ -143,7 +143,7 @@ public class Player extends Entity
             onDeath(board);
         }
 
-        board.soundList.add(takeDamageSound);
+        SoundsManager.addSound(takeDamageSound);
 
     }
 

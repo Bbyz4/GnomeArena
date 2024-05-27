@@ -16,11 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 //import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gdx.gnomearena.MainGame;
-import com.gdx.gnomearena.Model.Entity;
-import com.gdx.gnomearena.Model.GameManager;
-import com.gdx.gnomearena.Model.Item;
-import com.gdx.gnomearena.Model.Pair;
-import com.gdx.gnomearena.Model.Weapon;
+import com.gdx.gnomearena.Model.*;
 import com.gdx.gnomearena.View.*;
 
 
@@ -128,10 +124,10 @@ public class GameScreen implements Screen {
         //stage.getCamera().position.set(gameManager.gameBoard.getPlayersPosition().getKey()*32 + Gdx.graphics.getWidth()/2,gameManager.gameBoard.getPlayersPosition().getValue()*32+Gdx.graphics.getHeight()/2,0);
 
 
-        for (Sound s: gameManager.gameBoard.soundList) {
+        for (Sound s: SoundsManager.getSoundList()) {
             soundsPlayer.playSoundEffect(s);
         }
-        gameManager.gameBoard.soundList.clear();
+        SoundsManager.clearList();
 
         /**END OF TESTING */
 

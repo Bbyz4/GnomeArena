@@ -7,7 +7,6 @@ public class GameManager
     public final GnomeSpawner gnomeSpawner;
     public final Player player;
 
-
     public GameManager()
     {
         gameBoard = new Board();
