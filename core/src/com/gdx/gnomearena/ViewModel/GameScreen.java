@@ -83,7 +83,7 @@ public class GameScreen implements Screen {
     {
         hudStage = new Stage(new ScreenViewport());
 
-        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())); //random number rn
+        stage = new Stage(new ScreenViewport()); //random number rn
 
         Gdx.input.setInputProcessor(new InputAdapter()
         {
