@@ -1,6 +1,8 @@
 package com.gdx.gnomearena.Model;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Sound;
+
 
 public abstract class Item
 {
@@ -17,6 +19,7 @@ public abstract class Item
 
     public int maxLifetime = 10;
     public int currentLifetime = 0;
+    public Sound onUseSound;
 
     public void passRound(Board board)
     {
