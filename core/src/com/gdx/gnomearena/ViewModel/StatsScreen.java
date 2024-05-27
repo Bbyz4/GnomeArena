@@ -23,14 +23,10 @@ public class StatsScreen implements Screen
     final MainGame game;
 
     OrthographicCamera camera;
-    private BitmapFont bigFont;
-    private FreeTypeFontGenerator ftfp;
     private Stage stage;
     private StatsHud statsHud;
     private int score;
     private int timer;
-    Button playButton;
-    Label gameOverLabel;
 
     public StatsScreen(final MainGame game, int score, int timer)
     {
@@ -47,15 +43,8 @@ public class StatsScreen implements Screen
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.size = 100;
-        param.color.set(0,0,0,1);
-        bigFont = ftfp.generateFont(param);
 
-
-
-        statsHud.getPlayButton().addListener(new ClickListener()
+        statsHud.getPlayAgainButton().addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
@@ -64,7 +53,7 @@ public class StatsScreen implements Screen
             }
         });
 
-        statsHud.displayPlayButton(stage);
+        statsHud.displayPlayAgainButton((stage));
         statsHud.displayGameOverLabel(stage);
         statsHud.displayScoreTimeTable(stage,score,timer);
 
@@ -105,7 +94,7 @@ public class StatsScreen implements Screen
     @Override
     public void hide()
     {
-        statsHud.getPlayButton().clearListeners();
+        statsHud.getPlayAgainButton().clearListeners();
         stage.clear();
     }
 

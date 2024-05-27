@@ -22,7 +22,7 @@ public class StatsHud {
     private Label.LabelStyle hudStyle;
     private Label gameOverLabel;
     private Label.LabelStyle textStyle;
-    private Button playButton;
+    private Button playAgainButton;
     public StatsHud() {
 
         BitmapFont bigFont;
@@ -44,7 +44,7 @@ public class StatsHud {
         timeLabel = new Label(String.format("%03d", 0), hudStyle);
         createScoreTimeTable();
         createGameOverLabel();
-        createPlayButton();
+        createPlayAgainButton();
 
     }
     public void createScoreTimeTable() {
@@ -56,26 +56,25 @@ public class StatsHud {
         scoreTimeTable.setPosition(860, 150);
         scoreTimeTable.setWidth(200);
     }
-    public Button getPlayButton() {
-        return playButton;
+    public Button getPlayAgainButton() {
+        return playAgainButton;
     }
 
-    public void createPlayButton() {
+    public void createPlayAgainButton() {
         Skin skin = new Skin();
-        skin.add("playButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
-        skin.add("playButtonTexture2", new Texture("badlogic.jpg"));
+        skin.add("playAgainButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
+        skin.add("playAgainButtonTexture2", new Texture("badlogic.jpg"));
         Button.ButtonStyle bstyle = new Button.ButtonStyle();
-        bstyle.up = skin.getDrawable("playButtonTexture1");
-        bstyle.down = skin.getDrawable("playButtonTexture2");
-        playButton = new Button(bstyle);
-        playButton.setPosition(810, 440);
-        playButton.setWidth(300);
-        playButton.setHeight(300);
-
+        bstyle.up = skin.getDrawable("playAgainButtonTexture1");
+        bstyle.down = skin.getDrawable("playAgainButtonTexture2");
+        playAgainButton = new Button(bstyle);
+        playAgainButton.setPosition(810, 440);
+        playAgainButton.setWidth(300);
+        playAgainButton.setHeight(300);
     }
 
-    public void displayPlayButton(Stage stage) {
-        stage.addActor(playButton);
+    public void displayPlayAgainButton(Stage stage) {
+        stage.addActor(playAgainButton);
     }
 
     public void createGameOverLabel() {

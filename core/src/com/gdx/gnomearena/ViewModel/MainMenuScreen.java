@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
+import com.gdx.gnomearena.View.MenuHud;
 
 public class MainMenuScreen implements Screen
 {
@@ -27,13 +28,13 @@ public class MainMenuScreen implements Screen
     Label.LabelStyle textStyle = new Label.LabelStyle();
     private Stage stage;
 
-    Button playButton;
-    Label titleLabel;
+    MenuHud menuHud;
 
     public MainMenuScreen(final MainGame game)
     {
         this.game = game;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        menuHud = new MenuHud();
     }
 
     @Override
@@ -42,23 +43,8 @@ public class MainMenuScreen implements Screen
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        FreeTypeFontGenerator ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.size = 100;
-        param.color.set(0,0,0,1);
-        BitmapFont bigFont = ftfp.generateFont(param);
 
-        Skin skin = new Skin();
-        skin.add("playButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
-        skin.add("playButtonTexture2", new Texture("badlogic.jpg"));
-        Button.ButtonStyle bstyle = new Button.ButtonStyle();
-        bstyle.up = skin.getDrawable("playButtonTexture1");
-        bstyle.down = skin.getDrawable("playButtonTexture2");
-        playButton = new Button(bstyle);
-        playButton.setPosition(810, 440);
-        playButton.setWidth(300);
-        playButton.setHeight(300);
-        playButton.addListener(new ClickListener()
+        menuHud.getPlayButton().addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
@@ -66,16 +52,8 @@ public class MainMenuScreen implements Screen
                 game.setScreen(new GameScreen(game));
             }
         });
-        stage.addActor(playButton);
-
-        textStyle.font = bigFont;
-        textStyle.fontColor = Color.BLACK;
-
-        titleLabel = new Label("GNOME ARENA", textStyle);
-        titleLabel.setAlignment(Align.center);
-        titleLabel.setPosition(860, 800);
-        titleLabel.setWidth(200);
-        stage.addActor(titleLabel);
+        menuHud.displayPlayButton(stage);
+        menuHud.displayTitleLabel(stage);
     }
 
     @Override
@@ -111,8 +89,7 @@ public class MainMenuScreen implements Screen
     @Override
     public void hide()
     {
-        playButton.clearListeners();
-
+        menuHud.getPlayButton().clearListeners();
         stage.clear();
     }
 
