@@ -13,8 +13,8 @@ public class TrapGnome extends Gnome
     {
         xp = 1;
         cost = 1;
-        health = 1;
-        maxHealth = 1;
+        health = 2;
+        maxHealth = 2;
         move = new TrapMovement();
         attack = new BasicAttack();
         moveCooldown = 2;

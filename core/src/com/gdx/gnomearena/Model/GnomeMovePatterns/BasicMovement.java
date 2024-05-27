@@ -22,7 +22,7 @@ public class BasicMovement extends GnomeMovePattern
     }
 
     @Override
-    public Pair<Integer,Integer> move(Board board, Gnome mover)
+    public boolean move(Board board, Gnome mover)
     {
         Collections.shuffle(Arrays.asList(moveRange));
         return super.move(board, mover);

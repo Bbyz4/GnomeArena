@@ -17,7 +17,6 @@ public abstract class Entity
 
 
     public abstract void takeDamage(Board board, int damagepoints);
-
     public abstract void onDeath(Board board);
 
 }

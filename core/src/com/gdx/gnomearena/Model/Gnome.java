@@ -27,13 +27,8 @@ public abstract class Gnome extends TurnEntity
             boolean didGnomeAttack = attack.attack(board, this);
 
             if (!didGnomeAttack) {
-
-                Pair<Integer, Integer> newPos = move.move(board, this);
-                if (newPos != null)
-                {
-                    board.moveEntity(gX, gY, gX + newPos.getKey(), gY + newPos.getValue());
-                }
-                else
+                boolean didGnomeMove = move.move(board, this);
+                if (!didGnomeMove)
                 {
                     currentCooldown = 1;
                 }
