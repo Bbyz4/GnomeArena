@@ -2,12 +2,11 @@ package com.gdx.gnomearena.Model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class LevelManager
 {
     private static int currentLevel;
     private static int currentScore;
-    private static List<Pair<Integer,Integer>> levels;
+    private static List<LevelInfo> levels;
 
     static
     {
@@ -15,12 +14,12 @@ public class LevelManager
 
         levels = new ArrayList<>();
         
-        levels.add(new Pair<>(0, 1));
-        levels.add(new Pair<>(3, 3));
-        levels.add(new Pair<>(10, 5));
-        levels.add(new Pair<>(25, 7));
-        levels.add(new Pair<>(50, 10));
-        levels.add(new Pair<>(100, 14));
+        levels.add(new LevelInfo(0, 1, 10));
+        levels.add(new LevelInfo(3, 3, 10));
+        levels.add(new LevelInfo(10, 5, 10));
+        levels.add(new LevelInfo(25, 7, 10));
+        levels.add(new LevelInfo(50, 10, 12));
+        levels.add(new LevelInfo(100, 15, 14));
     }
 
     public LevelManager()
@@ -47,7 +46,7 @@ public class LevelManager
 
     private static void increaseLevel()
     {
-        while(levels.size() > currentLevel+1 && levels.get(currentLevel+1).getKey() <= currentScore)
+        while(levels.size() > currentLevel+1 && levels.get(currentLevel+1).requiredXP <= currentScore)
         {
             currentLevel++;
         }
@@ -60,6 +59,11 @@ public class LevelManager
 
     public static int getCurrentGnomeCost()
     {
-        return levels.get(currentLevel).getValue();
+        return levels.get(currentLevel).totalGnomeCost;
+    }
+
+    public static int getCurrentLevelCooldown()
+    {
+        return levels.get(currentLevel).spawnCooldown;
     }
 }

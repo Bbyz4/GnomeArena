@@ -14,7 +14,6 @@ import com.gdx.gnomearena.Model.Gnomes.WizardGnome;
 public class GnomeSpawner
 {
     Supplier<Gnome>[] spawnedGnomes;
-    private int cooldown;
     private int currentCooldown;
     Random rand;
 
@@ -32,12 +31,11 @@ public class GnomeSpawner
                 WizardGnome::new,
                 TrapGnome::new
         };
-        cooldown = 10;
-        currentCooldown = 10;
+        currentCooldown = 1;
         rand = new Random();
 
         order = new ArrayList<>();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < spawnedGnomes.length; i++)
         {
             order.add(i);
         }
@@ -48,7 +46,7 @@ public class GnomeSpawner
         currentCooldown--;
         if(currentCooldown==0)
         {
-            currentCooldown = cooldown;
+            currentCooldown = LevelManager.getCurrentLevelCooldown();
             List<Gnome> l = new ArrayList<>();
             int totalGnomeCost = LevelManager.getCurrentGnomeCost();
 
