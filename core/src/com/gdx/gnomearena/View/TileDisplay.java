@@ -16,29 +16,27 @@ public class TileDisplay extends GameBoardDisplay
     private Image darkDirtImage;
     private int flicker;
 
+    private Image background;
+
     private Random rand;
 
     private Image[][] tileImages;
 
     public TileDisplay()
     {
-        Texture grass = new Texture("terrainSprites/Grass.png");
-        Texture dirt = new Texture("terrainSprites/Dirt.png");
-        Texture stone = new Texture("terrainSprites/Stone.png");
-        Texture darkGrass = new Texture("terrainSprites/DarkGrass.png");
-        Texture darkDirt = new Texture("terrainSprites/DarkDirt.png");
-
-        grassImage = new Image(new Sprite(grass));
-        dirtImage = new Image(new Sprite(dirt));
-        stoneImage = new Image(new Sprite(stone));
-        darkGrassImage = new Image(new Sprite(darkGrass));
-        darkDirtImage = new Image(new Sprite(darkDirt));
+        grassImage = new Image(new Sprite(new Texture("terrainSprites/Grass.png")));
+        dirtImage = new Image(new Sprite(new Texture("terrainSprites/Dirt.png")));
+        stoneImage = new Image(new Sprite(new Texture("terrainSprites/Stone.png")));
+        darkGrassImage = new Image(new Sprite(new Texture("terrainSprites/DarkGrass.png")));
+        darkDirtImage = new Image(new Sprite(new Texture("terrainSprites/DarkDirt.png")));
 
         grassImage.setScale(2f);
         dirtImage.setScale(2f);
         stoneImage.setScale(2f);
         darkGrassImage.setScale(2f);
         darkDirtImage.setScale(2f);
+        
+        background = new Image(new Sprite(new Texture("otherSprites/Background.jpg")));
 
         flicker = 0;
 
@@ -76,6 +74,7 @@ public class TileDisplay extends GameBoardDisplay
 
     public void displayTiles(Stage stage)
     {
+        stage.addActor(background);
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
