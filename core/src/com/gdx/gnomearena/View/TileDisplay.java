@@ -1,7 +1,5 @@
 package com.gdx.gnomearena.View;
 
-import java.util.Random;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,7 +17,6 @@ public class TileDisplay extends GameBoardDisplay
     private Image background;
 
     private int boardSize;
-    private Random rand;
 
     private Image[][] tileImages;
 
@@ -46,33 +43,12 @@ public class TileDisplay extends GameBoardDisplay
 
         flicker = 0;
 
-        rand = new Random();
-
         tileImages = new Image[boardSize][boardSize];
 
         for(int i=0; i<boardSize; i++)
         {
             for(int j=0; j<boardSize; j++)
             {
-                /* float r = rand.nextFloat();
-
-                if(r<=0.5f)
-                {
-                    tileImages[i][j] = grassImage;
-                }
-                else if(r<=0.8f)
-                {
-                    tileImages[i][j] = darkGrassImage;
-                }
-                else if(r<=0.9f)
-                {
-                    tileImages[i][j] = dirtImage;
-                }
-                else
-                {
-                    tileImages[i][j] = stoneImage;
-                } */
-
                 tileImages[i][j] = (i+j)%2==0 ? dirtImage : darkDirtImage;
             }
         }

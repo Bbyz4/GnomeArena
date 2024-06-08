@@ -41,7 +41,7 @@ public class StatsScreen implements Screen
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new MainMenuScreen(game));
             }
         });
 
@@ -50,7 +50,7 @@ public class StatsScreen implements Screen
         statsHud.displayScoreTimeTable(stage,score,timer);
 
 
-        ;
+        ; //DONT REMOVE
     }
 
     @Override

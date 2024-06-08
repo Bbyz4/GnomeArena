@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
+import com.gdx.gnomearena.View.MainGraphicalView;
 import com.gdx.gnomearena.View.MenuHud;
 
 public class MainMenuScreen implements Screen
@@ -42,7 +43,11 @@ public class MainMenuScreen implements Screen
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(new GameScreen(game));
+                MainViewModel GS = new MainViewModel(game);
+                CurrentViewModel.changeCurrentScreen(GS);
+                MainGraphicalView MGV = new MainGraphicalView();
+                MGV.registerInViewModel(GS);
+                game.setScreen(GS);
             }
         });
         menuHud.displayPlayButton(stage);
