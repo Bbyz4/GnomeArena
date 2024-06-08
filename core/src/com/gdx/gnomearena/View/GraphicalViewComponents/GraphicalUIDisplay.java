@@ -3,7 +3,6 @@ package com.gdx.gnomearena.View.GraphicalViewComponents;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -27,12 +26,12 @@ public class GraphicalUIDisplay
     public GraphicalUIDisplay()
     {
         UIBoxes = new ArrayList<>();
-        itemFrameImage = new Image(new Sprite(new Texture(GraphicalViewConfig.ITEM_FRAME_TEXTURE)));
+        itemFrameImage = new Image(new Sprite(GraphicalViewConfig.ITEM_FRAME_TEXTURE));
         itemFrameImage.setPosition(playerInventoryBoxXPosition, playerInventoryBoxYPosition);
         itemFrameImage.setScale(UIItemsScale);
         UIBoxes.add(itemFrameImage);
 
-        weaponFrameImage = new Image(new Sprite(new Texture(GraphicalViewConfig.WEAPON_FRAME_TEXTURE)));
+        weaponFrameImage = new Image(new Sprite(GraphicalViewConfig.WEAPON_FRAME_TEXTURE));
         weaponFrameImage.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
         weaponFrameImage.setScale(UIItemsScale);
         UIBoxes.add(weaponFrameImage);
@@ -50,7 +49,7 @@ public class GraphicalUIDisplay
     {
         if(weapon!=null)
         {
-            Sprite spr = new Sprite(new Texture(GraphicalViewConfig.WEAPON_SKINS.get(weapon.getClass().getSimpleName())));
+            Sprite spr = new Sprite(GraphicalViewConfig.WEAPON_SKINS.get(weapon.getClass().getSimpleName()));
             Image im = new Image(spr);
             im.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
             im.setScale(UIItemsScale);
@@ -66,11 +65,11 @@ public class GraphicalUIDisplay
             if(item instanceof EntitySpawningItem)
             {
                 EntitySpawningItem esit = (EntitySpawningItem)item;
-                spr = new Sprite(new Texture(GraphicalViewConfig.ITEM_SKINS.get(esit.spawnedEntity.getClass().getSimpleName())));
+                spr = new Sprite(GraphicalViewConfig.ITEM_SKINS.get(esit.spawnedEntity.getClass().getSimpleName()));
             }
             else
             {
-                spr = new Sprite(new Texture(GraphicalViewConfig.ITEM_SKINS.get(item.getClass().getSimpleName())));
+                spr = new Sprite(GraphicalViewConfig.ITEM_SKINS.get(item.getClass().getSimpleName()));
             }
             Image im = new Image(spr);
             im.setPosition(playerInventoryBoxXPosition, playerInventoryBoxYPosition);

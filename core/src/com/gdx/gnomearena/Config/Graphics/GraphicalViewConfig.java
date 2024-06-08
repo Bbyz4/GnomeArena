@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 
 public class GraphicalViewConfig
 {
@@ -14,14 +15,14 @@ public class GraphicalViewConfig
     public static final float TILE_WIDTH = 64f;
     public static final float TILE_IMAGE_SCALE = 2f;
 
-    public static final String LIGHT_DIRT_IMAGE = "terrainSprites/Dirt.png";
-    public static final String DARK_DIRT_IMAGE = "terrainSprites/DarkDirt.png";
+    public static final Texture LIGHT_DIRT_TEXTURE = new Texture("terrainSprites/Dirt.png");
+    public static final Texture DARK_DIRT_TEXTURE  = new Texture("terrainSprites/DarkDirt.png");
 
-    public static final String BACKGROUND_IMAGE = "otherSprites/Background.jpg";
+    public static final Texture BACKGROUND_IMAGE = new Texture("otherSprites/Background.jpg");
 
     //BEAT METER
-    public static final String BEAT_METER_BASE_TEXTURE = "otherSprites/BeatMeter.png";
-    public static final String BEAT_METER_RING_TEXTURE = "otherSprites/BeatMeter2.png";
+    public static final Texture BEAT_METER_BASE_TEXTURE = new Texture("otherSprites/BeatMeter.png");
+    public static final Texture BEAT_METER_RING_TEXTURE = new Texture("otherSprites/BeatMeter2.png");
 
     public static final float BEAT_METER_X_POSITION = 1200f;
     public static final float BEAT_METER_Y_POSITION = -300f;
@@ -39,12 +40,12 @@ public class GraphicalViewConfig
     public static final float BOX_SEPARATOR_SIZE = 150f;
     public static final float UI_ITEMS_SCALE = 4f;
 
-    public static final String ITEM_FRAME_TEXTURE = "otherSprites/ItemFrame2.png";
-    public static final String WEAPON_FRAME_TEXTURE = "otherSprites/WeaponFrame.png";
+    public static final Texture ITEM_FRAME_TEXTURE = new Texture("otherSprites/ItemFrame2.png");
+    public static final Texture WEAPON_FRAME_TEXTURE = new Texture("otherSprites/WeaponFrame.png");
 
-    public static final Map<String, String> ITEM_SKINS = new HashMap<>();
-    public static final Map<String, String> TURN_ENTITY_SKINS = new HashMap<>();
-    public static final Map<String, String> WEAPON_SKINS = new HashMap<>();
+    public static final Map<String, Texture> ITEM_SKINS = new HashMap<>();
+    public static final Map<String, Texture> TURN_ENTITY_SKINS = new HashMap<>();
+    public static final Map<String, Texture> WEAPON_SKINS = new HashMap<>();
 
     //ENTITIES AND ITEMS
     public static final float BOARD_IMAGES_SCALE = 1.5f;
@@ -57,22 +58,22 @@ public class GraphicalViewConfig
 
     static
     {
-        ITEM_SKINS.put("Medkit", "itemSprites/Medkit.png");
-        ITEM_SKINS.put("Bomb", "itemSprites/BombPickup.png");
+        ITEM_SKINS.put("Medkit", new Texture("itemSprites/Medkit.png"));
+        ITEM_SKINS.put("Bomb", new Texture("itemSprites/BombPickup.png"));
 
-        TURN_ENTITY_SKINS.put("Player", "playerSprites/Player.png");
+        TURN_ENTITY_SKINS.put("Player", new Texture("playerSprites/Player.png"));
 
-        TURN_ENTITY_SKINS.put("BasicGnome", "gnomeSprites/BasicGnome.png");
-        TURN_ENTITY_SKINS.put("ScoutGnome", "gnomeSprites/ScoutGnome.png");
-        TURN_ENTITY_SKINS.put("WizardGnome", "gnomeSprites/WizardGnome.png");
-        TURN_ENTITY_SKINS.put("TrapGnome", "gnomeSprites/TrapGnome.png");
+        TURN_ENTITY_SKINS.put("BasicGnome", new Texture("gnomeSprites/BasicGnome.png"));
+        TURN_ENTITY_SKINS.put("ScoutGnome", new Texture("gnomeSprites/ScoutGnome.png"));
+        TURN_ENTITY_SKINS.put("WizardGnome", new Texture("gnomeSprites/WizardGnome.png"));
+        TURN_ENTITY_SKINS.put("TrapGnome", new Texture("gnomeSprites/TrapGnome.png"));
 
-        TURN_ENTITY_SKINS.put("MagicBullet", "gnomeSprites/MagicBullet.png");
-        TURN_ENTITY_SKINS.put("Trap", "itemSprites/Trap.png");
-        TURN_ENTITY_SKINS.put("Bomb", "itemSprites/BombExploding.png");
+        TURN_ENTITY_SKINS.put("MagicBullet", new Texture("gnomeSprites/MagicBullet.png"));
+        TURN_ENTITY_SKINS.put("Trap", new Texture("itemSprites/Trap.png"));
+        TURN_ENTITY_SKINS.put("Bomb", new Texture("itemSprites/BombExploding.png"));
 
-        WEAPON_SKINS.put("Dagger", "weaponSprites/Dagger.png");
-        WEAPON_SKINS.put("Spear", "weaponSprites/Spear.png");
-        WEAPON_SKINS.put("Hammer", "weaponSprites/Hammer.png");
+        WEAPON_SKINS.put("Dagger", new Texture("weaponSprites/Dagger.png"));
+        WEAPON_SKINS.put("Spear", new Texture("weaponSprites/Spear.png"));
+        WEAPON_SKINS.put("Hammer", new Texture("weaponSprites/Hammer.png"));
     }
 }

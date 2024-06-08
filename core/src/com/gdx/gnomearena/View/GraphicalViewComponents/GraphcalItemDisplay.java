@@ -2,7 +2,6 @@ package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import java.util.List;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -38,16 +37,16 @@ public class GraphcalItemDisplay extends GraphicalGameBoardDisplay
             if(it instanceof EntitySpawningItem)
             {
                 EntitySpawningItem esit = (EntitySpawningItem)it;
-                spr = new Sprite(new Texture(GraphicalViewConfig.ITEM_SKINS.get(esit.spawnedEntity.getClass().getSimpleName())));
+                spr = new Sprite(GraphicalViewConfig.ITEM_SKINS.get(esit.spawnedEntity.getClass().getSimpleName()));
             }
             else if(it instanceof WeaponPickup)
             {
                 WeaponPickup wpit = (WeaponPickup)it;
-                spr = new Sprite(new Texture(GraphicalViewConfig.WEAPON_SKINS.get(wpit.spawnedWeapon.getClass().getSimpleName())));
+                spr = new Sprite(GraphicalViewConfig.WEAPON_SKINS.get(wpit.spawnedWeapon.getClass().getSimpleName()));
             }
             else
             {
-                spr = new Sprite(new Texture(GraphicalViewConfig.ITEM_SKINS.get(it.getClass().getSimpleName())));
+                spr = new Sprite(GraphicalViewConfig.ITEM_SKINS.get(it.getClass().getSimpleName()));
             }
 
             Image im = new Image(spr);

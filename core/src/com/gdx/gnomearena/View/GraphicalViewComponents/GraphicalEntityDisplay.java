@@ -76,7 +76,7 @@ public class GraphicalEntityDisplay extends GraphicalGameBoardDisplay
         timeFromPreviousMove = time;
         for(int i=0; i<entities.size(); i++)
         {
-            Sprite spr = new Sprite(new Texture(GraphicalViewConfig.TURN_ENTITY_SKINS.get(entities.get(i).getKey().getClass().getSimpleName())));
+            Sprite spr = new Sprite(GraphicalViewConfig.TURN_ENTITY_SKINS.get(entities.get(i).getKey().getClass().getSimpleName()));
             Image im = new Image(spr);
             im.setOrigin(im.getWidth()/2, im.getHeight()/2);
             Pair<Float,Float> imagePos = calculateEntitiesPosition(entities.get(i).getValue().getValue(), entities.get(i).getValue().getKey());

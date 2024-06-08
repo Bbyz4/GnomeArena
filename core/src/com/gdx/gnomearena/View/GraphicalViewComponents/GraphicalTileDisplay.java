@@ -1,6 +1,5 @@
 package com.gdx.gnomearena.View.GraphicalViewComponents;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -25,12 +24,12 @@ public class GraphicalTileDisplay extends GraphicalGameBoardDisplay
     public GraphicalTileDisplay(int size)
     {
         boardSize = size;
-        dirtImage = new Image(new Sprite(new Texture(GraphicalViewConfig.LIGHT_DIRT_IMAGE)));
-        darkDirtImage = new Image(new Sprite(new Texture(GraphicalViewConfig.DARK_DIRT_IMAGE)));
+        dirtImage = new Image(new Sprite(GraphicalViewConfig.LIGHT_DIRT_TEXTURE));
+        darkDirtImage = new Image(new Sprite(GraphicalViewConfig.DARK_DIRT_TEXTURE));
         dirtImage.setScale(GraphicalViewConfig.TILE_IMAGE_SCALE);
         darkDirtImage.setScale(GraphicalViewConfig.TILE_IMAGE_SCALE);
 
-        background = new Image(new Sprite(new Texture(GraphicalViewConfig.BACKGROUND_IMAGE)));
+        background = new Image(new Sprite(GraphicalViewConfig.BACKGROUND_IMAGE));
 
         tileImages = new Image[boardSize][boardSize];
 

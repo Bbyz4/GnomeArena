@@ -20,13 +20,13 @@ public class GraphicalBeatMeterDisplay
 
     public GraphicalBeatMeterDisplay()
     {
-        bmtexture = new Texture(GraphicalViewConfig.BEAT_METER_BASE_TEXTURE);
+        bmtexture = GraphicalViewConfig.BEAT_METER_BASE_TEXTURE;
         bmsprite = new Sprite(bmtexture);
         bmimage = new Image(bmsprite);
         bmimage.setPosition(beatMeterXPosition, beatMeterYPosition);
         bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
         bmimage.setColor(GraphicalViewConfig.BEAT_METER_RING_COLOR);
-        bm2texture = new Texture(GraphicalViewConfig.BEAT_METER_RING_TEXTURE);
+        bm2texture = GraphicalViewConfig.BEAT_METER_RING_TEXTURE;
         bm2sprite = new Sprite(bm2texture);
         bm2image = new Image(bm2sprite);
         bm2image.setPosition(beatMeterXPosition, beatMeterYPosition);
