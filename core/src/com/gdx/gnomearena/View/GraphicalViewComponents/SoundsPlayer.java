@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.View;
+package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -9,7 +9,6 @@ public class SoundsPlayer {
     Float musicVolume;
     public SoundsPlayer()
     {
-        //music = Gdx.audio.newMusic(Gdx.files.internal("butong.wav"));
         soundEffectsVolume = 1.0f;
         musicVolume = 1.0f;
     }

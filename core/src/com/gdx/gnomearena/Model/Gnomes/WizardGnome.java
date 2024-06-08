@@ -2,7 +2,6 @@ package com.gdx.gnomearena.Model.Gnomes;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Gnome;
 import com.gdx.gnomearena.Model.Pair;
 import com.gdx.gnomearena.Model.GnomeAttackPatterns.MagicShootingAttack;
@@ -24,7 +23,6 @@ public class WizardGnome extends Gnome
         attack = new MagicShootingAttack(5);
         moveCooldown = 2;
         currentCooldown = 2;
-        skin = new Texture("gnomeSprites/WizardGnome.png");
         spawnedItems = new ArrayList<>();
 
         spawnedItems.add(new Pair<>(() -> new WeaponPickup(new Spear()), 0.2f));

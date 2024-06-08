@@ -3,15 +3,9 @@ package com.gdx.gnomearena.Model;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
-
 public abstract class Weapon
 {
     public Map<Direction, Pair<Integer, Integer>[]> attackRanges;
-
-    public Texture skin;
-    public Sound attackSound;
 
     public boolean canMultishot = false;
 
@@ -47,7 +41,7 @@ public abstract class Weapon
         if (attackCount == 0 )
             return false;
 
-        SoundsManager.addSound(this.attackSound);
+        GameLogs.addWeaponDamage(this);
         return true;
     }
 }

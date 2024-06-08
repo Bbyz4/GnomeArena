@@ -1,9 +1,5 @@
 package com.gdx.gnomearena.Model;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.audio.Sound;
-
-
 public abstract class Item
 {
     //methods return true if an item should be removed from players inventory after an action, false otherwise
@@ -19,7 +15,6 @@ public abstract class Item
 
     public int maxLifetime = 10;
     public int currentLifetime = 0;
-    public Sound onUseSound;
 
     public void passRound(Board board)
     {
@@ -30,6 +25,4 @@ public abstract class Item
             board.removeItem(pos.getKey(), pos.getValue());
         }
     }
-
-    public Texture skin;
 }

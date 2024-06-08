@@ -1,8 +1,9 @@
 package com.gdx.gnomearena.Model;
-import java.util.List;
 
+import java.util.List;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.IntSet;
+import com.gdx.gnomearena.Config.Model.ModelConfig;
 
 public class GameManager
 {
@@ -10,8 +11,8 @@ public class GameManager
     public final GnomeSpawner gnomeSpawner;
     public final Player player;
 
-    public final float pace = 0.6f; //MOVE THOSE TO CONFIG FILES LATER
-    public final float clickWindow = 0.4f;
+    public final float pace; //MOVE THOSE TO CONFIG FILES LATER
+    public final float clickWindow;
     public boolean keyHandled = false;
     public float elapsedTime = 0;
 
@@ -29,12 +30,15 @@ public class GameManager
 
         LevelManager.resetLevel();
 
+        pace = ModelConfig.PACE;
+        clickWindow = ModelConfig.CLICK_WINDOW;
+
         gameControls.addAll(
-            Input.Keys.W,
-            Input.Keys.A,
-            Input.Keys.S,
-            Input.Keys.D,
-            Input.Keys.E
+            Input.Keys.valueOf(ModelConfig.GameControls.UP),
+            Input.Keys.valueOf(ModelConfig.GameControls.DOWN),
+            Input.Keys.valueOf(ModelConfig.GameControls.LEFT),
+            Input.Keys.valueOf(ModelConfig.GameControls.RIGHT),
+            Input.Keys.valueOf(ModelConfig.GameControls.USE_ITEM)
         );
     }
 

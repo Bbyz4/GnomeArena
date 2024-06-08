@@ -1,7 +1,5 @@
 package com.gdx.gnomearena.Model.Weapons;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Direction;
 import com.gdx.gnomearena.Model.Pair;
 import com.gdx.gnomearena.Model.Weapon;
@@ -40,8 +38,6 @@ public class Hammer extends Weapon
             new Pair<>(1,1),
             new Pair<>(1,-1),
         });
-        skin = new Texture("weaponSprites/Hammer.png");
-        attackSound =  Gdx.audio.newSound(Gdx.files.internal("sounds/HammerHitSound.mp3"));
 
     }
 }

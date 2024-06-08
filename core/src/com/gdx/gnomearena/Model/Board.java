@@ -4,6 +4,8 @@ package com.gdx.gnomearena.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gdx.gnomearena.Config.Model.ModelConfig;
+
 
 public class Board
 {
@@ -26,7 +28,7 @@ public class Board
 
     Board()
     {
-        this(15);
+        this(ModelConfig.DEFAULT_BOARD_SIZE);
     }
 
     public boolean isValid(int x, int y)

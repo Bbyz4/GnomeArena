@@ -9,12 +9,11 @@ import com.gdx.gnomearena.Model.Player;
 
 public class EntitySpawningItem extends Item
 {
-    Entity spawnedEntity;
+    public Entity spawnedEntity;
 
     public EntitySpawningItem(Entity e)
     {
         spawnedEntity = e;
-        skin = e.skin;
     }
 
     //attempts to spawn a TurnEntity on a tile, that is in front of the player

@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.View;
+package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import java.util.List;
 
@@ -7,16 +7,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
 import com.gdx.gnomearena.Model.Entity;
 import com.gdx.gnomearena.Model.Pair;
 
-public class EntityDisplay extends GameBoardDisplay
+public class GraphicalEntityDisplay extends GraphicalGameBoardDisplay
 {
     private float timeFromPreviousMove = 0;
-    private final float entityHealthPadding = 50f;
-    private final float entityHealthScale = 1f;
+    private final float entityHealthPadding = GraphicalViewConfig.ENTITY_HEALTH_PADDING;
+    private final float entityHealthScale = GraphicalViewConfig.ENTITY_HEALTH_SCALE;
 
-    public EntityDisplay()
+    public GraphicalEntityDisplay()
     {
 
     }
@@ -30,9 +31,9 @@ public class EntityDisplay extends GameBoardDisplay
             return;
         }
 
-        float heartWidth = 32;
-        float heartHeight = 32;
-        float padding = 1;
+        float heartWidth = GraphicalViewConfig.ENTITY_HEART_WIDTH;
+        float heartHeight = GraphicalViewConfig.ENTITY_HEART_WIDTH;
+        float padding = GraphicalViewConfig.ENTITY_HEART_PADDING;
 
         Table table = new Table();
 
@@ -50,7 +51,7 @@ public class EntityDisplay extends GameBoardDisplay
         }
 
         table.setPosition(xPos, yPos + entityHealthPadding);
-        table.setScale(1.5f*totalBoardScale);
+        table.setScale(GraphicalViewConfig.BOARD_IMAGES_SCALE*totalBoardScale);
         stage.addActor(table);
     }
 
@@ -62,12 +63,12 @@ public class EntityDisplay extends GameBoardDisplay
 
     private float getEntitiesXPosition(float xPos, float imageWidth)
     {
-        return upperLeftTileX + 64*xPos*totalBoardScale + imageWidth*totalBoardScale/2;
+        return upperLeftTileX + tileWidth*xPos*totalBoardScale + imageWidth*totalBoardScale/2;
     }
 
     private float getEntitiesYPosition(float yPos, float imageHeight)
     {
-        return upperLeftTileY - (64*yPos*totalBoardScale - imageHeight*totalBoardScale/2);
+        return upperLeftTileY - (tileWidth*yPos*totalBoardScale - imageHeight*totalBoardScale/2);
     }
 
     public void displayEntities(List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> entities, Stage stage, float time)
@@ -75,14 +76,14 @@ public class EntityDisplay extends GameBoardDisplay
         timeFromPreviousMove = time;
         for(int i=0; i<entities.size(); i++)
         {
-            Sprite spr = new Sprite(entities.get(i).getKey().skin);
+            Sprite spr = new Sprite(new Texture(GraphicalViewConfig.TURN_ENTITY_SKINS.get(entities.get(i).getKey().getClass().getSimpleName())));
             Image im = new Image(spr);
             im.setOrigin(im.getWidth()/2, im.getHeight()/2);
             Pair<Float,Float> imagePos = calculateEntitiesPosition(entities.get(i).getValue().getValue(), entities.get(i).getValue().getKey());
             float imX = getEntitiesXPosition(imagePos.getKey(), im.getWidth());
             float imY = getEntitiesYPosition(imagePos.getValue(), im.getHeight());
             im.setPosition(imX, imY);
-            im.setScale(1.5f*gnomeScale*totalBoardScale);
+            im.setScale(GraphicalViewConfig.BOARD_IMAGES_SCALE*gnomeScale*totalBoardScale);
             stage.addActor(im);
             showEntitiesHealth(entities.get(i).getKey(), imX + im.getWidth()*totalBoardScale/2, imY, stage);
         }

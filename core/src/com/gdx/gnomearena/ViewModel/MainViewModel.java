@@ -83,6 +83,8 @@ public class MainViewModel implements Screen
         {
             PGV.displayGame(gameManager, delta);
         }
+
+        GameLogs.clearLogs();
     }
 
     @Override

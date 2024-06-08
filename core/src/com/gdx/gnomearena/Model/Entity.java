@@ -3,8 +3,6 @@ package com.gdx.gnomearena.Model;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
-import com.badlogic.gdx.graphics.Texture;
-
 public abstract class Entity
 {
     public Direction currentDirection;
@@ -12,7 +10,6 @@ public abstract class Entity
     public int maxHealth;
     public ArrayList<Effect> currentEffects;
     public ArrayList<Pair<Supplier<Item>,Float>> spawnedItems;
-    public Texture skin;
     public boolean immobilized;
 
 

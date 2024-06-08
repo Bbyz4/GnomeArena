@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.View;
+package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

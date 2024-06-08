@@ -1,20 +1,27 @@
 package com.gdx.gnomearena.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.gdx.gnomearena.Config.Audio.SoundEffectsConfig;
 import com.gdx.gnomearena.Model.*;
+import com.gdx.gnomearena.View.GraphicalViewComponents.GraphcalItemDisplay;
+import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalBeatMeterDisplay;
+import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalEntityDisplay;
+import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalTileDisplay;
+import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalUIDisplay;
+import com.gdx.gnomearena.View.GraphicalViewComponents.SoundsPlayer;
 import com.gdx.gnomearena.ViewModel.BoardViewInfo;
 
 public class MainGraphicalView extends PassiveGameView
 {
-    private final TileDisplay tileDisplay;
-    private final EntityDisplay entityDisplay;
-    private final ItemDisplay itemDisplay;
-    private final UIDisplay uiDisplay;
-    private final BeatMeterDisplay beatMeterDisplay;
+    private final GraphicalTileDisplay tileDisplay;
+    private final GraphicalEntityDisplay entityDisplay;
+    private final GraphcalItemDisplay itemDisplay;
+    private final GraphicalUIDisplay uiDisplay;
+    private final GraphicalBeatMeterDisplay beatMeterDisplay;
     private final SoundsPlayer soundsPlayer;
 
     public Stage stage;
@@ -22,11 +29,11 @@ public class MainGraphicalView extends PassiveGameView
 
     public MainGraphicalView()
     {
-        tileDisplay = new TileDisplay();
-        entityDisplay = new EntityDisplay();
-        itemDisplay = new ItemDisplay();
-        uiDisplay = new UIDisplay();
-        beatMeterDisplay = new BeatMeterDisplay();
+        tileDisplay = new GraphicalTileDisplay();
+        entityDisplay = new GraphicalEntityDisplay();
+        itemDisplay = new GraphcalItemDisplay();
+        uiDisplay = new GraphicalUIDisplay();
+        beatMeterDisplay = new GraphicalBeatMeterDisplay();
         soundsPlayer = new SoundsPlayer();
     }
 
@@ -43,11 +50,7 @@ public class MainGraphicalView extends PassiveGameView
         stage.clear();
         hudStage.clear();
 
-        for (Sound s: SoundsManager.getSoundList())
-        {
-            soundsPlayer.playSoundEffect(s);
-        }
-        SoundsManager.clearList();
+        playSounds();
 
         tileDisplay.displayTiles(stage);
 
@@ -73,6 +76,36 @@ public class MainGraphicalView extends PassiveGameView
 
         hudStage.act(delta);
         hudStage.draw();
+    }
+
+    private void playSounds()
+    {
+        ArrayList<Item> usedItems = GameLogs.getUsedItems();
+        for(Item it : usedItems)
+        {
+            if(SoundEffectsConfig.ITEM_USAGE_SOUNDS.get(it.getClass().getSimpleName())!=null)
+            {
+                soundsPlayer.playSoundEffect(SoundEffectsConfig.ITEM_USAGE_SOUNDS.get(it.getClass().getSimpleName()));
+            }
+        }
+
+        ArrayList<Weapon> usedWeapons = GameLogs.getDamagingWeapons();
+        for(Weapon w : usedWeapons)
+        {
+            if(SoundEffectsConfig.WEAPON_USAGE_SOUNDS.get(w.getClass().getSimpleName())!=null)
+            {
+                soundsPlayer.playSoundEffect(SoundEffectsConfig.WEAPON_USAGE_SOUNDS.get(w.getClass().getSimpleName()));
+            }
+        }
+
+        ArrayList<Entity> damagedEntities = GameLogs.getDamagedEntites();
+        for(Entity e : damagedEntities)
+        {
+            if(SoundEffectsConfig.ENTITY_DAMAGE_SOUNDS.get(e.getClass().getSimpleName())!=null)
+            {
+                soundsPlayer.playSoundEffect(SoundEffectsConfig.ENTITY_DAMAGE_SOUNDS.get(e.getClass().getSimpleName()));
+            }
+        }
     }
 
     @Override

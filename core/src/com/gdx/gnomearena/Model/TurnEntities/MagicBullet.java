@@ -1,6 +1,5 @@
 package com.gdx.gnomearena.Model.TurnEntities;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Board;
 import com.gdx.gnomearena.Model.Direction;
 import com.gdx.gnomearena.Model.*;
@@ -18,7 +17,6 @@ public class MagicBullet extends NonBlockingEntity
     {
         dealtDamage = damage;
         currentDirection = dir;
-        skin = new Texture("gnomeSprites/MagicBullet.png");
     }
 
     @Override

@@ -1,17 +1,15 @@
-package com.gdx.gnomearena.View;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
+package com.gdx.gnomearena.View.GraphicalViewComponents;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
 
-public class BeatMeterDisplay
+public class GraphicalBeatMeterDisplay
 {
-    private final int beatMeterXPosition = 1200;
-    private final int beatMeterYPosition = -300;
-    private final float beatMeterScale = 1.2f;
+    private final float beatMeterXPosition = GraphicalViewConfig.BEAT_METER_X_POSITION;
+    private final float beatMeterYPosition = GraphicalViewConfig.BEAT_METER_Y_POSITION;
+    private final float beatMeterScale = GraphicalViewConfig.BEAT_METER_SCALE;
 
     private Texture bmtexture;
     private Sprite bmsprite;
@@ -20,15 +18,15 @@ public class BeatMeterDisplay
     private Sprite bm2sprite;
     private Image bm2image;
 
-    public BeatMeterDisplay()
+    public GraphicalBeatMeterDisplay()
     {
-        bmtexture = new Texture(Gdx.files.internal("otherSprites/BeatMeter.png"));
+        bmtexture = new Texture(GraphicalViewConfig.BEAT_METER_BASE_TEXTURE);
         bmsprite = new Sprite(bmtexture);
         bmimage = new Image(bmsprite);
         bmimage.setPosition(beatMeterXPosition, beatMeterYPosition);
         bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
-        bmimage.setColor(Color.YELLOW);
-        bm2texture = new Texture(Gdx.files.internal("otherSprites/BeatMeter2.png"));
+        bmimage.setColor(GraphicalViewConfig.BEAT_METER_RING_COLOR);
+        bm2texture = new Texture(GraphicalViewConfig.BEAT_METER_RING_TEXTURE);
         bm2sprite = new Sprite(bm2texture);
         bm2image = new Image(bm2sprite);
         bm2image.setPosition(beatMeterXPosition, beatMeterYPosition);
@@ -37,22 +35,22 @@ public class BeatMeterDisplay
 
     public void displayBeatMeter(Stage stage, float pace, float clickWindow, float elapsedTime, boolean keyHandled)
     {
-        bmimage.setScale(0.3f*(pace-elapsedTime)*beatMeterScale);
-        bm2image.setScale(0.3f*(pace*clickWindow)*beatMeterScale);
+        bmimage.setScale((pace-elapsedTime)*beatMeterScale);
+        bm2image.setScale((pace*clickWindow)*beatMeterScale);
         if(elapsedTime>=pace*(1-clickWindow))
         {
             if(!keyHandled)
             {
-                bm2image.setColor(Color.GREEN);
+                bm2image.setColor(GraphicalViewConfig.BEAT_METER_READY_COLOR);
             }
             else
             {
-                bm2image.setColor(Color.GRAY);
+                bm2image.setColor(GraphicalViewConfig.BEAT_METER_USED_COLOR);
             }
         }
         else
         {
-            bm2image.setColor(Color.RED);
+            bm2image.setColor(GraphicalViewConfig.BEAT_METER_CHARGING_COLOR);
         }
         stage.addActor(bmimage);
         stage.addActor(bm2image);

@@ -3,7 +3,6 @@ package com.gdx.gnomearena.Model.TurnEntities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.gdx.gnomearena.Model.Board;
 import com.gdx.gnomearena.Model.Pair;
 import com.gdx.gnomearena.Model.TurnEntity;
@@ -27,7 +26,6 @@ public class Bomb extends TurnEntity
         dealtDamage = 2;
         health = 1;
         maxHealth = 1;
-        skin = new Texture("itemSprites/BombPickup.png");
 
         damageRange = new ArrayList<>();
         
@@ -45,10 +43,6 @@ public class Bomb extends TurnEntity
     public void makeMove(Board board)
     {
         boomTime--;
-        if(boomTime==1)
-        {
-            skin = new Texture("itemSprites/BombExploding.png");
-        }
 
         if(boomTime<=0)
         {

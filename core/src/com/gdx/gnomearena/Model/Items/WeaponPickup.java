@@ -8,7 +8,7 @@ import com.gdx.gnomearena.Model.Weapons.Dagger;
 
 public class WeaponPickup extends Item
 {
-    Weapon spawnedWeapon;
+    public Weapon spawnedWeapon;
     
     public WeaponPickup()
     {
@@ -18,7 +18,6 @@ public class WeaponPickup extends Item
     public WeaponPickup(Weapon w)
     {
         spawnedWeapon = w;
-        skin = w.skin;
     }
 
     @Override

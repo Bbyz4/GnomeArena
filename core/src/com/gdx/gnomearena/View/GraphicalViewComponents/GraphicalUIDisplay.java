@@ -1,48 +1,38 @@
-package com.gdx.gnomearena.View;
+package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
 import com.gdx.gnomearena.Model.Item;
 import com.gdx.gnomearena.Model.Weapon;
+import com.gdx.gnomearena.Model.Items.EntitySpawningItem;
 
-public class UIDisplay
+public class GraphicalUIDisplay
 {
-    private final int playerInventoryBoxXPosition = 60;
-    private final int playerInventoryBoxYPosition = 900;
-    private final int boxSeparatorSize = 150;
+    private final float playerInventoryBoxXPosition = GraphicalViewConfig.PLAYER_INVENTORY_BOX_X_POSITION;
+    private final float playerInventoryBoxYPosition = GraphicalViewConfig.PLAYER_INVENTORY_BOX_Y_POSITION;
+    private final float boxSeparatorSize = GraphicalViewConfig.BOX_SEPARATOR_SIZE;
 
-    private final float UIItemsScale = 4f;
-
-    private Texture itemFrameTexture;
-    private Sprite itemFrameSprite;
+    private final float UIItemsScale = GraphicalViewConfig.UI_ITEMS_SCALE;
     private Image itemFrameImage;
-    
-    private Texture weaponFrameTexture;
-    private Sprite weaponFrameSprite;
     private Image weaponFrameImage;
 
     private List<Image> UIBoxes;;
 
-    public UIDisplay()
+    public GraphicalUIDisplay()
     {
         UIBoxes = new ArrayList<>();
-
-        itemFrameTexture = new Texture(Gdx.files.internal("otherSprites/ItemFrame2.png"));
-        itemFrameSprite = new Sprite(itemFrameTexture);
-        itemFrameImage = new Image(itemFrameSprite);
+        itemFrameImage = new Image(new Sprite(new Texture(GraphicalViewConfig.ITEM_FRAME_TEXTURE)));
         itemFrameImage.setPosition(playerInventoryBoxXPosition, playerInventoryBoxYPosition);
         itemFrameImage.setScale(UIItemsScale);
         UIBoxes.add(itemFrameImage);
 
-        weaponFrameTexture = new Texture(Gdx.files.internal("otherSprites/WeaponFrame.png"));
-        weaponFrameSprite = new Sprite(weaponFrameTexture);
-        weaponFrameImage = new Image(weaponFrameSprite);
+        weaponFrameImage = new Image(new Sprite(new Texture(GraphicalViewConfig.WEAPON_FRAME_TEXTURE)));
         weaponFrameImage.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
         weaponFrameImage.setScale(UIItemsScale);
         UIBoxes.add(weaponFrameImage);
@@ -60,7 +50,7 @@ public class UIDisplay
     {
         if(weapon!=null)
         {
-            Sprite spr = new Sprite(weapon.skin);
+            Sprite spr = new Sprite(new Texture(GraphicalViewConfig.WEAPON_SKINS.get(weapon.getClass().getSimpleName())));
             Image im = new Image(spr);
             im.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
             im.setScale(UIItemsScale);
@@ -72,7 +62,16 @@ public class UIDisplay
     {
         if(item!=null)
         {
-            Sprite spr = new Sprite(item.skin);
+            Sprite spr = new Sprite();
+            if(item instanceof EntitySpawningItem)
+            {
+                EntitySpawningItem esit = (EntitySpawningItem)item;
+                spr = new Sprite(new Texture(GraphicalViewConfig.ITEM_SKINS.get(esit.spawnedEntity.getClass().getSimpleName())));
+            }
+            else
+            {
+                spr = new Sprite(new Texture(GraphicalViewConfig.ITEM_SKINS.get(item.getClass().getSimpleName())));
+            }
             Image im = new Image(spr);
             im.setPosition(playerInventoryBoxXPosition, playerInventoryBoxYPosition);
             im.setScale(UIItemsScale);

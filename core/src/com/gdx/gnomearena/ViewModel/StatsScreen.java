@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
-import com.gdx.gnomearena.View.StatsHud;
+import com.gdx.gnomearena.View.GraphicalViewComponents.StatsHud;
 public class StatsScreen implements Screen
 {
     final MainGame game;
