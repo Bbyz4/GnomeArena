@@ -7,12 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.Config.Audio.SoundEffectsConfig;
 import com.gdx.gnomearena.Model.*;
-import com.gdx.gnomearena.View.GraphicalViewComponents.GraphcalItemDisplay;
-import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalBeatMeterDisplay;
-import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalEntityDisplay;
-import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalTileDisplay;
-import com.gdx.gnomearena.View.GraphicalViewComponents.GraphicalUIDisplay;
-import com.gdx.gnomearena.View.GraphicalViewComponents.SoundsPlayer;
+import com.gdx.gnomearena.View.GraphicalViewComponents.*;
 import com.gdx.gnomearena.ViewModel.BoardViewInfo;
 
 public class MainGraphicalView extends PassiveGameView
@@ -24,8 +19,10 @@ public class MainGraphicalView extends PassiveGameView
     private final GraphicalBeatMeterDisplay beatMeterDisplay;
     private final SoundsPlayer soundsPlayer;
 
+    private  CameraManager cameraManager;
     public Stage stage;
     public Stage hudStage;
+    public Stage backgroundStage;
 
     public MainGraphicalView()
     {
@@ -42,6 +39,10 @@ public class MainGraphicalView extends PassiveGameView
     {
         stage = new Stage(new ScreenViewport());
         hudStage = new Stage(new ScreenViewport());
+        backgroundStage = new Stage(new ScreenViewport());
+
+        cameraManager = new CameraManager(stage);
+
     }
 
     @Override
@@ -49,10 +50,15 @@ public class MainGraphicalView extends PassiveGameView
     {
         stage.clear();
         hudStage.clear();
-
+        backgroundStage.clear();
         playSounds();
 
-        tileDisplay.displayTiles(stage);
+
+        uiDisplay.displayBackground(backgroundStage);
+
+        cameraManager.update(stage,gameManager.gameBoard.getPlayersPosition(), gameManager.gameBoard.size());
+
+        tileDisplay.displayTiles(stage,cameraManager.getCamera());
 
         List<Pair<Item, Pair<Integer,Integer>>> boardItems = BoardViewInfo.getAllItemsWithPositions(gameManager.gameBoard);
         itemDisplay.displayItems(boardItems, stage);
@@ -60,7 +66,7 @@ public class MainGraphicalView extends PassiveGameView
         List<Pair<Entity, Pair<Pair<Integer,Integer>,Pair<Integer,Integer>>>> boardEntities = BoardViewInfo.getAllEntitiesWithMoves(gameManager.gameBoard);
         entityDisplay.displayEntities(boardEntities, stage, gameManager.timeFromPreviousMove);
 
-        uiDisplay.displayUIBoxes(stage);
+        uiDisplay.displayUIBoxes(hudStage);
 
         Item playerItem = gameManager.player.getHeldItem();
         uiDisplay.displayPlayersItem(playerItem, hudStage);
@@ -70,6 +76,11 @@ public class MainGraphicalView extends PassiveGameView
         beatMeterDisplay.displayBeatMeter(hudStage, gameManager.pace, gameManager.clickWindow, gameManager.elapsedTime, gameManager.keyHandled);
 
         registeredTo.hud.displayHud(hudStage, gameManager.getScore(),gameManager.getHP(),gameManager.timer);
+
+
+        backgroundStage.act(delta);
+        backgroundStage.draw();
+
 
         stage.act(delta);
         stage.draw();

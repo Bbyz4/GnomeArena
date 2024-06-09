@@ -4,13 +4,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
+import com.gdx.gnomearena.Config.Model.ModelConfig;
+import com.gdx.gnomearena.Model.Pair;
 
 public class GraphicalTileDisplay extends GraphicalGameBoardDisplay
 {
     private Image dirtImage;
     private Image darkDirtImage;
 
-    private Image background;
 
     private int boardSize;
 
@@ -18,7 +19,7 @@ public class GraphicalTileDisplay extends GraphicalGameBoardDisplay
 
     public GraphicalTileDisplay()
     {
-        this(15);
+        this(ModelConfig.DEFAULT_BOARD_SIZE);
     }
 
     public GraphicalTileDisplay(int size)
@@ -29,7 +30,6 @@ public class GraphicalTileDisplay extends GraphicalGameBoardDisplay
         dirtImage.setScale(GraphicalViewConfig.TILE_IMAGE_SCALE);
         darkDirtImage.setScale(GraphicalViewConfig.TILE_IMAGE_SCALE);
 
-        background = new Image(new Sprite(GraphicalViewConfig.BACKGROUND_IMAGE));
 
         tileImages = new Image[boardSize][boardSize];
 
@@ -42,16 +42,22 @@ public class GraphicalTileDisplay extends GraphicalGameBoardDisplay
         }
     }
 
-    public void displayTiles(Stage stage)
+    public void displayTiles(Stage stage, Pair<Integer,Integer> cameraPosition)
     {
-        stage.addActor(background);
-        for(int i=0; i<boardSize; i++)
+        int startX = cameraPosition.getKey() - 7;
+        int endX = cameraPosition.getKey() + 8;
+        int startY = cameraPosition.getKey() - 7;
+        int endY = cameraPosition.getValue() + 9;
+        System.out.println(cameraPosition.getKey() + " " + cameraPosition.getValue());
+        //System.out.println(startX + " " + endX + " " + startY + " " + endY);
+        for(int i=startX; i<endX; i++)
         {
-            for(int j=0; j<boardSize; j++)
+            for(int j=startY; j<endY; j++)
             {
                 Image tile = new Image(tileImages[i][j].getDrawable());
-                tile.setPosition(upperLeftTileX+tileWidth*i*totalBoardScale, upperLeftTileY-tileWidth*j*totalBoardScale);
+                tile.setPosition(upperLeftTileX+((tileWidth*(i-startX))*totalBoardScale), upperLeftTileY-((tileWidth*(j-startY))*totalBoardScale));
                 tile.setScale(GraphicalViewConfig.TILE_IMAGE_SCALE*totalBoardScale);
+                //System.out.println((upperLeftTileX+tileWidth*(i-startX)*totalBoardScale) + " " + (upperLeftTileY-tileWidth*(j-startY)*totalBoardScale));
                 stage.addActor(tile);
             }
         }

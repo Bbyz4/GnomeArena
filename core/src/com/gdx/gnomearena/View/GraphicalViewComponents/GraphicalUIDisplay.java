@@ -20,6 +20,8 @@ public class GraphicalUIDisplay
     private final float UIItemsScale = GraphicalViewConfig.UI_ITEMS_SCALE;
     private Image itemFrameImage;
     private Image weaponFrameImage;
+    private Image background;
+
 
     private List<Image> UIBoxes;;
 
@@ -35,6 +37,9 @@ public class GraphicalUIDisplay
         weaponFrameImage.setPosition(playerInventoryBoxXPosition+boxSeparatorSize, playerInventoryBoxYPosition);
         weaponFrameImage.setScale(UIItemsScale);
         UIBoxes.add(weaponFrameImage);
+
+        background = new Image(new Sprite(GraphicalViewConfig.BACKGROUND_IMAGE));
+
     }
 
     public void displayUIBoxes(Stage stage)
@@ -44,6 +49,12 @@ public class GraphicalUIDisplay
             stage.addActor(image);
         }
     }
+
+    public void displayBackground(Stage stage)
+    {
+        stage.addActor(background);
+    }
+
 
     public void displayPlayersWeapon(Weapon weapon, Stage stage)
     {

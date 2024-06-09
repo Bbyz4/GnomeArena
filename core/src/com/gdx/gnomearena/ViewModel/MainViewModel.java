@@ -33,6 +33,9 @@ public class MainViewModel implements Screen
         passiveGameViews = new ArrayList<>();
         camera = new OrthographicCamera();
         hud = new Hud();
+
+        //TESTING
+        //camera.setToOrtho(false, 800, 600);
     }
 
     //WILL BE USED FOR PLAYER INPUT LATER
@@ -67,7 +70,6 @@ public class MainViewModel implements Screen
 
 
 
-        camera.update();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //TEMPORARY CHANGE
@@ -86,6 +88,7 @@ public class MainViewModel implements Screen
 
         GameLogs.clearLogs();
     }
+
 
     @Override
     public void resize(int width, int height)
