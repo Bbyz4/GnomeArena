@@ -2,6 +2,8 @@ package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.gdx.gnomearena.Config.Audio.MusicConfig;
+import com.gdx.gnomearena.Config.Audio.SoundEffectsConfig;
 
 public class SoundsPlayer {
     Music music;
@@ -9,8 +11,8 @@ public class SoundsPlayer {
     Float musicVolume;
     public SoundsPlayer()
     {
-        soundEffectsVolume = 1.0f;
-        musicVolume = 1.0f;
+        soundEffectsVolume = SoundEffectsConfig.soundsVolume;
+        musicVolume = MusicConfig.musicVolume;
     }
 
     public void playMusic()
@@ -22,6 +24,18 @@ public class SoundsPlayer {
     public void setMusic(Music m)
     {
         music = m;
+    }
+
+    public void stopMusic() {
+        music.stop();
+    }
+
+    public void pauseMusic() {
+        music.pause();
+    }
+
+    public void disposeMuisc() {
+        music.dispose();
     }
 
     public void setSoundEffectsVolume(Float volume)

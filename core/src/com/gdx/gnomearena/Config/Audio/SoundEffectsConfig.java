@@ -12,6 +12,7 @@ public class SoundEffectsConfig
     public static final Map<String, Sound> WEAPON_USAGE_SOUNDS = new HashMap<>();
     public static final Map<String, Sound> ENTITY_ATTACK_SOUNDS = new HashMap<>(); //NOT USED RIGHT NOW
     public static final Map<String, Sound> ENTITY_DAMAGE_SOUNDS = new HashMap<>();
+    public static final float soundsVolume = 1.0f;
 
     static
     {
