@@ -18,12 +18,12 @@ public class GraphicalUIDisplay
     private final float boxSeparatorSize = GraphicalViewConfig.BOX_SEPARATOR_SIZE;
 
     private final float UIItemsScale = GraphicalViewConfig.UI_ITEMS_SCALE;
-    private Image itemFrameImage;
-    private Image weaponFrameImage;
-    private Image background;
+    private final Image itemFrameImage;
+    private final Image weaponFrameImage;
+    private final Image background;
 
 
-    private List<Image> UIBoxes;;
+    private final List<Image> UIBoxes;;
 
     public GraphicalUIDisplay()
     {

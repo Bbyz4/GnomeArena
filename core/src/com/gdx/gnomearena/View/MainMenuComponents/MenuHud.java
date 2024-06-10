@@ -1,8 +1,10 @@
-package com.gdx.gnomearena.View;
+package com.gdx.gnomearena.View.MainMenuComponents;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -10,20 +12,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
+import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
 
 public class MenuHud {
 
     private Label titleLabel;
     private Label.LabelStyle textStyle;
     private Button playButton;
+    private Image gnome_background;
+
     public MenuHud() {
 
         BitmapFont bigFont;
-        FreeTypeFontGenerator ftfp;
-
-        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
+        FreeTypeFontGenerator ftfp = MainMenuConfig.PIXEL_FONT;
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.size = 100;
+        param.size = 150;
         param.color.set(0, 0, 0, 1);
         bigFont = ftfp.generateFont(param);
         textStyle = new Label.LabelStyle();
@@ -31,6 +34,7 @@ public class MenuHud {
         textStyle.fontColor = Color.BLACK;
         createTitleLabel();
         createPlayButton();
+        gnome_background = new Image(new Sprite(MainMenuConfig.GNOME_BACKGROUND_IMAGE));
 
     }
 
@@ -40,13 +44,13 @@ public class MenuHud {
 
     public void createPlayButton() {
         Skin skin = new Skin();
-        skin.add("playButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
-        skin.add("playButtonTexture2", new Texture("badlogic.jpg"));
+        skin.add("playButtonTexture1", MainMenuConfig.BUTTON_BEFORE_IMAGE);
+        skin.add("playButtonTexture2", MainMenuConfig.BUTTON_AFTER_IMAGE);
         Button.ButtonStyle bstyle = new Button.ButtonStyle();
         bstyle.up = skin.getDrawable("playButtonTexture1");
         bstyle.down = skin.getDrawable("playButtonTexture2");
         playButton = new Button(bstyle);
-        playButton.setPosition(810, 440);
+        playButton.setPosition(810, 50);
         playButton.setWidth(300);
         playButton.setHeight(300);
     }
@@ -65,6 +69,14 @@ public class MenuHud {
     public void displayTitleLabel(Stage stage) {
         stage.addActor(titleLabel);
     }
+
+
+
+    public void displayGnomeBackground(Stage stage)
+    {
+        stage.addActor(gnome_background);
+    }
+
 
 
 }

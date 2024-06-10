@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.ViewModel;
+package com.gdx.gnomearena.View;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
-import com.gdx.gnomearena.View.GraphicalViewComponents.StatsHud;
-public class StatsScreen implements Screen
+import com.gdx.gnomearena.View.StatsComponents.StatsHud;
+public class StatsScreen extends ActiveGameView implements Screen
 {
     final MainGame game;
 

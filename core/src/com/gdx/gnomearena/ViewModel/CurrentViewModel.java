@@ -1,17 +1,20 @@
 package com.gdx.gnomearena.ViewModel;
 
 
-public class CurrentViewModel
-{
-    private static MainViewModel curr;
+import com.gdx.gnomearena.View.GameScreen;
 
-    public static MainViewModel getCurrentScreen()
+/*public class CurrentViewModel
+{
+    private static GameScreen curr;
+
+    public static GameScreen getCurrentScreen()
     {
         return curr;
     }
 
-    public static void changeCurrentScreen(MainViewModel newCurr)
+    public static void changeCurrentScreen(GameScreen newCurr)
     {
         curr = newCurr;
     }
 }
+*/

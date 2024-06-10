@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.ViewModel;
+package com.gdx.gnomearena.View;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -10,13 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
-import com.gdx.gnomearena.View.MainGraphicalView;
-import com.gdx.gnomearena.View.MenuHud;
+import com.gdx.gnomearena.Model.GameManager;
+import com.gdx.gnomearena.View.MainMenuComponents.MenuHud;
+//import com.gdx.gnomearena.ViewModel.CurrentViewModel;
+import com.gdx.gnomearena.ViewModel.GameViewModel;
+import com.gdx.gnomearena.ViewModel.MainMenuViewModel;
 
-public class MainMenuScreen implements Screen
+public class MainMenuScreen extends ActiveGameView implements Screen
 {
     final MainGame game;
-
+    MainMenuViewModel viewModel;
     OrthographicCamera camera;
 
     Label.LabelStyle textStyle = new Label.LabelStyle();
@@ -29,25 +32,28 @@ public class MainMenuScreen implements Screen
         this.game = game;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         menuHud = new MenuHud();
+        viewModel = new MainMenuViewModel();
     }
+
+
 
     @Override
     public void show()
     {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-
-
+        menuHud.displayGnomeBackground(stage);
         menuHud.getPlayButton().addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                MainViewModel GS = new MainViewModel(game);
-                CurrentViewModel.changeCurrentScreen(GS);
-                MainGraphicalView MGV = new MainGraphicalView();
-                MGV.registerInViewModel(GS);
-                game.setScreen(GS);
+                GameManager gameManager = new GameManager();
+                GameViewModel viewModel = new GameViewModel(gameManager);
+                GameScreen gameScreen = new GameScreen(game,gameManager,viewModel);
+                MainGraphicalView mainGraphicalView = new MainGraphicalView(viewModel);
+                game.setScreen(gameScreen);
+
             }
         });
         menuHud.displayPlayButton(stage);

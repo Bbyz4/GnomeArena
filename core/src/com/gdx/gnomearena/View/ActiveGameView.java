@@ -1,19 +1,19 @@
 package com.gdx.gnomearena.View;
 
-import com.gdx.gnomearena.ViewModel.MainViewModel;
+import com.gdx.gnomearena.ViewModel.GameViewModel;
 
 public abstract class ActiveGameView
 {
-    private MainViewModel registeredTo;
+    private GameViewModel registeredTo;
 
-    private void registerInViewModel(MainViewModel MVM)
+    private void registerInViewModel(GameViewModel viewModel)
     {
-        MVM.activeGameViews.add(this);
-        registeredTo = MVM;
+        registeredTo = viewModel;
+        viewModel.registerActiveListener(this);
     }
 
     private void sendUserAction(int keyPressed)
     {
-        registeredTo.processActiveViewRequest(keyPressed);
+        registeredTo.passInputToModel(keyPressed);
     }
 }

@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.ViewModel;
+package com.gdx.gnomearena.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,39 +10,40 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Model.*;
-import com.gdx.gnomearena.View.*;
+import com.gdx.gnomearena.View.GraphicalViewComponents.Hud;
+import com.gdx.gnomearena.ViewModel.GameViewModel;
 
 
-public class MainViewModel implements Screen
+public class GameScreen extends ActiveGameView implements Screen
 {
 
     final MainGame game;
     final GameManager gameManager;
-    public Hud hud;
-    
-    public List<ActiveGameView> activeGameViews;
-    public List<PassiveGameView> passiveGameViews;
 
-    OrthographicCamera camera;
 
-    public MainViewModel(MainGame game)
+    public OrthographicCamera camera;
+    public GameViewModel viewModel;
+    public GameScreen(MainGame game, GameManager gameManager, GameViewModel viewModel)
     {
         this.game = game;
-        this.gameManager = new GameManager();
-        activeGameViews = new ArrayList<>();
-        passiveGameViews = new ArrayList<>();
+        this.gameManager = gameManager;
         camera = new OrthographicCamera();
-        hud = new Hud();
+        this.viewModel = viewModel;
+        viewModel.registerActiveListener(this);
+
+
 
         //TESTING
         //camera.setToOrtho(false, 800, 600);
     }
 
-    //WILL BE USED FOR PLAYER INPUT LATER
+    /* //WILL BE USED FOR PLAYER INPUT LATER
     public void processActiveViewRequest(int keyPressed)
     {
 
     }
+
+     */
 
     @Override
     public void show()
@@ -52,43 +53,42 @@ public class MainViewModel implements Screen
             @Override
             public boolean keyDown(int keycode)
             {
-                gameManager.handleKeyPress(keycode);
+                viewModel.passInputToModel(keycode);
+
                 return true;
             }
         });
 
-        for(PassiveGameView PGV : passiveGameViews)
-        {
-            PGV.initialize();
-        }
+        viewModel.initializeViews();
     }
 
     @Override
     public void render(float delta)
     {
-        gameManager.framePass(delta);
+        viewModel.inform(gameManager, delta);
 
-
-
+        camera.update();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //TEMPORARY CHANGE
         Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1);
-
+            viewModel.updateAllViews(gameManager,delta);
 
         if(gameManager.isOver()) {
+            viewModel.endGame();
             game.setScreen(new StatsScreen(game,gameManager.getScore(), gameManager.timer));
         }
 
 
-        for(PassiveGameView PGV : passiveGameViews)
-        {
-            PGV.displayGame(gameManager, delta);
-        }
 
         GameLogs.clearLogs();
     }
 
+
+    public void update()
+    {
+
+    }
 
     @Override
     public void resize(int width, int height)
@@ -111,10 +111,7 @@ public class MainViewModel implements Screen
     @Override
     public void hide()
     {
-        for(PassiveGameView PGV : passiveGameViews)
-        {
-            PGV.finalize();
-        }
+
     }
 
     @Override

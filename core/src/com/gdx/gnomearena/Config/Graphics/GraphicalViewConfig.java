@@ -3,8 +3,10 @@ package com.gdx.gnomearena.Config.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class GraphicalViewConfig
 {
@@ -14,6 +16,9 @@ public class GraphicalViewConfig
     public static final int UPPER_LEFT_TILE_Y = 995;
     public static final float TILE_WIDTH = 64f;
     public static final float TILE_IMAGE_SCALE = 2f;
+
+    //FONTS
+    public static final FreeTypeFontGenerator PIXEL_FONT = new FreeTypeFontGenerator(Gdx.files.internal("fonts/PixelFont.ttf"));
 
     public static final Texture LIGHT_DIRT_TEXTURE = new Texture("terrainSprites/Dirt.png");
     public static final Texture DARK_DIRT_TEXTURE  = new Texture("terrainSprites/DarkDirt.png");

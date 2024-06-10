@@ -5,10 +5,12 @@ import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.gdx.gnomearena.Config.Audio.MusicConfig;
 import com.gdx.gnomearena.Config.Audio.SoundEffectsConfig;
 import com.gdx.gnomearena.Model.*;
 import com.gdx.gnomearena.View.GraphicalViewComponents.*;
 import com.gdx.gnomearena.ViewModel.BoardViewInfo;
+import com.gdx.gnomearena.ViewModel.GameViewModel;
 
 public class MainGraphicalView extends PassiveGameView
 {
@@ -18,13 +20,15 @@ public class MainGraphicalView extends PassiveGameView
     private final GraphicalUIDisplay uiDisplay;
     private final GraphicalBeatMeterDisplay beatMeterDisplay;
     private final SoundsPlayer soundsPlayer;
+    private final Hud hud;
 
     private  CameraManager cameraManager;
     public Stage stage;
     public Stage hudStage;
     public Stage backgroundStage;
 
-    public MainGraphicalView()
+
+    public MainGraphicalView(GameViewModel viewModel)
     {
         tileDisplay = new GraphicalTileDisplay();
         entityDisplay = new GraphicalEntityDisplay();
@@ -32,6 +36,9 @@ public class MainGraphicalView extends PassiveGameView
         uiDisplay = new GraphicalUIDisplay();
         beatMeterDisplay = new GraphicalBeatMeterDisplay();
         soundsPlayer = new SoundsPlayer();
+        hud = new Hud();
+        viewModel.registerPassiveListener(this);
+
     }
 
     @Override
@@ -40,9 +47,9 @@ public class MainGraphicalView extends PassiveGameView
         stage = new Stage(new ScreenViewport());
         hudStage = new Stage(new ScreenViewport());
         backgroundStage = new Stage(new ScreenViewport());
-
         cameraManager = new CameraManager(stage);
-
+        soundsPlayer.setMusic(MusicConfig.HUNDRED_BPM_MUSIC);
+        soundsPlayer.playMusic();
     }
 
     @Override
@@ -75,7 +82,7 @@ public class MainGraphicalView extends PassiveGameView
 
         beatMeterDisplay.displayBeatMeter(hudStage, gameManager.pace, gameManager.clickWindow, gameManager.elapsedTime, gameManager.keyHandled);
 
-        registeredTo.hud.displayHud(hudStage, gameManager.getScore(),gameManager.getHP(),gameManager.timer);
+        hud.displayHud(hudStage, gameManager.getScore(),gameManager.getHP(),gameManager.timer);
 
 
         backgroundStage.act(delta);
@@ -123,5 +130,8 @@ public class MainGraphicalView extends PassiveGameView
     public void finalize()
     {
         stage.clear();
+        hudStage.clear();
+        backgroundStage.clear();
+        soundsPlayer.disposeMuisc();
     }
 }

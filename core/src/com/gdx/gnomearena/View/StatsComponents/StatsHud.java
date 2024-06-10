@@ -1,8 +1,7 @@
-package com.gdx.gnomearena.View.GraphicalViewComponents;
+package com.gdx.gnomearena.View.StatsComponents;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -11,21 +10,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
+import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
 
 public class StatsHud {
-    private Label scoreLabel;
-    private Label timeLabel;
-    private Table scoreTimeTable;
-    private Label.LabelStyle hudStyle;
+    private final Label scoreLabel;
+    private final Label timeLabel;
+    private final Table scoreTimeTable;
+    private final Label.LabelStyle hudStyle;
     private Label gameOverLabel;
-    private Label.LabelStyle textStyle;
+    private final Label.LabelStyle textStyle;
     private Button playAgainButton;
     public StatsHud() {
 
         BitmapFont bigFont;
-        FreeTypeFontGenerator ftfp;
-
-        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
+        FreeTypeFontGenerator ftfp = GraphicalViewConfig.PIXEL_FONT;
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
         param.color.set(0, 0, 0, 1);
@@ -59,11 +58,11 @@ public class StatsHud {
 
     public void createPlayAgainButton() {
         Skin skin = new Skin();
-        skin.add("playAgainButtonTexture1", new Texture("gnomeSprites/testtest.jpg"));
-        skin.add("playAgainButtonTexture2", new Texture("badlogic.jpg"));
+        skin.add("playButtonTexture1", MainMenuConfig.BUTTON_BEFORE_IMAGE);
+        skin.add("playButtonTexture2", MainMenuConfig.BUTTON_AFTER_IMAGE);
         Button.ButtonStyle bstyle = new Button.ButtonStyle();
-        bstyle.up = skin.getDrawable("playAgainButtonTexture1");
-        bstyle.down = skin.getDrawable("playAgainButtonTexture2");
+        bstyle.up = skin.getDrawable("playButtonTexture1");
+        bstyle.down = skin.getDrawable("playButtonTexture2");
         playAgainButton = new Button(bstyle);
         playAgainButton.setPosition(810, 440);
         playAgainButton.setWidth(300);

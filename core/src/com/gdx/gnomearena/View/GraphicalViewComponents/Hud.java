@@ -1,4 +1,4 @@
-package com.gdx.gnomearena.View;
+package com.gdx.gnomearena.View.GraphicalViewComponents;
 
 import com.badlogic.gdx.Gdx;
 
@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
+import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
 
 
 public class Hud {
@@ -19,8 +21,7 @@ public class Hud {
     public Hud() {
 
         BitmapFont bigFont;
-        FreeTypeFontGenerator ftfp;
-        ftfp = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Bebas-Regular.ttf"));
+        FreeTypeFontGenerator ftfp = GraphicalViewConfig.PIXEL_FONT;
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.size = 100;
         param.color.set(0, 0, 0, 1);
