@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
 import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
+import com.gdx.gnomearena.Config.Graphics.StatsConfig;
 
 public class StatsHud {
     private final Label scoreLabel;
@@ -58,8 +59,8 @@ public class StatsHud {
 
     public void createPlayAgainButton() {
         Skin skin = new Skin();
-        skin.add("playButtonTexture1", MainMenuConfig.BUTTON_BEFORE_IMAGE);
-        skin.add("playButtonTexture2", MainMenuConfig.BUTTON_AFTER_IMAGE);
+        skin.add("playButtonTexture1", StatsConfig.BUTTON_BEFORE_IMAGE);
+        skin.add("playButtonTexture2", StatsConfig.BUTTON_AFTER_IMAGE);
         Button.ButtonStyle bstyle = new Button.ButtonStyle();
         bstyle.up = skin.getDrawable("playButtonTexture1");
         bstyle.down = skin.getDrawable("playButtonTexture2");

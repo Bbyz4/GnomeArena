@@ -48,6 +48,7 @@ public class MainMenuScreen extends ActiveGameView implements Screen
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
+                //WHEN WE FIND BETTER SOLUTION IT WILL BE CHANGED
                 GameManager gameManager = new GameManager();
                 GameViewModel viewModel = new GameViewModel(gameManager);
                 GameScreen gameScreen = new GameScreen(game,gameManager,viewModel);

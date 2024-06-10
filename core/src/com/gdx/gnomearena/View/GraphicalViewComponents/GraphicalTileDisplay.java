@@ -47,8 +47,7 @@ public class GraphicalTileDisplay extends GraphicalGameBoardDisplay
         int startX = cameraPosition.getKey() - 7;
         int endX = cameraPosition.getKey() + 8;
         int startY = cameraPosition.getKey() - 7;
-        int endY = cameraPosition.getValue() + 9;
-        System.out.println(cameraPosition.getKey() + " " + cameraPosition.getValue());
+        int endY = cameraPosition.getValue() + 9; //will be in config
         //System.out.println(startX + " " + endX + " " + startY + " " + endY);
         for(int i=startX; i<endX; i++)
         {

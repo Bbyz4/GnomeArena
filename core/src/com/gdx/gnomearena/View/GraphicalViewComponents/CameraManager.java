@@ -28,8 +28,7 @@ public class CameraManager {
         float mapHeight = boardSize * tileWidth; // Wysokość planszy w pikselach
 
         cameraX = MathUtils.clamp(playersPosition.getKey()+0.5f,7.5f,boardSize-7.5f);
-        cameraY = MathUtils.clamp(playersPosition.getValue()+0.5f,6.5f,boardSize-8.5f);
-        System.out.println(cameraX + " " +  cameraY);
+        cameraY = MathUtils.clamp(playersPosition.getValue()+0.5f,6.5f,boardSize-8.5f); //will be in config
 
         camera.position.set(GraphicalViewConfig.UPPER_LEFT_TILE_X + (cameraX*tileWidth),GraphicalViewConfig.UPPER_LEFT_TILE_Y - (cameraY*tileWidth),0);
 
