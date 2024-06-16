@@ -34,6 +34,14 @@ public class StatsConfig {
     public static final int SCORE_TABLE_POSITION_Y = 150;
     public static final int SCORE_TABLE_WIDTH = 200;
     public static final int SCORE_TABLE_RIGHT_PADDING = 30;
+    public static final String SCORE_TEXT = "SCORE:";
+    public static final String TIME_TEXT = "TIME:";
+
+
+    public static final float STATS_CLEARCOLOR_V = 0f;
+    public static final float STATS_CLEARCOLOR_V1 = 1f;
+    public static final float STATS_CLEARCOLOR_V2 = 1f;
+    public static final float STATS_CLEARCOLOR_V3 = 1f;
 
 
 }

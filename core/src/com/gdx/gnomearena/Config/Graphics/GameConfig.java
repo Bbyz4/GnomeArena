@@ -70,6 +70,10 @@ public class GameConfig
     public static final int PARAM_SIZE = 100;
     public static final Color PARAM_COLOR = Color.BLACK;
     public static final int HUD_RIGHT_PADDING = 30;
+    public static final String SCORETEXT = "SCORE:";
+    public static final String HPTEXT = "HP:";
+    public static final String TIMETEXT = "TIME:";
+
 
     //TILES
     public static final int TILES_STARTX = 0;
@@ -77,7 +81,10 @@ public class GameConfig
     public static final int TILES_ENDX = 15;
     public static final int TILES_ENDY = 15;
 
-
+    public static final float CLEARCOLOR_V = 0.3f;
+    public static final float CLEARCOLOR_V1 = 0.3f;
+    public static final float CLEARCOLOR_V2 = 0.3f;
+    public static final float CLEARCOLOR_V3 = 1f;
 
     static
     {

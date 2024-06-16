@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.gdx.gnomearena.Config.Graphics.StatsConfig;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.View.StatsComponents.StatsHud;
 
@@ -59,9 +60,8 @@ public class StatsScreen implements Screen
     {
         camera.update();
 
-        Gdx.gl.glClearColor(0,1,1,1);
+        Gdx.gl.glClearColor(StatsConfig.STATS_CLEARCOLOR_V,StatsConfig.STATS_CLEARCOLOR_V1,StatsConfig.STATS_CLEARCOLOR_V2,StatsConfig.STATS_CLEARCOLOR_V3);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         stage.act(delta);
         stage.draw();
     }

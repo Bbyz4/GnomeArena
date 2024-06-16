@@ -29,5 +29,11 @@ public class MainMenuConfig
     public static final int TITLELABEL_WIDTH = 200;
     public static final String TITLE_TEXT = "GNOME ARENA";
 
+    public static final float MENU_CLEARCOLOR_V = 0f;
+    public static final float MENU_CLEARCOLOR_V1 = 1f;
+    public static final float MENU_CLEARCOLOR_V2 = 1f;
+    public static final float MENU_CLEARCOLOR_V3 = 1f;
+    
+
 
 }

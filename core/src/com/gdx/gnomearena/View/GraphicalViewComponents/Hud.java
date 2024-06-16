@@ -33,13 +33,13 @@ public class Hud {
         createTable();
     }
     public void createTable() {
-        table.add(new Label("SCORE:", hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
+        table.add(new Label(GameConfig.SCORETEXT, hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
         table.add(scoreLabel);
         table.row();
-        table.add(new Label("HP:", hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
+        table.add(new Label(GameConfig.HPTEXT, hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
         table.add(hpLabel);
         table.row();
-        table.add(new Label("TIME:", hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
+        table.add(new Label(GameConfig.TIMETEXT, hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
         table.add(timeLabel);
         table.setPosition(GameConfig.HUD_TABLE_POSITION_X, GameConfig.HUD_TABLE_POSITION_Y);
         table.setWidth(GameConfig.HUD_TABLE_WIDTH);

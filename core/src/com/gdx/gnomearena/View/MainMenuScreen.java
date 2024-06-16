@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.gdx.gnomearena.Config.Graphics.GameConfig;
+import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Model.GameManager;
 import com.gdx.gnomearena.View.MainMenuComponents.MenuHud;
@@ -63,7 +65,7 @@ public class MainMenuScreen implements Screen
     {
         camera.update();
 
-        Gdx.gl.glClearColor(0,1,1,1);
+        Gdx.gl.glClearColor(MainMenuConfig.MENU_CLEARCOLOR_V, MainMenuConfig.MENU_CLEARCOLOR_V1,MainMenuConfig.MENU_CLEARCOLOR_V2,MainMenuConfig.MENU_CLEARCOLOR_V3);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act(delta);

@@ -43,10 +43,10 @@ public class StatsHud {
 
     }
     public void createScoreTimeTable() {
-        scoreTimeTable.add(new Label("SCORE:", hudStyle)).expandX().padRight(StatsConfig.SCORE_TABLE_RIGHT_PADDING);
+        scoreTimeTable.add(new Label(StatsConfig.SCORE_TEXT, hudStyle)).expandX().padRight(StatsConfig.SCORE_TABLE_RIGHT_PADDING);
         scoreTimeTable.add(scoreLabel);
         scoreTimeTable.row();
-        scoreTimeTable.add(new Label("TIME:", hudStyle)).expandX().padRight(StatsConfig.SCORE_TABLE_RIGHT_PADDING);
+        scoreTimeTable.add(new Label(StatsConfig.TIME_TEXT, hudStyle)).expandX().padRight(StatsConfig.SCORE_TABLE_RIGHT_PADDING);
         scoreTimeTable.add(timeLabel);
         scoreTimeTable.setPosition(StatsConfig.SCORE_TABLE_POSITION_X, StatsConfig.SCORE_TABLE_POSITION_Y);
         scoreTimeTable.setWidth(StatsConfig.SCORE_TABLE_WIDTH);

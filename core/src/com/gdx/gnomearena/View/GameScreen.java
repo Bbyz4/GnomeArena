@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.gdx.gnomearena.Config.Graphics.GameConfig;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Model.*;
 import com.gdx.gnomearena.ViewModel.GameViewModel;
@@ -57,8 +58,9 @@ public class GameScreen extends ActiveGameView implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //TEMPORARY CHANGE
-        Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1);
-            viewModel.updateAllViews(gameManager,delta);
+        Gdx.gl.glClearColor(GameConfig.CLEARCOLOR_V, GameConfig.CLEARCOLOR_V1, GameConfig.CLEARCOLOR_V2, GameConfig.CLEARCOLOR_V3);
+
+        viewModel.updateAllViews(gameManager,delta);
 
         if(gameManager.isOver()) {
             viewModel.endGame();
