@@ -6,10 +6,10 @@ public class GameLogs
 {
 
     //COLLECTS BASIC INFO ABOUT WHAT HAPPENED IN THE GAME, THIS WILL BE USED BY VIEW'S
-    private static ArrayList<Item> usedItems = new ArrayList<>();
-    private static ArrayList<Weapon> damagingWeapons = new ArrayList<>();
-    private static ArrayList<Entity> attackingEntities = new ArrayList<>();
-    private static ArrayList<Entity> damagedEntites = new ArrayList<>();
+    private static final ArrayList<Item> usedItems = new ArrayList<>();
+    private static final ArrayList<Weapon> damagingWeapons = new ArrayList<>();
+    private static final ArrayList<Entity> attackingEntities = new ArrayList<>();
+    private static final ArrayList<Entity> damagedEntites = new ArrayList<>();
 
     public static void addItemUsage(Item it)
     {

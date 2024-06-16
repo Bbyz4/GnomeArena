@@ -12,7 +12,7 @@ public enum Direction
     LEFT(Input.Keys.A),
     RIGHT(Input.Keys.D);
 
-    private int value;
+    private final int value;
     private static final Map<Integer, Direction> directionMap = new HashMap<>();
     private static final Map<Direction, Pair<Integer,Integer>> nextFieldMap = new HashMap<>();
 

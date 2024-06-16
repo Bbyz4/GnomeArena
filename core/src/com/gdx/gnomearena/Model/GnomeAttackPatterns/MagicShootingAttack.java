@@ -9,8 +9,8 @@ import com.gdx.gnomearena.Model.TurnEntities.MagicBullet;
 
 public class MagicShootingAttack extends GnomeAttackPattern
 {
-    private int maxRange;
-    private int meleeDamage;
+    private final int maxRange;
+    private final int meleeDamage;
 
     public MagicShootingAttack()
     {

@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.View.StatsComponents.StatsHud;
-import com.gdx.gnomearena.ViewModel.GameViewModel;
 
 public class StatsScreen implements Screen
 {
@@ -18,9 +17,9 @@ public class StatsScreen implements Screen
 
     OrthographicCamera camera;
     private Stage stage;
-    private StatsHud statsHud;
-    private int score;
-    private int timer;
+    private final StatsHud statsHud;
+    private final int score;
+    private final int timer;
 
     public StatsScreen(final MainGame game, int score, int timer)
     {

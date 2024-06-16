@@ -28,19 +28,8 @@ public class GameScreen extends ActiveGameView implements Screen
         this.viewModel = viewModel;
         registerInViewModel(viewModel);
 
-
-
-        //TESTING
-        //camera.setToOrtho(false, 800, 600);
     }
 
-    /* //WILL BE USED FOR PLAYER INPUT LATER
-    public void processActiveViewRequest(int keyPressed)
-    {
-
-    }
-
-     */
 
     @Override
     public void show()

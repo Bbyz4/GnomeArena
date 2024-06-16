@@ -3,13 +3,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
+import com.gdx.gnomearena.Config.Graphics.GameConfig;
 
 public class GraphicalBeatMeterDisplay
 {
-    private final float beatMeterXPosition = GraphicalViewConfig.BEAT_METER_X_POSITION;
-    private final float beatMeterYPosition = GraphicalViewConfig.BEAT_METER_Y_POSITION;
-    private final float beatMeterScale = GraphicalViewConfig.BEAT_METER_SCALE;
+    private final float beatMeterXPosition = GameConfig.BEAT_METER_X_POSITION;
+    private final float beatMeterYPosition = GameConfig.BEAT_METER_Y_POSITION;
+    private final float beatMeterScale = GameConfig.BEAT_METER_SCALE;
 
     private Texture bmtexture;
     private Sprite bmsprite;
@@ -20,13 +20,13 @@ public class GraphicalBeatMeterDisplay
 
     public GraphicalBeatMeterDisplay()
     {
-        bmtexture = GraphicalViewConfig.BEAT_METER_BASE_TEXTURE;
+        bmtexture = GameConfig.BEAT_METER_BASE_TEXTURE;
         bmsprite = new Sprite(bmtexture);
         bmimage = new Image(bmsprite);
         bmimage.setPosition(beatMeterXPosition, beatMeterYPosition);
         bmimage.setOrigin(bmimage.getWidth()/2, bmimage.getHeight()/2);
-        bmimage.setColor(GraphicalViewConfig.BEAT_METER_RING_COLOR);
-        bm2texture = GraphicalViewConfig.BEAT_METER_RING_TEXTURE;
+        bmimage.setColor(GameConfig.BEAT_METER_RING_COLOR);
+        bm2texture = GameConfig.BEAT_METER_RING_TEXTURE;
         bm2sprite = new Sprite(bm2texture);
         bm2image = new Image(bm2sprite);
         bm2image.setPosition(beatMeterXPosition, beatMeterYPosition);
@@ -41,16 +41,16 @@ public class GraphicalBeatMeterDisplay
         {
             if(!keyHandled)
             {
-                bm2image.setColor(GraphicalViewConfig.BEAT_METER_READY_COLOR);
+                bm2image.setColor(GameConfig.BEAT_METER_READY_COLOR);
             }
             else
             {
-                bm2image.setColor(GraphicalViewConfig.BEAT_METER_USED_COLOR);
+                bm2image.setColor(GameConfig.BEAT_METER_USED_COLOR);
             }
         }
         else
         {
-            bm2image.setColor(GraphicalViewConfig.BEAT_METER_CHARGING_COLOR);
+            bm2image.setColor(GameConfig.BEAT_METER_CHARGING_COLOR);
         }
         stage.addActor(bmimage);
         stage.addActor(bm2image);

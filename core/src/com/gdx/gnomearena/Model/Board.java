@@ -9,13 +9,13 @@ import com.gdx.gnomearena.Config.Model.ModelConfig;
 
 public class Board
 {
-    private Entity[][] board; // (0,0) is the top-left square
-    private int boardSize;
+    private final Entity[][] board; // (0,0) is the top-left square
+    private final int boardSize;
     private int playerX;
     private int playerY;
 
-    private Entity[][] previousBoard;
-    private Item[][] itemBoard;
+    private final Entity[][] previousBoard;
+    private final Item[][] itemBoard;
 
 
     Board(int x)
@@ -88,7 +88,7 @@ public class Board
 
     public Pair<Integer, Integer> getPlayersPosition()
     {
-        return new Pair<Integer,Integer>(playerX, playerY);
+        return new Pair<>(playerX, playerY);
     }
 
     public Pair<Integer, Integer> getEntitiesPosition(Entity e)
@@ -99,7 +99,7 @@ public class Board
             {
                 if(board[i][j]!=null && board[i][j].equals(e))
                 {
-                    return new Pair<Integer,Integer>(i, j);
+                    return new Pair<>(i, j);
                 }
             }
         }
@@ -115,7 +115,7 @@ public class Board
             {
                 if(itemBoard[i][j]!=null && itemBoard[i][j].equals(item))
                 {
-                    return new Pair<Integer,Integer>(i, j);
+                    return new Pair<>(i, j);
                 }
             }
         }
@@ -183,10 +183,7 @@ public class Board
     {
         for(int i=0; i<boardSize; i++)
         {
-            for(int j=0; j<boardSize; j++)
-            {
-                previousBoard[i][j] = board[i][j];
-            }
+            System.arraycopy(board[i], 0, previousBoard[i], 0, boardSize);
         }
     }
 

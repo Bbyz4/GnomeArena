@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
-public class GraphicalViewConfig
+public class GameConfig
 {
     //BOARD AND BACKGROUND
     public static final float TOTAL_BOARD_SCALE = 1.1f;
@@ -61,6 +61,24 @@ public class GraphicalViewConfig
     public static final float GNOME_SCALE = 1.4f;
     public static final float GNOME_MOVEMENT_TIME = 0.2f;
 
+
+    //HUD
+
+    public static final int HUD_TABLE_POSITION_X = 1600;
+    public static final int HUD_TABLE_POSITION_Y = 900;
+    public static final int HUD_TABLE_WIDTH = 200;
+    public static final int PARAM_SIZE = 100;
+    public static final Color PARAM_COLOR = Color.BLACK;
+    public static final int HUD_RIGHT_PADDING = 30;
+
+    //TILES
+    public static final int TILES_STARTX = 0;
+    public static final int TILES_STARTY = 0;
+    public static final int TILES_ENDX = 15;
+    public static final int TILES_ENDY = 15;
+
+
+
     static
     {
         ITEM_SKINS.put("Medkit", new Texture("itemSprites/Medkit.png"));
@@ -82,3 +100,4 @@ public class GraphicalViewConfig
         WEAPON_SKINS.put("Hammer", new Texture("weaponSprites/Hammer.png"));
     }
 }
+

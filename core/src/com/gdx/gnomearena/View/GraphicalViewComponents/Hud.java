@@ -1,15 +1,12 @@
 package com.gdx.gnomearena.View.GraphicalViewComponents;
 
-import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
-import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
+import com.gdx.gnomearena.Config.Graphics.GameConfig;
 
 
 public class Hud {
@@ -21,10 +18,10 @@ public class Hud {
     public Hud() {
 
         BitmapFont bigFont;
-        FreeTypeFontGenerator ftfp = GraphicalViewConfig.PIXEL_FONT;
+        FreeTypeFontGenerator ftfp = GameConfig.PIXEL_FONT;
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.size = 100;
-        param.color.set(0, 0, 0, 1);
+        param.size = GameConfig.PARAM_SIZE;
+        param.color.set(GameConfig.PARAM_COLOR);
         bigFont = ftfp.generateFont(param);
         hudStyle = new Label.LabelStyle();
         hudStyle.font = bigFont;
@@ -36,16 +33,16 @@ public class Hud {
         createTable();
     }
     public void createTable() {
-        table.add(new Label("SCORE:", hudStyle)).expandX().padRight(30);
+        table.add(new Label("SCORE:", hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
         table.add(scoreLabel);
         table.row();
-        table.add(new Label("HP:", hudStyle)).expandX().padRight(30);
+        table.add(new Label("HP:", hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
         table.add(hpLabel);
         table.row();
-        table.add(new Label("TIME:", hudStyle)).expandX().padRight(30);
+        table.add(new Label("TIME:", hudStyle)).expandX().padRight(GameConfig.HUD_RIGHT_PADDING);
         table.add(timeLabel);
-        table.setPosition(1600, 900);
-        table.setWidth(200);
+        table.setPosition(GameConfig.HUD_TABLE_POSITION_X, GameConfig.HUD_TABLE_POSITION_Y);
+        table.setWidth(GameConfig.HUD_TABLE_WIDTH);
 
     }
 

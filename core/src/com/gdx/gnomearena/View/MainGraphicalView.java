@@ -21,8 +21,6 @@ public class MainGraphicalView extends PassiveGameView
     private final GraphicalBeatMeterDisplay beatMeterDisplay;
     private final SoundsPlayer soundsPlayer;
     private final Hud hud;
-
-    private  CameraManager cameraManager;
     public Stage stage;
     public Stage hudStage;
     public Stage backgroundStage;
@@ -47,7 +45,6 @@ public class MainGraphicalView extends PassiveGameView
         stage = new Stage(new ScreenViewport());
         hudStage = new Stage(new ScreenViewport());
         backgroundStage = new Stage(new ScreenViewport());
-        cameraManager = new CameraManager(stage);
         soundsPlayer.setMusic(MusicConfig.HUNDRED_BPM_MUSIC);
         soundsPlayer.playMusic();
     }
@@ -63,9 +60,8 @@ public class MainGraphicalView extends PassiveGameView
 
         uiDisplay.displayBackground(backgroundStage);
 
-        cameraManager.update(stage,gameManager.gameBoard.getPlayersPosition(), gameManager.gameBoard.size());
 
-        tileDisplay.displayTiles(stage,cameraManager.getCamera());
+        tileDisplay.displayTiles(stage);
 
         List<Pair<Item, Pair<Integer,Integer>>> boardItems = BoardViewInfo.getAllItemsWithPositions(gameManager.gameBoard);
         itemDisplay.displayItems(boardItems, stage);

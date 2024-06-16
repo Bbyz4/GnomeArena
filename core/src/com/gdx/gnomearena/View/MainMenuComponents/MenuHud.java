@@ -1,14 +1,12 @@
 package com.gdx.gnomearena.View.MainMenuComponents;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
@@ -17,17 +15,17 @@ import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
 public class MenuHud {
 
     private Label titleLabel;
-    private Label.LabelStyle textStyle;
+    private final Label.LabelStyle textStyle;
     private Button playButton;
-    private Image gnome_background;
+    private final Image gnome_background;
 
     public MenuHud() {
 
         BitmapFont bigFont;
         FreeTypeFontGenerator ftfp = MainMenuConfig.PIXEL_FONT;
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.size = 150;
-        param.color.set(0, 0, 0, 1);
+        param.size = MainMenuConfig.PARAM_MENU_SIZE;
+        param.color.set(MainMenuConfig.PARAM_MENU_COLOR);
         bigFont = ftfp.generateFont(param);
         textStyle = new Label.LabelStyle();
         textStyle.font = bigFont;
@@ -44,15 +42,15 @@ public class MenuHud {
 
     public void createPlayButton() {
         Skin skin = new Skin();
-        skin.add("playButtonTexture1", MainMenuConfig.BUTTON_BEFORE_IMAGE);
-        skin.add("playButtonTexture2", MainMenuConfig.BUTTON_AFTER_IMAGE);
+        skin.add(MainMenuConfig.PLAYBUTTON_BEFORE_NAME, MainMenuConfig.BUTTON_BEFORE_IMAGE);
+        skin.add(MainMenuConfig.PLAYBUTTON_AFTER_NAME, MainMenuConfig.BUTTON_AFTER_IMAGE);
         Button.ButtonStyle bstyle = new Button.ButtonStyle();
-        bstyle.up = skin.getDrawable("playButtonTexture1");
-        bstyle.down = skin.getDrawable("playButtonTexture2");
+        bstyle.up = skin.getDrawable(MainMenuConfig.PLAYBUTTON_BEFORE_NAME);
+        bstyle.down = skin.getDrawable(MainMenuConfig.PLAYBUTTON_AFTER_NAME);
         playButton = new Button(bstyle);
-        playButton.setPosition(810, 50);
-        playButton.setWidth(300);
-        playButton.setHeight(300);
+        playButton.setPosition(MainMenuConfig.PLAYBUTTON_POSITION_X, MainMenuConfig.PLAYBUTTON_POSITION_Y);
+        playButton.setWidth(MainMenuConfig.PLAYBUTTON_WIDTH);
+        playButton.setHeight(MainMenuConfig.PLAYBUTTON_HEIGHT);
     }
 
     public void displayPlayButton(Stage stage) {
@@ -60,10 +58,10 @@ public class MenuHud {
     }
 
     public void createTitleLabel() {
-        titleLabel = new Label("GNOME ARENA", textStyle);
+        titleLabel = new Label(MainMenuConfig.TITLE_TEXT, textStyle);
         titleLabel.setAlignment(Align.center);
-        titleLabel.setPosition(860, 800);
-        titleLabel.setWidth(200);
+        titleLabel.setPosition(MainMenuConfig.TITLELABEL_POSITION_X, MainMenuConfig.TITLELABEL_POSITION_Y);
+        titleLabel.setWidth(MainMenuConfig.TITLELABEL_WIDTH);
     }
 
     public void displayTitleLabel(Stage stage) {

@@ -1,6 +1,5 @@
 package com.gdx.gnomearena.View.StatsComponents;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -10,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
-import com.gdx.gnomearena.Config.Graphics.GraphicalViewConfig;
-import com.gdx.gnomearena.Config.Graphics.MainMenuConfig;
+import com.gdx.gnomearena.Config.Graphics.GameConfig;
 import com.gdx.gnomearena.Config.Graphics.StatsConfig;
 
 public class StatsHud {
@@ -25,10 +23,10 @@ public class StatsHud {
     public StatsHud() {
 
         BitmapFont bigFont;
-        FreeTypeFontGenerator ftfp = GraphicalViewConfig.PIXEL_FONT;
+        FreeTypeFontGenerator ftfp = GameConfig.PIXEL_FONT;
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        param.size = 100;
-        param.color.set(0, 0, 0, 1);
+        param.size = StatsConfig.STATS_PARAM_SIZE;
+        param.color.set(StatsConfig.STATS_PARAM_COLOR);
         bigFont = ftfp.generateFont(param);
         hudStyle = new Label.LabelStyle();
         hudStyle.font = bigFont;
@@ -45,13 +43,13 @@ public class StatsHud {
 
     }
     public void createScoreTimeTable() {
-        scoreTimeTable.add(new Label("SCORE:", hudStyle)).expandX().padRight(30);
+        scoreTimeTable.add(new Label("SCORE:", hudStyle)).expandX().padRight(StatsConfig.SCORE_TABLE_RIGHT_PADDING);
         scoreTimeTable.add(scoreLabel);
         scoreTimeTable.row();
-        scoreTimeTable.add(new Label("TIME:", hudStyle)).expandX().padRight(30);
+        scoreTimeTable.add(new Label("TIME:", hudStyle)).expandX().padRight(StatsConfig.SCORE_TABLE_RIGHT_PADDING);
         scoreTimeTable.add(timeLabel);
-        scoreTimeTable.setPosition(860, 150);
-        scoreTimeTable.setWidth(200);
+        scoreTimeTable.setPosition(StatsConfig.SCORE_TABLE_POSITION_X, StatsConfig.SCORE_TABLE_POSITION_Y);
+        scoreTimeTable.setWidth(StatsConfig.SCORE_TABLE_WIDTH);
     }
     public Button getPlayAgainButton() {
         return playAgainButton;
@@ -59,15 +57,15 @@ public class StatsHud {
 
     public void createPlayAgainButton() {
         Skin skin = new Skin();
-        skin.add("playButtonTexture1", StatsConfig.BUTTON_BEFORE_IMAGE);
-        skin.add("playButtonTexture2", StatsConfig.BUTTON_AFTER_IMAGE);
+        skin.add(StatsConfig.PLAYAGAINBUTTON_BEFORE_NAME, StatsConfig.BUTTON_BEFORE_IMAGE);
+        skin.add(StatsConfig.PLAYAGAINBUTTON_AFTER_NAME, StatsConfig.BUTTON_AFTER_IMAGE);
         Button.ButtonStyle bstyle = new Button.ButtonStyle();
-        bstyle.up = skin.getDrawable("playButtonTexture1");
-        bstyle.down = skin.getDrawable("playButtonTexture2");
+        bstyle.up = skin.getDrawable(StatsConfig.PLAYAGAINBUTTON_BEFORE_NAME);
+        bstyle.down = skin.getDrawable(StatsConfig.PLAYAGAINBUTTON_AFTER_NAME);
         playAgainButton = new Button(bstyle);
-        playAgainButton.setPosition(810, 440);
-        playAgainButton.setWidth(300);
-        playAgainButton.setHeight(300);
+        playAgainButton.setPosition(StatsConfig.PLAYAGAINBUTTON_POSITION_X, StatsConfig.PLAYAGAINBUTTON_POSITION_Y);
+        playAgainButton.setWidth(StatsConfig.PLAYAGAINBUTTON_WIDTH);
+        playAgainButton.setHeight(StatsConfig.PLAYAGAINBUTTON_HEIGHT);
     }
 
     public void displayPlayAgainButton(Stage stage) {
@@ -75,10 +73,10 @@ public class StatsHud {
     }
 
     public void createGameOverLabel() {
-        gameOverLabel = new Label("GAME OVER", textStyle);
+        gameOverLabel = new Label(StatsConfig.GAMEOVER_TEXT, textStyle);
         gameOverLabel.setAlignment(Align.center);
-        gameOverLabel.setPosition(860, 800);
-        gameOverLabel.setWidth(200);
+        gameOverLabel.setPosition(StatsConfig.GAMEOVERLABEL_POSITION_X, StatsConfig.GAMEOVERLABEL_POSITION_Y);
+        gameOverLabel.setWidth(StatsConfig.GAMEOVERLABEL_WIDTH);
     }
 
 

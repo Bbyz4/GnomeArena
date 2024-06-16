@@ -18,21 +18,16 @@ public class GnomeMover
             {
                 if (board.get(i,j) instanceof TurnEntity)
                 {
-                    positions.add(new Pair<Integer,Integer>(i,j));
+                    positions.add(new Pair<>(i, j));
                 }
             }
         }
         
-        positions.sort(new Comparator<Pair<Integer,Integer>>()
-        {
-            @Override
-            public int compare(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2)
-            {
-                Pair<Integer,Integer> playerPos = board.getPlayersPosition();
-                int dist1 = Math.abs(playerPos.getKey()-p1.getKey()) + Math.abs(playerPos.getValue()-p1.getValue());
-                int dist2 = Math.abs(playerPos.getKey()-p2.getKey()) + Math.abs(playerPos.getValue()-p2.getValue());
-                return Integer.compare(dist1, dist2);
-            }
+        positions.sort((p1, p2) -> {
+            Pair<Integer,Integer> playerPos = board.getPlayersPosition();
+            int dist1 = Math.abs(playerPos.getKey()-p1.getKey()) + Math.abs(playerPos.getValue()-p1.getValue());
+            int dist2 = Math.abs(playerPos.getKey()-p2.getKey()) + Math.abs(playerPos.getValue()-p2.getValue());
+            return Integer.compare(dist1, dist2);
         });
         
         for(int i=0; i<positions.size(); i++)

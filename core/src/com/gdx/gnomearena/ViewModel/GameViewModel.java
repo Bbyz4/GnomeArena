@@ -1,6 +1,5 @@
 package com.gdx.gnomearena.ViewModel;
 
-import com.badlogic.gdx.Game;
 import com.gdx.gnomearena.Model.GameManager;
 import com.gdx.gnomearena.View.ActiveGameView;
 import com.gdx.gnomearena.View.PassiveGameView;
@@ -10,8 +9,8 @@ import java.util.List;
 
 public class GameViewModel {
     private final GameManager gameManager;
-    private List<PassiveGameView> passiveListeners = new ArrayList<>();
-    private List<ActiveGameView> activeListeners = new ArrayList<>();
+    private final List<PassiveGameView> passiveListeners = new ArrayList<>();
+    private final List<ActiveGameView> activeListeners = new ArrayList<>();
 
     public GameViewModel(GameManager gameManager) {
         this.gameManager = gameManager;

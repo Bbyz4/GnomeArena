@@ -10,8 +10,8 @@ import com.gdx.gnomearena.Model.TurnEntity;
 public class Bomb extends TurnEntity
 {
     private int boomTime;
-    private int dealtDamage;
-    private List<Pair<Integer,Integer>> damageRange;
+    private final int dealtDamage;
+    private final List<Pair<Integer,Integer>> damageRange;
 
     public Bomb()
     {
@@ -63,7 +63,7 @@ public class Bomb extends TurnEntity
     @Override
     public void onSpawn(Board board)
     {
-        return;    
+
     }
 
     @Override
