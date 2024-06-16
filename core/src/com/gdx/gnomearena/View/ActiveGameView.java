@@ -4,16 +4,9 @@ import com.gdx.gnomearena.ViewModel.GameViewModel;
 
 public abstract class ActiveGameView
 {
-    private GameViewModel registeredTo;
+    public GameViewModel registeredTo;
 
-    private void registerInViewModel(GameViewModel viewModel)
-    {
-        registeredTo = viewModel;
-        viewModel.registerActiveListener(this);
-    }
+    public abstract void registerInViewModel(GameViewModel viewModel);
 
-    private void sendUserAction(int keyPressed)
-    {
-        registeredTo.passInputToModel(keyPressed);
-    }
+    public abstract void sendUserAction(int keyPressed);
 }

@@ -34,7 +34,7 @@ public class SoundsPlayer {
         music.pause();
     }
 
-    public void disposeMuisc() {
+    public void disposeMusic() {
         music.dispose();
     }
 

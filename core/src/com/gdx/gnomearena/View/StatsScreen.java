@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.View.StatsComponents.StatsHud;
-public class StatsScreen extends ActiveGameView implements Screen
+import com.gdx.gnomearena.ViewModel.GameViewModel;
+
+public class StatsScreen implements Screen
 {
     final MainGame game;
 
@@ -95,4 +97,6 @@ public class StatsScreen extends ActiveGameView implements Screen
     {
         //throw new UnsupportedOperationException("Unimplemented method 'dispose'");
     }
+
+
 }

@@ -1,7 +1,5 @@
 package com.gdx.gnomearena.View;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
@@ -10,7 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.gdx.gnomearena.MainGame;
 import com.gdx.gnomearena.Model.*;
-import com.gdx.gnomearena.View.GraphicalViewComponents.Hud;
 import com.gdx.gnomearena.ViewModel.GameViewModel;
 
 
@@ -29,7 +26,7 @@ public class GameScreen extends ActiveGameView implements Screen
         this.gameManager = gameManager;
         camera = new OrthographicCamera();
         this.viewModel = viewModel;
-        viewModel.registerActiveListener(this);
+        registerInViewModel(viewModel);
 
 
 
@@ -53,7 +50,7 @@ public class GameScreen extends ActiveGameView implements Screen
             @Override
             public boolean keyDown(int keycode)
             {
-                viewModel.passInputToModel(keycode);
+                sendUserAction(keycode);
 
                 return true;
             }
@@ -93,7 +90,7 @@ public class GameScreen extends ActiveGameView implements Screen
     @Override
     public void resize(int width, int height)
     {
-        
+
     }
 
     @Override
@@ -111,7 +108,7 @@ public class GameScreen extends ActiveGameView implements Screen
     @Override
     public void hide()
     {
-
+        viewModel.disposeAll();
     }
 
     @Override
@@ -120,4 +117,14 @@ public class GameScreen extends ActiveGameView implements Screen
         
     }
 
+    @Override
+    public void registerInViewModel(GameViewModel viewModel) {
+        registeredTo = viewModel;
+        viewModel.registerActiveListener(this);
+    }
+
+    @Override
+    public void sendUserAction(int keyPressed) {
+        viewModel.passInputToModel(keyPressed);
+    }
 }

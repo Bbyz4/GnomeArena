@@ -8,18 +8,9 @@ public abstract class PassiveGameView
 
     
 
-    public void initialize()
-    {
-        
-    }
+    public abstract void initialize();
 
-    public void displayGame(GameManager gameManager, float delta)
-    {
-        return;
-    }
+    public abstract void displayGame(GameManager gameManager, float delta);
 
-    public void finalize()
-    {
-
-    }
+    public abstract void finish();
 }

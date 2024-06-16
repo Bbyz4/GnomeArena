@@ -51,6 +51,11 @@ public class GameViewModel {
         }
     }
 
+    public void disposeAll() {
+        for (PassiveGameView PGV: passiveListeners) {
+             PGV.finish();
+        }
+    }
 
 
 

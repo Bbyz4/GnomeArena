@@ -14,12 +14,10 @@ import com.gdx.gnomearena.Model.GameManager;
 import com.gdx.gnomearena.View.MainMenuComponents.MenuHud;
 //import com.gdx.gnomearena.ViewModel.CurrentViewModel;
 import com.gdx.gnomearena.ViewModel.GameViewModel;
-import com.gdx.gnomearena.ViewModel.MainMenuViewModel;
 
-public class MainMenuScreen extends ActiveGameView implements Screen
+public class MainMenuScreen implements Screen
 {
     final MainGame game;
-    MainMenuViewModel viewModel;
     OrthographicCamera camera;
 
     Label.LabelStyle textStyle = new Label.LabelStyle();
@@ -32,7 +30,6 @@ public class MainMenuScreen extends ActiveGameView implements Screen
         this.game = game;
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         menuHud = new MenuHud();
-        viewModel = new MainMenuViewModel();
     }
 
 
@@ -103,4 +100,5 @@ public class MainMenuScreen extends ActiveGameView implements Screen
     {
         //throw new UnsupportedOperationException("Unimplemented method 'dispose'");
     }
+
 }

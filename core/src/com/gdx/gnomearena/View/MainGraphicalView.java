@@ -127,11 +127,11 @@ public class MainGraphicalView extends PassiveGameView
     }
 
     @Override
-    public void finalize()
+    public void finish()
     {
         stage.clear();
         hudStage.clear();
         backgroundStage.clear();
-        soundsPlayer.disposeMuisc();
+        soundsPlayer.disposeMusic();
     }
 }
